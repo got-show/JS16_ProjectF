@@ -103,12 +103,15 @@ export default class Character extends Component {
         this.animating = true;
         var bookContainer = $(".plodBookContainer");
         var characterShowImg = $(".character-show-img");
+        var disclaimer = $('.disclaimer');
         if (bookContainer.hasClass('plodContainerHidden')) {
             bookContainer.removeClass("plodContainerZIndexLower").removeClass("plodContainerHidden");
             characterShowImg.addClass("hiddenImg");
+            disclaimer.addClass('hiddenImg');
         } else {
             bookContainer.addClass("plodContainerHidden");
             characterShowImg.removeClass("hiddenImg");
+            disclaimer.removeClass('hiddenImg');
             window.setTimeout(() => {
                 $(".plodBookContainer").addClass("plodContainerZIndexLower");
             }, 400);
@@ -161,6 +164,7 @@ export default class Character extends Component {
                             <img src={img}/>
                             {this.state.character.show && this.state.character.show.image ? 
                                 <img className="character-show-img" src={this.state.character.show.image}/> : ''}
+                            <div className="disclaimer">© 2016 Home Box Office, Inc. / Sky All rights reserved.</div>
                         </div>
                     </Col>
                     <Col md={9}>
@@ -216,31 +220,47 @@ export default class Character extends Component {
                 </Row>
                 <hr />
                 <Row>
-                    <Col className="leftBar" md={3}>
-                        <h3>Comparison</h3>
-                        <h4>between the&nbsp;books and&nbsp;the TV&nbsp;show</h4>
-                    </Col>
-                    <Col md={9}>
+                    <Col md={12}>
+                        <div className="sectionHeader">
+                            <h3>Comparison</h3>
+                            <h4>between the&nbsp;books and&nbsp;the TV&nbsp;show</h4>
+                        </div>
+                        <hr />
                         <CharacterDetailsMedia data={this.state} character={this.state.character}/>
                     </Col>
                 </Row>
                 <hr />
                 <Row>
-                    <Col className="leftBar" md={3}>
-                        <h3>Interesting Stats</h3>
-                        <h4>about {this.state.character.name}</h4>
-                    </Col>
-                    <Col md={9}>
+                    <Col md={12}>
+                        <div className="sectionHeader">
+                            <h3>Interesting Stats</h3>
+                            <h4>about {this.state.character.name}</h4>
+                        </div>
+                        <hr />
                         <CharacterDetailsStats data={this.state} />
                     </Col>
                 </Row>
                 <hr />
                 <Row>
-                    <Col className="leftBar" md={3}>
-                        <h3>Machine Learning</h3>
-                        <h4>predicting life and death in Westeros</h4>
+                    <Col md={12}>
+                        <div className="sectionHeader">
+                            <h3 style={{marginBottom: "35px"}}>Follow {this.state.character.name}</h3>
+                        </div>
+                        <hr />
+                        <div id="characterMap">
+                            <MapComp character={[this.props.params.id]} />
+                        </div>
                     </Col>
-                    <Col md={9}>
+                </Row>
+                <br />
+                <Row>
+                    <Col md={12}>
+                        <hr />
+                        <div className="sectionHeader">
+                            <h3>Machine Learning</h3>
+                            <h4>predicting life and death in Westeros</h4>
+                        </div>
+                        <hr />
                         <div className="card">
                             <h3>Character Death & Longevity</h3>
                             <p>Our in-house developed machine learning algorithm predicts
@@ -252,18 +272,6 @@ export default class Character extends Component {
                         </div>
                     </Col>
                 </Row>
-                <hr />
-                <Row>
-                    <Col md={12}>
-                        <h3 style={{marginBottom: "35px"}}>Follow {this.state.character.name}</h3>
-                    </Col>
-                    <Col>
-                        <div id="characterMap">
-                            <MapComp character={[this.props.params.id]} />
-                        </div>
-                    </Col>
-                </Row>
-
             </div>
           </Grid>
         );

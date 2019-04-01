@@ -142,12 +142,12 @@ export default class CharacterDetailsMedia extends Component {
             quote: sbPlodQuote,
             graphic: sbGraphic,
             valueBook: 
-                this.isDeadBook ? (<span className="mainValue">DEAD</span>) 
+                this.isDeadBook ? (<div><span className="mainValue">DEAD</span><span className="supportingText">&nbsp;</span></div>) 
                 : (<div><span className="mainValue">{this.plodBook} %</span><span className="supportingText">Chance of Death</span></div>),
             valueShow: 
-                this.isDeadShow ? (<span className="mainValue">DEAD</span>) 
+                this.isDeadShow ? (<div><span className="mainValue">DEAD</span><span className="supportingText">&nbsp;</span></div>) 
                 : (<div><span className="mainValue">{this.plodShow} %</span><span className="supportingText">Chance of Death</span></div>),
-            valueBoth: (this.isDeadShow && this.isDeadBook) ? (<span className="mainValue">DEAD</span>) : false
+            valueBoth: (this.isDeadShow && this.isDeadBook) ? (<div><span className="mainValue">DEAD</span><span className="supportingText">&nbsp;</span></div>) : false
         });
     }
 
@@ -213,7 +213,7 @@ export default class CharacterDetailsMedia extends Component {
         <p>{sbAppearTexShow} {sbAppearTextBook}</p></div>;
         
         this.cards.push({
-            category: "Number of appearances",
+            category: "Appearances",
             title: sbAppearTitle,
             text: sbAppearText,
             quote: sbAppearQuote,

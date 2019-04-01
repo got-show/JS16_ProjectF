@@ -258,7 +258,7 @@ export default class CharacterDetailsStats extends Component {
                         <div className="statsCard" key={index}>
                             <span className="subtitle">{card.type}</span>
                             <h4>{card.title}</h4>
-                            <p className="description">{card.text}</p>
+                            <div className="description">{card.text}</div>
                             <div className="proportion">
                                 <p>proportionally around</p>
                                 <h3>

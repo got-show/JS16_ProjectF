@@ -198,9 +198,17 @@ title {
     transform: translateX(-50%);
 }
 
-.leftBar h3 {
+.sectionHeader h3, .sectionHeader h4 {
+	text-align: center;
+}
+
+.sectionHeader h3 {
 	margin-top: 4px;
 	font-size: 1.6em;
+}
+
+.sectionHeader h4 {
+	margin-bottom: 0;
 }
 
 .plodOuterContainer {
@@ -311,4 +319,16 @@ hr {
 	border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.50), rgba(0, 0, 0, 0));
+}
+
+.disclaimer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 9px;
+	max-width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	background: transparent;
+	transition-duration: 0.4s;
 }

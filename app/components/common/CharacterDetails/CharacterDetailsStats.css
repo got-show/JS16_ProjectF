@@ -91,6 +91,10 @@
     margin-top: 0;
 }
 
+.statsCard .description {
+    min-height: 4em;
+}
+
 .lowerQuote {
     display: inline-block;
     border-left: 5px solid #666;

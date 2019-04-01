@@ -1,4 +1,4 @@
-.sbDiffBlocks .sbDiffBlock:nth-child(even) {
+.sbDiffBlocks .sbDiffBlock:nth-child(3n) {
     margin-right: 0;
 }
 
@@ -16,7 +16,7 @@
     padding-bottom: 40px;
 
     display: inline-block;
-    width: calc((100% - 20px) / 2);
+    width: calc((100% - 40px) / 3);
     margin-right: 20px;
     vertical-align: top;
 
@@ -48,7 +48,7 @@
 
 .mainValue {
     display: block;
-    font-size: 3em;
+    font-size: 2.7em;
     font-family: 'Cinzel', sans;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .sbDiffTitle {
-    font-size: 1.5em;
+    font-size: 1.2em;
     height: 2.5em;
     margin: 0;
 }
@@ -80,6 +80,7 @@
     height: 130px;
     display: inline-block;
     margin-bottom: 10px;
+    vertical-align: top;
 }
 
 .sbDiffBlock .sbDiffValueBox:nth-child(2) {
