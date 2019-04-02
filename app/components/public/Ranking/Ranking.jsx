@@ -7,39 +7,11 @@ import "./Ranking.css";
 import SentimentStore from '../../../stores/TwitterSentimentsStore';
 import SentimentsActions from '../../../actions/TwitterSentimentsActions';
 
+import HousesTop5 from '../../common/Ranking/HousesTop5';
+import PlodTop5 from '../../common/Ranking/PlodTop5';
+import Survivors from '../../common/Ranking/Survivors';
+
 export default class Ranking extends Component {
-    getHardcodedPlodTop5() {
-        return [
-            {name: 'Tommen Baratheon', plod: '97.9'},
-            {name: 'Stannis Baratheon', plod: '96.4'},
-            {name: 'Daenerys Targaryen', plod: '95.3'},
-            {name: 'Davos Seaworth', plod: '91.8'},
-            {name: 'Petyr Baelish', plod: '91.8'}
-        ];
-    }
-    getHardcodedHousesTop5() {
-        return [
-            {name: 'House Tully'},
-            {name: 'House Clegane'},
-            {name: 'House Velaryon'},
-            {name: 'House Seaworth'},
-            {name: 'House Nymeros'},
-            {name: 'House Targaryen'},
-            {name: 'House Oakheart'},
-            {name: 'House Greyjoy'},
-            {name: 'House Lannister'},
-            {name: 'House Westerling'}
-        ];
-    }
-    getHardcodedSurvivors() {
-        return [
-            {name: 'Sansa Stark', plod: '3.9'},
-            {name: 'Jon Snow', plod: '11.6'},
-            {name: 'Cersei Lannister', plod: '16.6'},
-            {name: 'Mace Tyrell', plod: '18.7'},
-            {name: 'Roose Bolton', plod: '28.9'}
-        ];
-    }
 
     constructor(props) {
         super(props);
@@ -87,21 +59,7 @@ export default class Ranking extends Component {
                 <Grid>
                     <Row className="ranking-fields ranking-plod">
                         <Col xs={10} xsOffset={1} sm={8} smOffset={2}>
-                            <div className="ranking-field">
-                                <h2 className="text-center ranking-title">Who is most likely to die next</h2>
-                                <ul>
-                                    {
-                                        this.getHardcodedPlodTop5().map((char) => {
-                                            return <li>
-                                                <h4><Link to={'/characters/' + char.name}>
-                                                    {char.name} [{parseInt(char.plod)}%]
-                                                </Link></h4>
-                                            </li>;
-                                        })
-                                    }
-                                </ul>
-                                <p className="see-more"><Link to={'/characters/?search=&page=1&sort=plod&order=-1'}>See more</Link></p>
-                            </div>
+                          <PlodTop5/>
                         </Col>
                     </Row>
                 </Grid>
@@ -157,7 +115,7 @@ export default class Ranking extends Component {
                                                         </h4>
                                                     </Col>
                                                     <Col xs={4} className="text-center">
-                                                        <OverlayTrigger trigger="hover" placement="top" 
+                                                        <OverlayTrigger trigger="hover" placement="top"
                                                         overlay={<Tooltip><u><strong>Tweets</strong></u><br/><strong>{char.positive}</strong> positive<br/><strong>{char.negative}</strong> negative<br/>
                                                         <strong>{char.total}</strong> total</Tooltip>}>
                                                             <a href={"http://twitter.com/share?text=I%20hate%20"+char.name+"&url=https://got.show/&via=gotjstech"} target="_blank">
@@ -176,33 +134,10 @@ export default class Ranking extends Component {
 
                     <Row className="ranking-fields">
                         <Col sm={12} md={6}>
-                            <div className="ranking-field">
-                                <h2 className="text-center ranking-title">Most dangerous Houses </h2>
-                                <ul>
-                                    {
-                                        this.getHardcodedHousesTop5().map((house) => {
-                                            return <li><h4><a target="_blank" href={"https://awoiaf.westeros.org/index.php/" + house.name}>{house.name}</a></h4></li>;
-                                        })
-                                    }
-                                </ul>
-                            </div>
+                            <HousesTop5/>
                         </Col>
                         <Col sm={12} md={6}>
-                            <div className="ranking-field">
-                                <h2 className="text-center ranking-title">Top Survivors</h2>
-                                <ul>
-                                    {
-                                        this.getHardcodedSurvivors().map((char) => {
-                                            return <li>
-                                                <h4><Link to={'/characters/' + char.name}>
-                                                    {char.name} [{parseInt(char.plod)}%]
-                                                </Link></h4>
-                                            </li>;
-                                        })
-                                    }
-                                </ul>
-                                <p className="see-more"><Link to={'/characters/?search=&page=1&sort=plod&order=1'}>See more</Link></p>
-                            </div>
+                            <Survivors></Survivors>
                         </Col>
                     </Row>
                 </Grid>
