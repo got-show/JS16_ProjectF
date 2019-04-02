@@ -1,8 +1,48 @@
-.center{
-    align: center;
+#Statistics .center {
+  align: center;
 }
 
-.caption {
-    text-align: center;
-    font-size: smaller;
+#Statistics .caption {
+  text-align: center;
+  font-size: smaller;
+}
+
+#Statistics .card {
+  border: 1px solid #ccc;
+}
+
+
+#Statistics .simple-info .card {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+#Statistics .simple-info .card>* {
+  text-align: center;
+}
+#Statistics .see-more{
+  position: absolute;
+  bottom: 10px;
+  right: 40px;
+}
+
+@media (min-width: 992px) {
+  #Statistics .simple-info .card {
+    height: 135px;
+  }
+  #Statistics .simple-info .card>* {
+    text-align: left;
+  }
+   #Statistics.simple-info .card h2{
+    font-weight:bold;
+  }
+
+  #Statistics .chart-row .card {
+    height: 440px;
+  }
+
+  #Statistics .card{
+    margin-top: 20px;
+  }
+
 }
