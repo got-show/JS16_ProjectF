@@ -71,7 +71,7 @@ export default class CharacterListPage extends Component {
       this.state = {
         data: Store.getCharacters(page,sort, {'value': ''}),
         activePage: page,
-        filter: {'value': '',"book":true,"show":true},
+        filter: {'value': '',"book":false,"show":false},
         loaded: false,
         filterText: 'Both',
         sortText: sortText,
