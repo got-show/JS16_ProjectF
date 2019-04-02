@@ -1,5 +1,5 @@
 #Statistics .center {
-  align: center;
+  text-align: center;
 }
 
 #Statistics .caption {
@@ -8,18 +8,32 @@
 }
 
 #Statistics .card {
-  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 30px !important;
+  box-sizing: border-box;
+  background-color: #353535;
 }
 
+#Statistics .chart-row {
+  position: relative;
+}
 
 #Statistics .simple-info .card {
   padding-top: 0;
   padding-bottom: 0;
+  height: calc(100%/3) !important;
 }
 
 #Statistics .simple-info .card>* {
   text-align: center;
 }
+
+#Statistics table {
+  border: none;
+}
+
 #Statistics .see-more{
   position: absolute;
   bottom: 10px;
@@ -27,9 +41,6 @@
 }
 
 @media (min-width: 992px) {
-  #Statistics .simple-info .card {
-    height: 135px;
-  }
   #Statistics .simple-info .card>* {
     text-align: left;
   }
@@ -38,11 +49,10 @@
   }
 
   #Statistics .chart-row .card {
-    height: 440px;
+    height: 520px;
   }
 
   #Statistics .card{
     margin-top: 20px;
   }
-
 }

@@ -28,20 +28,23 @@ export default class PlodTop5 extends Component {
   render() {
     return (<div>
       <h2 className="text-center ranking-title">Who is most likely to die next</h2>
-      <ul>
+      <table>
         {
           this.getHardcodedPlodTop5().map((char) => {
-            return <li key={char.name}>
-              <h4>
-                <Link to={'/characters/' + char.name}>
-                  {char.name}
-                  [{parseInt(char.plod)}%]
-                </Link>
-              </h4>
-            </li>;
+              return <tr key={char.name}>
+              <td>
+                <h4>
+                  <Link to={'/characters/' + char.name}>
+                    {char.name}
+                    
+                  </Link>
+                </h4>
+              </td>
+              <td><h4>{parseInt(char.plod)}%</h4></td>
+            </tr>;
           })
         }
-      </ul>
+      </table>
       <p className="see-more">
         <Link to={'/characters/?search=&page=1&sort=plod&order=-1'}>See more</Link>
       </p>

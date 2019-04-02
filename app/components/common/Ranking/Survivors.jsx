@@ -26,21 +26,24 @@ export default class Ranking extends Component {
   }
   render() {
     return (<div>
-      <h2 className="text-center ranking-title">Top Survivors</h2>
-      <ul>
+      <h2 className="text-center ranking-title">Top Survivors<br />&nbsp;</h2>
+      <table>
         {
           this.getHardcodedSurvivors().map((char) => {
-            return <li key={char.name}>
+            return <tr key={char.name}>
+            <td>
               <h4>
                 <Link to={'/characters/' + char.name}>
                   {char.name}
-                  [{parseInt(char.plod)}%]
+                  
                 </Link>
               </h4>
-            </li>;
+            </td>
+            <td><h4>{parseInt(char.plod)}%</h4></td>
+          </tr>;
           })
         }
-      </ul>
+      </table>
       <p className="see-more">
         <Link to={'/characters/?search=&page=1&sort=plod&order=1'}>See more</Link>
       </p>

@@ -43,7 +43,7 @@ export default class Header extends Component {
                                 <Button bsStyle="link">Map</Button>
                             </LinkContainer>
                             <LinkContainer to={{ pathname: '/statistics'}}>
-                                <Button bsStyle="link">Statistics</Button>
+                                <Button bsStyle="link">Ranking <span style={{fontFamily: 'Cinzel'}}>&</span> Statistics</Button>
                             </LinkContainer>
                         </Nav>
                     </Navbar.Collapse>
