@@ -37,6 +37,11 @@
 }
 
 #home .content{
-	width: 1000px;
+	max-width: 1000px;
+	/* margin-top: 20px; */
+}
+
+#home .card{
+	/* border: 1px solid #999; */
 	margin-top: 20px;
 }
