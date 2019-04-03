@@ -1,8 +1,8 @@
-.home {
+#home {
 	text-align: center;
 }
 
-.home-plod {
+#home-plod {
     transform: translateY(-50%);
 }
 
@@ -16,10 +16,10 @@
 
 
 /* Map */
-.home .map-wrapper {
+#home .map-wrapper {
     position: relative;
 }
-.home .map-wrapper #sidebar {
+#home .map-wrapper #sidebar {
      display: none;
  }
  .stats-home {
@@ -34,4 +34,9 @@
 	bottom: 0;
 	right: 50px;
 	font-size: 8px;
+}
+
+#home .content{
+	width: 1000px;
+	margin-top: 20px;
 }
