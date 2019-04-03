@@ -8,19 +8,19 @@ import antagonistCharacters from "json!./antagonistCharacters.json";
 import Actions from '../../../actions/CharactersPlodActions.js';
 import Store from '../../../stores/CharactersPlodStore.js';
 import Countdown from '../Countdown/Countdown.jsx';
+import Slider from './Slider/Slider.jsx';
 
 import $ from 'jquery';
 
 export default class ForTheThrone extends Component {
     constructor(props) {
-        super(props);
+        super(props);        
 
         this.state = {
             charLeft: {},
             charRight: {},
             charLeftPlod: {},
-            charRightPlod: {},
-            smallChars: []
+            charRightPlod: {}
         };
     }
 
@@ -28,13 +28,10 @@ export default class ForTheThrone extends Component {
         Store.addChangeListener(this._onChange.bind(this));
         
         let chars = this.getRandAntagonistChars();
-        let smallChars = this.getRandSmallChars();
         this.setState({
             charLeft: chars[0],
-            charRight: chars[1],
-            smallChars: smallChars
+            charRight: chars[1]
         });
-
     }
 
     componentDidMount() {
@@ -80,25 +77,6 @@ export default class ForTheThrone extends Component {
         return chars;
     }
 
-    getRandSmallChars() {
-        let smallChars = [];
-        let smallCharsElems = [];
-        let keys = Object.keys(antagonistCharacters.characters);
-
-        while (smallChars.length < 5) {
-            let rand = Math.floor(Math.random() * keys.length);
-            if (smallChars.indexOf(keys[rand]) === -1) {
-                smallChars.push(keys[rand]);
-                smallCharsElems.push({
-                    name: antagonistCharacters.characters[keys[rand]].name,
-                    key: keys[rand]
-                });
-            }
-        }
-
-        return smallCharsElems;
-    }
-
     focus() {
         $( "#aiLink" ).animate({
             opacity: "1"
@@ -111,6 +89,7 @@ export default class ForTheThrone extends Component {
 
     render() {
         return (
+            
             <div id="fttContainer">
                 <div className="fttCharArea fttLeft" onMouseEnter={this.focus.bind(this)}></div>
                 <div className="fttCharArea fttRight" onMouseEnter={this.focus.bind(this)}></div>
@@ -180,14 +159,7 @@ export default class ForTheThrone extends Component {
                 </div>
                 <div id="fttCharacters">
                     <div className="content">
-                        {this.state.smallChars.map(function(elem, index) {
-                            return (
-                                <a target="_blank" className="fttCharacter" href={"/characters/" + elem.name} key={index}>
-                                    <img src={"/ForTheThrone/img/"+elem.key+"Small.png"} />
-                                    <div>{elem.name}</div>
-                                </a>
-                            );
-                        })}
+                        <Slider></Slider> 
                     </div>
                 </div>
             </div>
