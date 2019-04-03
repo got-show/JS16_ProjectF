@@ -9,10 +9,10 @@
       "ecmaFeatures": {
           "impliedStrict": true,
           "jsx": true
-      },
+      }
   },
   "rules": {
-      "no-console": 'off',
+      "no-console": 2,
       "semi": 2,
       "no-mixed-spaces-and-tabs": 0,
       "react/no-danger": 0

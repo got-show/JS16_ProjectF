@@ -16,7 +16,7 @@ export default class Statistics extends Component {
   }
   render() {
     return (<Grid id="Statistics">
-      <Row className="chart-row">
+      <Row className="chart-row first-chart-row">
         <Col md={4} >
           <div className="card">
             <Survivors className="ranking"/>
@@ -55,7 +55,7 @@ export default class Statistics extends Component {
       <Row className="chart-row">
         <Col md={6} >
           <div className="card">
-            <h3>Distribution of predicted likelihood of death for nobles and peasants</h3>
+            <h3>Distribution of PLOD for nobles and peasants</h3>
             <div className="center" id="distribution_nobles_plods"></div>
           </div>
         </Col>
