@@ -15,7 +15,7 @@ function drawNewCharactersIntroduced() {
   var options = {
     height: 400,
     colors: ['#2196f3', '#f44336'],
-    backgroundColor: '#353535',
+    backgroundColor: '#1f1f1f',
     legend: {
       position: 'top',
       maxLines: 3,
@@ -126,7 +126,7 @@ function drawCharactersPerEpisode() {
     height: 400,
     pointSize: 7,
     colors: ['#2196f3', '#f44336'],
-    backgroundColor: '#353535',
+    backgroundColor: '#1f1f1f',
 
     lineWidth: 4,
     hAxis: {
@@ -177,7 +177,7 @@ function drawDeadAndAlive() {
   var options = {
     height: 400,
     colors: ['#2196f3', '#f44336'],
-    backgroundColor: '#353535',
+    backgroundColor: '#1f1f1f',
     legend: {
       position: 'top',
       maxLines: 3,
@@ -339,7 +339,7 @@ function drawDistributionPLODs() {
   var options = {
     height: 400,
     colors: ['#2196f3', '#f44336'],
-    backgroundColor: '#353535',
+    backgroundColor: '#1f1f1f',
     lineWidth: 3,
     pointSize: 1,
     dataOpacity: 0.9,
@@ -495,7 +495,7 @@ function drawDistributionNoblesPLODs() {
     height: 400,
     lineWidth: 3,
     colors: ['#2196f3', '#f44336'],
-    backgroundColor: '#353535',
+    backgroundColor: '#1f1f1f',
     pointSize: 1,
     dataOpacity: 0.9,
     hAxis: {
@@ -558,7 +558,7 @@ function drawDistributionPLODsAgeDistribution() {
   var options = {
     height: 400,
     colors: ['#2196f3'],
-    backgroundColor: '#353535',
+    backgroundColor: '#1f1f1f',
 
     legend: {
       position: 'none'
@@ -663,7 +663,7 @@ function drawAvgPLODPerEpisode() {
     },
     height: 400,
     colors: ['#2196f3'],
-    backgroundColor: '#353535',
+    backgroundColor: '#1f1f1f',
     pointSize: 7,
     lineWidth: 4,
     hAxis: {

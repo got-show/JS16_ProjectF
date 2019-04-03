@@ -19,9 +19,6 @@ import DeadCharacter from './DeadCharacter';
 
 import window from 'global';
 
-import characterPlaceholderMale from './placeholder-male.png';
-import characterPlaceholderFemale from './placeholder-female.png';
-
 export default class Character extends Component {
 
     constructor (props) {
