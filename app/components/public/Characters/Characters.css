@@ -220,7 +220,19 @@ title {
 	color: #bbb;
 	font-size: 1em;
 	font-family: 'Cinzel', Sans;
-	margin-top: -8px;
+	margin-top: -4px;
+	margin-bottom: 5px;
+	font-weight: normal;
+}
+
+.plodOuterContainer .subtitle:hover{
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.plodOuterContainer .subtitle .fas {
+	color: #999;
+	font-size: 0.8em;
 }
 
 .plodOuterContainer h3 {

@@ -4,7 +4,7 @@ import React from 'react';
 let {Component} = React;
 import $ from 'jquery';
 import './Characters.css';
-import { Row, Col, Grid, ProgressBar, Glyphicon } from 'react-bootstrap';
+import { Row, Col, Grid, ProgressBar } from 'react-bootstrap';
 
 import MapComp from '../../common/MapComp/MapComp.jsx';
 import Store from '../../../stores/CharactersStore';
@@ -148,12 +148,6 @@ export default class Character extends Component {
                             <div className="character-name-background"></div>
                             <Col md={9} mdOffset={3} className="character-name">
                                 <div className="u-inlineBlock"><h1>{this.state.character.name}</h1></div>
-                                <a href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}
-                                    target="_blank"
-                                    className="btn--secondary wikiButton u-inlineBlock">
-                                    <Glyphicon glyph="share-alt" />
-                                    Wiki
-                                </a>
                             </Col>
                         </div>
                     </div>
@@ -177,7 +171,7 @@ export default class Character extends Component {
                             { this.state.plodShow < 100 && this.state.character.show && this.state.character.show.alive == true ?
                                 <div className="plodShowContainer">
                                     <h3>Our Predictions</h3>
-                                    <span className="subtitle">TV show</span>
+                                    <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>TV show <i className="fas fa-external-link-alt"></i></a>
                                     <p>{this.state.character.name}'s <b>Likelihood to Survive</b> between the years 300 and 320 AC is:</p>
                                     <div className="plodContainer">
                                         <CharacterPlodDisplay plodByYear={this.state.plodByYearShow} />
@@ -199,7 +193,7 @@ export default class Character extends Component {
                             { this.state.plodBook < 100 && this.state.character.book && !this.state.character.book.dateOfDeath ?
                                 <div className="plodBookContainer plodContainerHidden plodContainerZIndexLower">
                                     <h3>Our Predictions</h3>
-                                    <span className="subtitle">books</span>
+                                    <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>Books <i className="fas fa-external-link-alt"></i></a>
                                     <p>{this.state.character.name}'s <b>Likelihood to Survive</b> between the years 300 and 320 AC is:</p>
                                     <div className="plodContainer">
                                         <CharacterPlodDisplay plodByYear={this.state.plodByYearBook} />

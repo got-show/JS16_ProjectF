@@ -107,3 +107,45 @@
     display: block;
     text-align: right;
 }
+
+@media (max-width: 992px) {
+    .simpleBarChart {
+        width: 50%;
+        margin-right: 0;
+    }
+    
+    .statsCard {
+        width: calc((100% - 20px)/2);
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    .lowerQuote {
+        width: 80%;
+    }
+
+    .cardContainer .statsCard:nth-child(2n) {
+        margin-right: 0;
+    }
+
+    .cardContainer .statsCard:nth-child(3n) {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .simpleBarChart {
+        width: 100%;
+        margin-right: 0;
+    }
+    
+    .statsCard {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .lowerQuote {
+        width: 80%;
+    }
+}

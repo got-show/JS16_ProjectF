@@ -23,10 +23,29 @@
     min-height: 420px;
 }
 
+@media (max-width: 1200px) {
+    .sbDiffBlock {
+        width: calc((100% - 20px)/2);
+        margin-right: 20px;
+    }
+
+    .sbDiffBlocks .sbDiffBlock:nth-child(2n) {
+        margin-right: 0;
+    }
+
+    .sbDiffBlocks .sbDiffBlock:nth-child(3n) {
+        margin-right: 20px;
+    }
+}
+
 @media (max-width: 700px) {
     .sbDiffBlock {
         width: 100%;
         margin-right: 0;
+    }
+
+    .sbDiffBlocks .sbDiffBlock:nth-child(3n), .sbDiffBlocks .sbDiffBlock:nth-child(2n) {
+        margin-right: 20px;
     }
 }
 
