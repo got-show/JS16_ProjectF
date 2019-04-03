@@ -1,5 +1,7 @@
 
 import React, {Component} from 'react';
+import window from 'global/window';
+import document from 'global/document';
 
 import { Row, Col, Pagination, Input} from 'react-bootstrap';
 import { DropdownButton, MenuItem} from 'react-bootstrap';
@@ -69,11 +71,13 @@ export default class CharacterListPage extends Component {
       this.state = {
         data: Store.getCharacters(page,sort, {'value': ''}),
         activePage: page,
-        filter: {'value': ''},
+        filter: {'value': '',"book":false,"show":false},
         loaded: false,
+        filterText: 'Both',
         sortText: sortText,
         sort: sort,
-        text_changed: false
+        text_changed: false,
+        infiniteScrolling: true
       };
 
       this._onChange = this._onChange.bind(this);
@@ -84,11 +88,13 @@ export default class CharacterListPage extends Component {
     }
 
     componentDidMount(){
+      window.addEventListener('scroll', this.handleScroll.bind(this));
       Actions.loadCharacters();
       this.handleChange();
     }
 
     componentWillUnmount(){
+      window.removeEventListener('scroll', this.handleScroll.bind(this));
       Store.removeChangeListener(this._onChange);
     }
 
@@ -120,6 +126,67 @@ export default class CharacterListPage extends Component {
         activePage: selectedEvent.eventKey
       });
       this.pushHistory(selectedEvent.eventKey);
+    }
+
+    toggleInfiniteScrolling() {
+      this.setState({
+        infiniteScrolling: !this.state.infiniteScrolling
+      });
+    }
+
+    handleScroll() {
+      if (document.getElementById('loadMoreButton') && this.state.infiniteScrolling && this.checkLoadMoreIsVisible()) {
+        this.handleLoadMore();
+      }
+    }
+
+    checkLoadMoreIsVisible() {
+      let loadMoreElem = document.getElementById('loadMoreButton');
+      let loadMoreBoundingRect = loadMoreElem.getBoundingClientRect();
+
+      if (loadMoreBoundingRect.top < window.innerHeight - 50) {
+        return true;
+      }
+
+      return false;
+    }
+
+    handleLoadMore() {
+      let newPage = this.state.activePage + 1;
+
+      this.setState({
+        data: [...this.state.data, ...Store.getCharacters(newPage, this.state.sort, this.state.filter)],
+        activePage: newPage
+      });
+
+      this.pushHistory(newPage);
+    }
+
+    handleSelectFilter(event, eventKey) { // Event triggered by sort change
+      let tmpFilter=Object.assign({},this.state.filter);
+      let filterText;
+      if(eventKey == 0) {
+        tmpFilter.book=false;
+        tmpFilter.show=false;
+        filterText='Both';
+      } else if(eventKey == 1) {
+        tmpFilter.book=true;
+        tmpFilter.show=false;
+        filterText='Book';
+      } else if(eventKey == 2) {
+        tmpFilter.book=false;
+        tmpFilter.show=true;
+        filterText='Show';
+      }
+      // console.log('tmpFilter');
+      // console.log(tmpFilter);
+      this.setState({
+        data: Store.getCharacters(1,this.state.sort,tmpFilter),
+        filter:tmpFilter,
+        filterText:filterText,
+        activePage: 1
+      });
+
     }
 
     handleSelectSort(event, eventKey) { // Event triggered by sort change
@@ -169,19 +236,20 @@ export default class CharacterListPage extends Component {
     }
 
     handleChange() { // Event triggered by search input
-      let filter = {'value': this.refs.input.getValue()};
+      let tmpFilter =Object.assign({},this.state.filter);
+      tmpFilter.value=this.refs.input.getValue();
       if (!this.state.text_changed) { // On page load loading
         this.setState({
           text_changed: true,
-          data: Store.getCharacters(this.state.activePage, this.state.sort, filter),
-          filter: {'value': this.refs.input.getValue()}
+          data: Store.getCharacters(this.state.activePage, this.state.sort, tmpFilter),
+          filter: tmpFilter
         });
         return;
       }
 
       this.setState({
-        data: Store.getCharacters(this.state.activePage, this.state.sort, filter),
-        filter: {'value': this.refs.input.getValue()},
+        data: Store.getCharacters(this.state.activePage, this.state.sort, tmpFilter),
+        filter: tmpFilter,
         activePage: 1
       });
 
@@ -189,12 +257,23 @@ export default class CharacterListPage extends Component {
     }
 
     render() {
+      let maxPage = Math.ceil(Store.getCharactersCount(this.state.filter,this.state.sort)/36);
+
       return (
         <div>
           <Row className="inputbar">
-            <Col md={6} mdOffset={2}>
+          <Col md={2} className="sortCol" mdOffset={1}>
+            <DropdownButton className="sortButton" onSelect={this.handleSelectFilter.bind(this)} title={this.state.filterText} id="dropdown-size-medium">
+              <MenuItem eventKey="1">Book</MenuItem>
+              <MenuItem eventKey="2">Show</MenuItem>
+              <MenuItem eventKey="0">Both</MenuItem>
+            </DropdownButton>
+          </Col>
+
+            <Col md={6} >
               <Input value={this.props.location.query.search} className="character-search" ref="input" type="text" placeholder="Search for character" onChange={this.handleChange.bind(this)} />
             </Col>
+
             <Col md={2} className="sortCol">
               <DropdownButton className="sortButton" onSelect={this.handleSelectSort.bind(this)} title={this.state.sortText} id="dropdown-size-medium">
                 <MenuItem eventKey="1">{popularity.sortText}</MenuItem>
@@ -205,22 +284,33 @@ export default class CharacterListPage extends Component {
               </DropdownButton>
             </Col>
           </Row>
-          <div className="center">
-            <Pagination
-              boundaryLinks={true}
-              ellipsis
-              maxButtons={3}
-              items={Math.ceil(Store.getCharactersCount(this.state.filter,this.state.sort)/20)}
-              activePage={this.state.activePage}
-              onSelect={this.handleSelectPage.bind(this)} />
-          </div>
+          <Row>
+            <Col md={10} mdOffset={1}>
+              <div className="center">
+                <Pagination
+                  boundaryLinks={true}
+                  ellipsis
+                  maxButtons={3}
+                  items={maxPage}
+                  activePage={this.state.activePage}
+                  onSelect={this.handleSelectPage.bind(this)} />
+              </div>
+            </Col>
+          </Row>
           <CharacterList data={this.state.data} loaded={this.state.loaded}/>
+          {this.state.activePage >= maxPage ? '' :
+            <div className="center">
+              <a role="button" id="loadMoreButton" onClick={this.handleLoadMore.bind(this)}>
+                Load More
+              </a>
+            </div>
+          }
           <div className="center">
             <Pagination
               boundaryLinks={true}
               ellipsis
               maxButtons={3}
-              items={Math.ceil(Store.getCharactersCount(this.state.filter,this.state.sort)/20)}
+              items={maxPage}
               activePage={this.state.activePage}
               onSelect={this.handleSelectPage.bind(this)} />
           </div>
