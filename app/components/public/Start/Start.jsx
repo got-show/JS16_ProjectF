@@ -1,6 +1,6 @@
 import React from 'react';
-let {Component} = React;
-import { Row,Col, Grid } from 'react-bootstrap';
+let { Component } = React;
+import { Row, Col, Grid } from 'react-bootstrap';
 
 import ForTheThrone from '../../common/ForTheThrone/ForTheThrone.jsx';
 import './Start.css';
@@ -20,34 +20,35 @@ export default class Start extends Component {
 
   render() {
     return (
-        <div id="home">
-          <Row>
-            <Col>
-              <ForTheThrone />
+      <div id="home">
+        <Row>
+          <Col>
+            <ForTheThrone />
+          </Col>
+        </Row>
+        <Grid className="content">
+          <Row >
+            <Col md={6}>
+              <div className="card">
+                <Survivors className="ranking" />
+              </div>
+            </Col>
+            <Col md={6}  >
+              <div className="card">
+                <PlodTop5 className="ranking"></PlodTop5>
+              </div>
             </Col>
           </Row>
-          <Grid className="content">
-            <Row >
-              <Col md={6}>
-                <div className="card">
-                  <Survivors className="ranking"/>
-                </div>
-              </Col>
-              <Col md={6}  >
-                <div className="card">
-                  <PlodTop5 className="ranking"></PlodTop5>
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={12}>
-                <div id="characterMap">
-                  <MapComp character={[CharacterList.characters[0].name]} />
-                </div>
-              </Col>
-            </Row>
-          </Grid>
-        </div>
+          <Row>
+            <br />
+            <Col md={8} mdPush={2}>
+              <div className="homeBlog">
+                <div dangerouslySetInnerHTML={{ __html: HomepageBlog }} />
+              </div>
+            </Col>
+          </Row>
+        </Grid>
+      </div>
     );
   }
 }
