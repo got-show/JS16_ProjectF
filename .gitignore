@@ -43,6 +43,3 @@ config.json
 
 #crawled files by d4
 csv
-
-#build files
-docs
