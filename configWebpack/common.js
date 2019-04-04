@@ -7,7 +7,7 @@ var path = require('path');
 var PATH_CLIENT = path.join(__dirname, '../app');
 var PATH_DIST = path.join(__dirname, '../docs');
 
-var analytics, api, apiport, https, prefix, apiNew, apiNewPort, apiNewHttps, apiNewPrefix;
+var analytics, api, apiport, https, prefix;
 try {
   var json = require('../config/config.json');
   analytics = json.google_analytics.key;
@@ -15,11 +15,6 @@ try {
   apiport = json.api.port;
   https = json.api.https ? "https://" : "http://";
   prefix = json.api.prefix;
-
-  apiNew = json.apiNew.host;
-  apiNewPort = json.apiNew.port;
-  apiNewHttps = json.apiNew.https ? "https://" : "http://";
-  apiNewPrefix = json.apiNew.prefix;
 
   process.env.PREFIXDIR;
 } catch (err) {
@@ -29,11 +24,6 @@ try {
   apiport = process.env.APIPORT;
   https = process.env.PROTOCOL;
   prefix = process.env.PREFIXDIR;
-
-  apiNew = process.env.API_NEW;
-  apiNewPort = process.env.API_NEW_PORT;
-  apiNewHttps = process.env.PROTOCOL;
-  apiNewPrefix = process.env.PREFIXDIR;
 }
 
 var config = {
@@ -113,13 +103,9 @@ var config = {
       'process.env':{
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         '__API__': JSON.stringify(api),
-        '__API_NEW__': JSON.stringify(apiNew),
         '__PORT__': JSON.stringify(apiport),
-        '__API_NEW_PORT__': JSON.stringify(apiNewPort),
         '__PROTOCOL__': JSON.stringify(https),
-        '__API_NEW_PROTOCOL__': JSON.stringify(apiNewHttps),
         '__PREFIX__': JSON.stringify(prefix),
-        '__API_NEW_PREFIX__': JSON.stringify(apiNewPrefix)
       },
 
     })

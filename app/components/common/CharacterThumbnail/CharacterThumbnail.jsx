@@ -14,7 +14,7 @@ export default class CharacterThumbnail extends Component {
 
     render() {
       var img = (this.props.imageUrl != 'placeholder-male' && this.props.imageUrl != 'placeholder-female') 
-                ? process.env.__PROTOCOL__ + process.env.__API__ + this.props.imageUrl : 
+                ? this.props.imageUrl : 
                 (this.props.imageUrl == 'placeholder-male' ? characterPlaceholderMale : characterPlaceholderFemale);
 
       var detailLink = '/characters/'+encodeURIComponent(this.props.name);

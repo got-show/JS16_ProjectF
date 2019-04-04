@@ -87,8 +87,17 @@ export default class CharacterDetailsStats extends Component {
     }
 
     createCards() {
-        if (this.character.book && this.character.book.culture) {
-            let culture = this.character.book.culture;
+        let character;
+        if (this.character.hasShow) {
+            character = this.character.show;
+        } else if (this.character.hasBook) {
+            character = this.character.book;
+        } else {
+            return;
+        }
+
+        if (character && character.culture) {
+            let culture = character.culture;
             let index = this.stats.attributes.indexOf(culture);
             
             if (index > -1) {
@@ -103,8 +112,8 @@ export default class CharacterDetailsStats extends Component {
             }
         }
 
-        if (this.character.book && this.character.book.house) {
-            let house = this.character.book.house;
+        if (character && character.house) {
+            let house = character.house;
             let index = this.stats.attributes.indexOf(house);
             
             if (index > -1) {
@@ -119,8 +128,8 @@ export default class CharacterDetailsStats extends Component {
             }
         }
         
-        if (this.character.show && this.character.show.origin) {
-            let origin = this.character.show.origin;
+        if (character && character.origin) {
+            let origin = character.origin;
             let index = this.stats.attributes.indexOf(origin);
             
             if (index > -1) {
@@ -135,8 +144,8 @@ export default class CharacterDetailsStats extends Component {
             }
         }
 
-        if(this.character.book && this.character.book.spouse){
-            let spouses = this.character.book.spouse;
+        if(character && character.spouse && character.spouse.length > 0){
+            let spouses = character.spouse;
             let index = this.stats.attributes.indexOf("numSpouses");
             let value = this.stats.meanBetaExp[index];
             if (!Array.isArray(spouses)){
@@ -157,8 +166,8 @@ export default class CharacterDetailsStats extends Component {
             });
         }
 
-        if (this.character.book && this.character.book.title){
-            let titles = this.character.book.titles;
+        if (character && character.title){
+            let titles = character.titles;
             let index = this.stats.attributes.indexOf("numTitles");
             let value = this.stats.meanBetaExp[index];
             let numTitles = titles.length;
@@ -243,10 +252,10 @@ export default class CharacterDetailsStats extends Component {
                 {this.renderSimpleBarChart(
                     this.stats.female.dead,
                     this.stats.female.total,
-                    "Men",
+                    "Women",
                     this.stats.male.dead,
                     this.stats.male.total,
-                    "Women",
+                    "Men",
                     this.character.show.gender == 'male' ? this.charPronoun(true) + " is male" : this.charPronoun(true) + " is female",
                     (<span><p>{this.character.show.gender == 'male' ? "Being male is dangerous in the world of Westeros" : "Being female is safer in the world of Westeros"}.</p> 
                     <p>See the following graph for the <b>percentage of dead male and female</b> characters</p></span>)

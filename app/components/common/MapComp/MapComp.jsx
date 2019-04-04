@@ -84,7 +84,7 @@ export default class MapComp extends Component {
   }
 
   initMap() {
-    let url = process.env.__PROTOCOL__ + process.env.__API__ + process.env.__PREFIX__;
+    let url = "https://api.got.show/api";
     let config = {
       'apiLocation': url,
       'personImageBaseUrl': process.env.__PROTOCOL__ + process.env.__API__,
@@ -108,6 +108,31 @@ export default class MapComp extends Component {
       },
       'cityDetails': this.handleCityClick
     };
+    
+    /*let url = process.env.__PROTOCOL__ + process.env.__API__ + process.env.__PREFIX__;
+    let config = {
+      'apiLocation': url,
+      'personImageBaseUrl': process.env.__PROTOCOL__ + process.env.__API__,
+      'characterDataSource': 'book/characters',
+      'cityDataSource': 'book/cities',
+      'realmDataSource': 'book/regions',
+      'pathDataSource': 'book/charactersPaths',
+      'episodeDataSource': 'show/episodes',
+      'pinDataSource': 'book/characterLocations',
+      'characterBox': '#characters',
+      'timeline': '#timeline',
+      'filter': '#filter input',
+      'bgTiles': process.env.__PROTOCOL__ + 'tiles.got.show/bg/{z}/y{y}x{x}.png',
+      'labelTiles': process.env.__PROTOCOL__ + 'tiles.got.show/labels/{z}/y{y}x{x}.png',
+      'errorTile': process.env.__PROTOCOL__ + 'tiles.got.show/blank.png',
+      'characterDetails': function(modal, character) {
+        browserHistory.push('/characters/' + character.name);
+        $("body").removeClass("modal-open");
+        $(".gotmap-modal").remove();
+        $(".modal-backdrop").remove();
+      },
+      'cityDetails': this.handleCityClick
+    };*/
     var mymap = gotmap('#map', config); /*eslint no-undef:0*/
 
 
@@ -145,28 +170,15 @@ export default class MapComp extends Component {
 
 
   render() {
-    return ( <
-      div className = "map-wrapper" >
-      <
-      div id = "map" >
-      <
-      /div> <
-      div id = "sidebar" >
-      <
-      form id = "filter" >
-      <
-      div className = "input-group" >
-      <
-      input type = "text"
+    return ( <div className = "map-wrapper" >
+      <div id = "map" >
+      </div> <div id = "sidebar" >
+      <form id = "filter" >
+      <div className = "input-group" >
+      <input type = "text"
       className = "form-control"
-      placeholder = "Search for character..." > < /input> <
-      i className = "glyphicon glyphicon-search form-control-feedback" > < /i> <
-      /div> <
-      /form> <
-      div id = "characters" > < /div> <
-      /div> <
-      div id = "timeline" > < /div> <
-      /div>
+      placeholder = "Search for character..." > </input> <i className = "glyphicon glyphicon-search form-control-feedback" > </i> </div> </form> 
+      <div id = "characters" > </div> </div> <div id = "timeline" > </div> </div>
     );
   }
 }

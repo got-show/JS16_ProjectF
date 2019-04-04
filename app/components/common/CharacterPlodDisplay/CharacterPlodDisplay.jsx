@@ -22,7 +22,7 @@ export default class CharacterPlodDisplay extends Component {
                     return (
                         <div className="plodYear plodYearBg" key={i+1}>
                             <div className="plodYear plodYearFg" style={{height: Math.round(value * 100)+"%"}}></div>
-                            <div className="plodYear plodYearAC">{year % 5 == 0 ? (year + i) : ''}</div>
+                            <div className="plodYear plodYearAC">{year % 5 == 0 ? year : ''}</div>
                             <div className="plodYearTooltip" style={{bottom: "calc(" + Math.round(value * 100) + "% - 1em)"}}>{roundedPercentage} %</div>
                         </div>
                     );

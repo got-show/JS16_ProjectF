@@ -69,9 +69,9 @@ export default class CharacterListPage extends Component {
         sort = popularity.sort;
       }
       this.state = {
-        data: Store.getCharacters(page,sort, {'value': ''}),
+        data: Store.getCharacters(page,sort, {'value': '', "book": false, "show": false}),
         activePage: page,
-        filter: {'value': '',"book":false,"show":false},
+        filter: {'value': '', "book": false, "show": false},
         loaded: false,
         filterText: 'Books & TV Show',
         sortText: sortText,
@@ -168,6 +168,7 @@ export default class CharacterListPage extends Component {
       if(eventKey == 0) {
         tmpFilter.book=false;
         tmpFilter.show=false;
+
         filterText='Books & TV Show';
       } else if(eventKey == 1) {
         tmpFilter.book=true;
