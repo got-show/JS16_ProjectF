@@ -43,3 +43,6 @@ config.json
 
 #crawled files by d4
 csv
+
+
+package-lock.json

@@ -1,43 +1,40 @@
 import React from 'react';
-let {Component} = React;
+import PropTypes from 'prop-types';
+let { Component } = React;
 
 import './ForTheThrone.css';
 
-import antagonistCharacters from "json!./antagonistCharacters.json";
+import { LinkContainer } from 'react-router-bootstrap';
 
 import Actions from '../../../actions/CharactersPlodActions.js';
 import Store from '../../../stores/CharactersPlodStore.js';
 import Countdown from '../Countdown/Countdown.jsx';
 import Slider from './Slider/Slider.jsx';
 
-import $ from 'jquery';
+
 
 export default class ForTheThrone extends Component {
     constructor(props) {
-        super(props);        
+        super(props);
 
         this.state = {
-            charLeft: {},
-            charRight: {},
+            charLeft: props.charLeft,
+            charRight: props.charRight,
             charLeftPlod: {},
             charRightPlod: {}
         };
     }
 
-    componentWillMount (){
+
+
+    componentWillMount() {
         Store.addChangeListener(this._onChange.bind(this));
-        
-        let chars = this.getRandAntagonistChars();
-        this.setState({
-            charLeft: chars[0],
-            charRight: chars[1]
-        });
     }
 
     componentDidMount() {
         Actions.loadCharactersPlodByName([this.state.charLeft.name, this.state.charRight.name]);
     }
-    
+
     _onChange() {
         let plods = Store.getCharactersPlodByName();
         let plodLeft, plodRight;
@@ -58,46 +55,29 @@ export default class ForTheThrone extends Component {
         }
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         Store.removeChangeListener(this._onChange);
-    }
-
-    getRandAntagonistChars() {
-        let antagonistsCount = antagonistCharacters.antagonists.length;
-        let randomElemIndex  = Math.floor(Math.random() * antagonistsCount);
-
-        // setting the characters
-        let left      = Math.floor(Math.random() * 2);
-        let charLeft  = antagonistCharacters.antagonists[randomElemIndex][left];
-        let charRight = antagonistCharacters.antagonists[randomElemIndex][1 - left];
-        let chars     = [antagonistCharacters.characters[charLeft], antagonistCharacters.characters[charRight]];
-        chars[0].img = "ForTheThrone/img/" + charLeft + ".png";
-        chars[1].img = "ForTheThrone/img/" + charRight + ".png";
-
-        return chars;
-    }
-
-    focus() {
-        $( "#aiLink" ).animate({
-            opacity: "1"
-        }, 0);
-
-        $("#fttWhoDoYouChoose").animate({
-            opacity: "0"
-        }, 0);
     }
 
     render() {
         return (
-            
+
             <div id="fttContainer">
-                <div className="fttCharArea fttLeft" onMouseEnter={this.focus.bind(this)}></div>
-                <div className="fttCharArea fttRight" onMouseEnter={this.focus.bind(this)}></div>
+                <p className={"header-copyright"}>© 2019 Home Box Office, Inc. / Sky All rights reserved.</p>
+                <LinkContainer to={'/characters/' + this.state.charLeft.name} >
+                    <div className="fttCharArea fttLeft" style={{ cursor: 'pointer' }} >
+                    </div>
+                </LinkContainer>
+                <LinkContainer to={'/characters/' + this.state.charRight.name}>
+                    <div className="fttCharArea fttRight" style={{ cursor: 'pointer' }}>
+
+                    </div>
+                </LinkContainer>
 
                 <div id="fttAntagonists">
                     <img src="ForTheThrone/img/iron-throne.png" id="fttThrone" />
                     <div id="fttHeader" className="center">
-                        <br/>
+                        <br />
                         <h3>When you play the game of thrones you win...</h3>
                         <h1 className="center">...or you die</h1>
                     </div>
@@ -115,7 +95,7 @@ export default class ForTheThrone extends Component {
                         </div>
                     </div>
                     <div className="fttCharContainer fttRight">
-                        <img src={this.state.charRight.img} id="fttCharRightImg" className="fttCharImg fttRight"/>
+                        <img src={this.state.charRight.img} id="fttCharRightImg" className="fttCharImg fttRight" />
                         <div className="fttCharTombstone fttCharRightTombstone fttTombstonePlod">
                             {this.state.charRightPlod.plod < 100 ? parseInt(this.state.charRightPlod.plod) : 100} %
                         </div>
@@ -134,10 +114,10 @@ export default class ForTheThrone extends Component {
                     </div>
 
                     <div id="aiLink" className="fttCard">
-                        <h3 className="center" style={{"marginTop": "0px"}}>A Song of ice and data:</h3>
+                        <h3 className="center" style={{ "marginTop": "0px" }}>A Song of ice and data:</h3>
                         <h4 className="center">Westeros and Machine learning</h4>
-                        <p>Our in-house developed machine learning algorithm predicts likelihood of death based on various 
-                        features that we extracted for each of the more than 2000 characters in George R.&nbsp;R. Martin's 
+                        <p>Our in-house developed machine learning algorithm predicts likelihood of death based on various
+                        features that we extracted for each of the more than 2000 characters in George R.&nbsp;R. Martin's
                         <i> A&nbsp;Song of&nbsp;Ice and&nbsp;Fire</i> series</p>
                         <div className="center">
                             <a id="readMoreLink" href="/machine-learning-algorithm-predicts-death-game-of-thrones">
@@ -159,10 +139,15 @@ export default class ForTheThrone extends Component {
                 </div>
                 <div id="fttCharacters">
                     <div className="content">
-                        <Slider></Slider> 
+                        <Slider></Slider>
                     </div>
                 </div>
             </div>
         );
     }
 }
+
+ForTheThrone.propTypes = {
+    charLeft: PropTypes.object.isRequired,
+    charRight: PropTypes.object.isRequired
+};
