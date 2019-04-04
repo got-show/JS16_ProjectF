@@ -37,7 +37,7 @@ export default class Footer extends Component {
                   <a href="/attributions">Attributions</a>
                 </p>
                 <p>
-                  <a href="https://rostlab.org/owiki/index.php/Javascript_technology_2016" target="_blank">JavaScript Technology</a>
+                  <a href="https://rostlab.org/owiki/index.php/Javascript_technology_2019" target="_blank">JavaScript Technology</a>
                 </p>
                 <p>
                   <a href="http://rostlab.org" target="_blank">Rostlab</a>
@@ -65,9 +65,6 @@ export default class Footer extends Component {
                 <p>
                   <a href="https://twitter.com/GotJstech" target="_blank">Twitter</a>
                 </p>
-                <p>
-                  <a href="https://plus.google.com/116097558064950719723/about" target="_blank">Google Plus</a>
-                </p>
               </Col>
               <Col md={2}>
                 <h4>Legal</h4>
@@ -83,7 +80,7 @@ export default class Footer extends Component {
                     <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/3.0/de/80x15.png" />
                   </a>
                   <br />
-                  <a rel="license" href="http://creativecommons.org/licenses/by/3.0" target="_blank">
+                  <a className="license" rel="license" href="http://creativecommons.org/licenses/by/3.0" target="_blank">
                     Licensed under Creative Commons Attribution 3.0
                   </a>
                 </p>

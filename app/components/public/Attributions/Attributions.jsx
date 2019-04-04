@@ -35,7 +35,7 @@ export default class Attributions extends Component {
                             <tr>
                                 <td>Game of Thrones wiki</td>
                                 <td>Launched in 2006 by founder Jimmy Wales, Wikia Inc. is the home of Fandom and the largest entertainment fan site in the world.</td>
-                                <td><a href="http://gameofthrones.wikia.com/" target="_blank">http://gameofthrones.wikia.com/</a></td>
+                                <td><a href="http://gameofthrones.fandom.com" target="_blank">http://gameofthrones.fandom.com/</a></td>
                                 <td><a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a></td>
                             </tr>
 
