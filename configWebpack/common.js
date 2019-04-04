@@ -71,9 +71,6 @@ var config = {
         test: /\.(png|jpg)$/,
         loader: 'file-loader?name=static/images/[name].[ext]'
       }, {
-        test: /\.(png|jpg)$/,
-        loader: 'file-loader?name=static/ForTheThrone/img/[name].[ext]'
-      }, {
         test: /\.(woff|woff2)$/,
         loader: "url?prefix=font/&limit=5000"
       }, {
