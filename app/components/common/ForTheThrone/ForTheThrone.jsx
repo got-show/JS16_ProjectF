@@ -25,7 +25,7 @@ export default class ForTheThrone extends Component {
         };
     }
 
-    
+
 
     componentWillMount() {
         Store.addChangeListener(this._onChange.bind(this));
@@ -63,7 +63,7 @@ export default class ForTheThrone extends Component {
         return (
 
             <div id="fttContainer">
-                <p className={"header-copyright"}>© 2016 Home Box Office, Inc. / Sky All rights reserved.</p>
+                <p className={"header-copyright"}>© 2019 Home Box Office, Inc. / Sky All rights reserved.</p>
                 <LinkContainer to={'/characters/' + this.state.charLeft.name} >
                     <div className="fttCharArea fttLeft" style={{ cursor: 'pointer' }} >
                     </div>

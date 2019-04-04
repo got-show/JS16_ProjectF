@@ -35,7 +35,7 @@ export default class Start extends Component {
       charRight: charRight
     };
   }
-  
+
   render() {
     return (
       <div id="home">
@@ -57,7 +57,7 @@ export default class Start extends Component {
           <hr/>
           <Row >
             <Col>
-            todo
+            <h3 className="center">follow characters in the books</h3>
             </Col>
           </Row>
           <hr/>

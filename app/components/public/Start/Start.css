@@ -45,3 +45,8 @@
 	/* border: 1px solid #999; */
 	margin-top: 20px;
 }
+
+#home table{
+	border-Top: 0;
+	border-bottom: 2px ridge #888;
+}

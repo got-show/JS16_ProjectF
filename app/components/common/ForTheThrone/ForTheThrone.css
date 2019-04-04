@@ -463,7 +463,7 @@ p {
         position: absolute;
         right: 50px;
         width: 30%;
-        font-size: 1px;
+        font-size: 0.8em;
     }
 }
 
@@ -484,7 +484,7 @@ p {
         position: absolute;
         top: 280px;
         left: -110px;
-        font-size: 1px;
+        font-size: 0.8em;
         transform: rotate(-90deg);
         color: white;
         z-index: 3;
