@@ -3,7 +3,7 @@ let {Component} = React;
 
 import './ForTheThrone.css';
 
-import antagonistCharacters from "!json./antagonistCharacters.json";
+import antagonistCharacters from "json!./antagonistCharacters.json";
 
 import Actions from '../../../actions/CharactersPlodActions.js';
 import Store from '../../../stores/CharactersPlodStore.js';
