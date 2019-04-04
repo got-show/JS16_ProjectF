@@ -8,7 +8,8 @@ export default class CharacterDetailsMedia extends Component {
 
     constructor(props) {
         super(props);
-        this.TV_YEAR = 305;
+        this.SHOW_YEAR = 305;
+        this.BOOK_YEAR = 300;
     }
 
     init() {
@@ -17,23 +18,23 @@ export default class CharacterDetailsMedia extends Component {
         this.data = this.props.data;
 
         this.character = this.data.character;
-        this.plodShow = this.data.plodShow;
-        this.plodBook = this.data.plodBook;
+        this.plodShow = Math.round(this.data.plodShow);
+        this.plodBook = Math.round(this.data.plodBook);
 
         this.bookBirth = false;
         this.showBirth = false;
         this.bookDeath = false;
         this.showDeath = false;
-        if (this.character.book && this.character.book.dateOfBirth) {
-            this.bookBirth = this.character.book.dateOfBirth;
+        if (this.character.book && this.character.book.birth) {
+            this.bookBirth = this.character.book.birth;
         }
 
         if (this.character.show && this.character.show.birth) {
             this.showBirth  = this.character.show.birth;
         }
 
-        if (this.character.book && this.character.book.dateOfDeath) {
-            this.bookDeath = this.character.book.dateOfDeath;
+        if (this.character.book && this.character.book.death) {
+            this.bookDeath = this.character.book.death;
         }
 
         if (this.character.show && this.character.show.death) {
@@ -41,7 +42,7 @@ export default class CharacterDetailsMedia extends Component {
         }
 
         this.isDeadShow = this.character.show && !this.character.show.alive;
-        this.isDeadBook = this.character.book && (this.bookDeath || this.bookBirth < 200); // limit to 200 because of missing data
+        this.isDeadBook = this.character.book && !this.character.book.alive; // limit to 200 because of missing data
 
         this.determineSbPlodDiff();
         this.determineSbAgeDiff();
@@ -49,18 +50,46 @@ export default class CharacterDetailsMedia extends Component {
     }
 
     charPronoun(capitalize = false) {
-        if (capitalize) {
-            return this.character.male ? 'He' : 'She';
+        let gender = 'undefined';
+        if (this.character.hasBook) {
+            gender = this.character.book.gender;
+        } else if (this.character.hasShow) {
+            gender = this.character.show.gender;
+        }
+        if (gender !== 'undefined') {
+            if (capitalize) {
+                return gender === 'male' ? 'He' : 'She';
+            } else {
+                return gender === 'male' ? 'he' : 'she';
+            }
         } else {
-            return this.character.male ? 'he' : 'she';
+            if (capitalize) {
+                return 'They';
+            } else {
+                return 'they';
+            }
         }
     }
 
     charPronounPosessive(capitalize = false) {
-        if (capitalize) {
-            return this.character.male ? 'His' : 'Her';
+        let gender = 'undefined';
+        if (this.character.hasBook) {
+            gender = this.character.book.gender;
+        } else if (this.character.hasShow) {
+            gender = this.character.show.gender;
+        }
+        if (gender !== 'undefined') {
+            if (capitalize) {
+                return gender === 'male' ? 'His' : 'Her';
+            } else {
+                return gender === 'male' ? 'his' : 'her';
+            }
         } else {
-            return this.character.male ? 'his' : 'her';
+            if (capitalize) {
+                return 'Their';
+            } else {
+                return 'their';
+            }
         }
     }
 
@@ -142,17 +171,18 @@ export default class CharacterDetailsMedia extends Component {
             quote: sbPlodQuote,
             graphic: sbGraphic,
             valueBook: 
-                this.isDeadBook ? (<span className="mainValue">DEAD</span>) 
+                this.isDeadBook ? (<div><span className="mainValue">DEAD</span><span className="supportingText">&nbsp;</span></div>) 
                 : (<div><span className="mainValue">{this.plodBook} %</span><span className="supportingText">Chance of Death</span></div>),
             valueShow: 
-                this.isDeadShow ? (<span className="mainValue">DEAD</span>) 
+                this.isDeadShow ? (<div><span className="mainValue">DEAD</span><span className="supportingText">&nbsp;</span></div>) 
                 : (<div><span className="mainValue">{this.plodShow} %</span><span className="supportingText">Chance of Death</span></div>),
-            valueBoth: (this.isDeadShow && this.isDeadBook) ? (<span className="mainValue">DEAD</span>) : false
+            valueBoth: (this.isDeadShow && this.isDeadBook) ? (<div><span className="mainValue">DEAD</span><span className="supportingText">&nbsp;</span></div>) : false
         });
     }
 
     determineSbAppearance(){
-        if (Array.isArray(this.character.books) && this.character.books.length === 0 && typeof this.character.show.slug === 'undefined'){
+        if ((this.character.book && !Array.isArray(this.character.book.books) && this.character.book.books.length === 0)
+            && (this.character.show && !Array.isArray(this.character.show.episodes) && this.character.show.episodes.length === 0)) {
             return;
         }
 
@@ -192,11 +222,10 @@ export default class CharacterDetailsMedia extends Component {
             appearanceShowPercentage = 0;
         }
 
-        if (this.character.books){
-            for (let i = 0; i < this.character.books.length; i++){
-                if (this.character.books[i][0].toLowerCase() === 'a'){
+        if (this.character.book && this.character.book.books){
+            for (let i = 0; i < this.character.book.books.length; i++){
+                if (this.character.book.books[i][0].toLowerCase() === 'a'){
                     appearanceBooks++;
-                    // console.log(this.character.books[i][0].toLowerCase() + appearanceBooks); /*eslint no-console:0,no-undef:0*/
                 }
             }
         } 
@@ -213,7 +242,7 @@ export default class CharacterDetailsMedia extends Component {
         <p>{sbAppearTexShow} {sbAppearTextBook}</p></div>;
         
         this.cards.push({
-            category: "Number of appearances",
+            category: "Appearances",
             title: sbAppearTitle,
             text: sbAppearText,
             quote: sbAppearQuote,
@@ -237,10 +266,10 @@ export default class CharacterDetailsMedia extends Component {
             </p>
         );
        
-        var isDead = this.isDeadShow|| this.usDeadBook;
+        var isDead = this.isDeadShow|| this.isDeadBook;
 
-        let booksAge = this.bookBirth && this.bookBirth > 200 ? (isDead && this.bookDeath ? this.bookDeath : this.TV_YEAR) - this.bookBirth : false;
-        let showAge = this.showBirth ? (isDead && this.showDeath ? this.showDeath : this.TV_YEAR) - this.showBirth : false;
+        let booksAge = this.bookBirth && this.bookBirth > 200 ? (isDead && this.bookDeath ? this.bookDeath : this.BOOK_YEAR) - this.bookBirth : false;
+        let showAge = this.showBirth ? (isDead && this.showDeath ? this.showDeath : this.SHOW_YEAR) - this.showBirth : false;
         let ageDiff = (booksAge && showAge) ? Math.abs(showAge - booksAge) : false;
         
         if (!booksAge || !showAge) {
@@ -285,7 +314,7 @@ export default class CharacterDetailsMedia extends Component {
         }
 
         let sbAgeTextFinal = (<div><p>
-            {!isDead ? (<span>If we assume that the current year is {this.TV_YEAR} AC in both the books and the show, then </span>) : (<span>{this.character.name} died in {dateOfDeath}. We know that </span>)} 
+            {!isDead ? (<span>If we assume that the current year is {this.SHOW_YEAR} AC in the TV show and {this.BOOK_YEAR} AC in the books, then </span>) : (<span>{this.character.name} died in {dateOfDeath}. We know that </span>)} 
             {this.charPronoun()} {isDead ? 'was' : 'is'} {sbAgeText}. {aliveInBooks}</p>
         <p>Ususally characters are <b>older in the TV show</b>, which may contribute to the different predicted values between the two sources, 
             as we use a character's age if it's available.</p></div>);
@@ -336,7 +365,6 @@ export default class CharacterDetailsMedia extends Component {
                                 <blockquote>{value.quote}</blockquote>
                                 <div className="chevronDown" onClick={
                                     (e) => {
-                                        console.log('lol', $(e.currentTarget), $(e.currentTarget).parent().find(".sbDiffTextValue")); /*eslint no-console:0,no-undef:0*/
                                         $(e.currentTarget).parent().find(".sbDiffTextValue").slideToggle('fast');
                                         $(e.currentTarget).parent().find(".fas").toggleClass('hidden');
                                     }

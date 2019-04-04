@@ -4,7 +4,7 @@ import React from 'react';
 let {Component} = React;
 import $ from 'jquery';
 import './Characters.css';
-import { Row, Col, Grid, ProgressBar, Glyphicon } from 'react-bootstrap';
+import { Row, Col, Grid, ProgressBar } from 'react-bootstrap';
 
 import MapComp from '../../common/MapComp/MapComp.jsx';
 import Store from '../../../stores/CharactersStore';
@@ -24,23 +24,22 @@ export default class Character extends Component {
     constructor (props) {
         super(props);
 
+        this.SHOW_YEAR = 305;
+        this.BOOK_YEAR = 300;
         this.animating = false;
         let character = Store.getCharacter();
 
         this.state = {
             character: character,
+
             plodShow: 0,
             plodBook: 0,
-            plodArff: '0',
-            plodTextShow: '',
-            plodTextBook: '',
-            sentiment: {
-                positive: 0,
-                negative: 0
-            },
-            chartLoaded: false,
+
             plodByYearShow: [],
-            plodByYearBook: []
+            plodByYearBook: [],
+
+            plodTextShow: '',
+            plodTextBook: ''
         };
         this._onChange = this._onChange.bind(this);
     }
@@ -62,30 +61,45 @@ export default class Character extends Component {
         let character = Store.getCharacter();
         
         this.setState({
-            character: character,
-            sentiment: SentimentStore.getCharacterSentiment()
+            character: character
         });
 
-        const checkShow = !character.dateOfDeath && character.gotplod && character.gotarffplod;
-        const checkBook = !character.dateOfDeath && character.gotplod && character.gotarffplod;
+        // TV show PLOD data
+        let checkShow = false;
+        let showLongevity = [];
+        if (character.hasShow) {
+            checkShow = character.show.alive;
 
-        let randval = parseInt(character.gotplod.plod + 10 - Math.random() * 20);
-        if (randval > 100) {
-            randval = 100;
-        } else if (randval < 0) {
-            randval = 1;
+            let showLongevityB = character.show.longevityB;
+            let showLongevityStartB = parseInt(character.show.longevityStartB);
+
+            let start = this.SHOW_YEAR - showLongevityStartB;
+            showLongevity = showLongevityB.splice(start, start + 21);
+        }
+
+        // book PLOD Data
+        let checkBook = false;
+        let bookLongevity = [];
+        if (character.hasBook) {
+            checkBook = character.book.alive;
+
+            let bookLongevityB = character.book.longevityB;
+            let bookLongevityStartB = parseInt(character.book.longevityStartB);
+
+            let start = this.BOOK_YEAR - bookLongevityStartB;
+            bookLongevity = bookLongevityB.splice(start, start + 21);
         }
 
         this.setState({
             // temporary dummy data - TODO: remove
-            plodShow: (checkShow) ? randval || 0 : 100,
-            plodByYearShow: character.plodByYearShow,
-            plodTextShow: (checkShow) ? '%(percent)s%' : 'D E A D',
+            plodShow:       checkShow ? Math.round(character.show.plodB * 100) : 100,
+            plodByYearShow: checkShow ? showLongevity : [],
+            plodTextShow:   checkShow ? '%(percent)s%' : 'D E A D',
 
             // Book data
-            plodBook: (checkBook) ? parseInt(character.gotplod.plod) || 0 : 100,
-            plodByYearBook: character.plodByYearBook,
-            plodTextBook: (checkBook) ? '%(percent)s%' : 'D E A D',
+            plodBook:       checkBook ? Math.round(character.book.plodB * 100) : 100,
+            plodByYearBook: checkBook ? bookLongevity : [],
+            plodTextBook:   checkBook ? '%(percent)s%' : 'D E A D',
 
             character: character,
             sentiment: SentimentStore.getCharacterSentiment() || { positive: 0, negative: 0}
@@ -103,12 +117,15 @@ export default class Character extends Component {
         this.animating = true;
         var bookContainer = $(".plodBookContainer");
         var characterShowImg = $(".character-show-img");
+        var disclaimer = $('.disclaimer');
         if (bookContainer.hasClass('plodContainerHidden')) {
             bookContainer.removeClass("plodContainerZIndexLower").removeClass("plodContainerHidden");
             characterShowImg.addClass("hiddenImg");
+            disclaimer.addClass('hiddenImg');
         } else {
             bookContainer.addClass("plodContainerHidden");
             characterShowImg.removeClass("hiddenImg");
+            disclaimer.removeClass('hiddenImg');
             window.setTimeout(() => {
                 $(".plodBookContainer").addClass("plodContainerZIndexLower");
             }, 400);
@@ -133,8 +150,8 @@ export default class Character extends Component {
     }
 
     render() {
-        var base_url = process.env.__PROTOCOL__ + process.env.__API__ + "/";
-        var img = (!this.state.character.imageLink) ? "/images/placeholder-male.png" : base_url+this.state.character.imageLink;
+        var imgBook = (this.state.character.book && this.state.character.book.image) ? this.state.character.book.image : "/images/placeholder-male.png";
+        var imgShow = (this.state.character.show && this.state.character.show.image) ? this.state.character.show.image : false;
 
         return (
           <Grid id="character-page-container">
@@ -145,12 +162,6 @@ export default class Character extends Component {
                             <div className="character-name-background"></div>
                             <Col md={9} mdOffset={3} className="character-name">
                                 <div className="u-inlineBlock"><h1>{this.state.character.name}</h1></div>
-                                <a href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}
-                                    target="_blank"
-                                    className="btn--secondary wikiButton u-inlineBlock">
-                                    <Glyphicon glyph="share-alt" />
-                                    Wiki
-                                </a>
                             </Col>
                         </div>
                     </div>
@@ -158,9 +169,10 @@ export default class Character extends Component {
                 <Row className="character-intro" fluid >
                     <Col md={3}>
                         <div className="character-photo">
-                            <img src={img}/>
-                            {this.state.character.show && this.state.character.show.image ? 
-                                <img className="character-show-img" src={this.state.character.show.image}/> : ''}
+                            <img src={imgBook}/>
+                            {imgShow !== false ? 
+                                <img className="character-show-img" src={imgShow}/> : ''}
+                            <div className="disclaimer">© 2019 Home Box Office, Inc. / Sky All rights reserved.</div>
                         </div>
                     </Col>
                     <Col md={9}>
@@ -173,10 +185,11 @@ export default class Character extends Component {
                             { this.state.plodShow < 100 && this.state.character.show && this.state.character.show.alive == true ?
                                 <div className="plodShowContainer">
                                     <h3>Our Predictions</h3>
-                                    <span className="subtitle">TV show</span>
-                                    <p>{this.state.character.name}'s <b>Likelihood to Survive</b> between the years 300 and 320 AC is:</p>
+                                    <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>TV show <i className="fas fa-external-link-alt"></i></a>
+                                    <p>The current year in the TV show is probably {this.SHOW_YEAR} AC.
+                                        <br />{this.state.character.name}'s <b>Likelihood to Survive</b> between the years 305 and 325 AC is:</p>
                                     <div className="plodContainer">
-                                        <CharacterPlodDisplay plodByYear={this.state.plodByYearShow} />
+                                        <CharacterPlodDisplay plodByYear={this.state.plodByYearShow} startingYear={305}/>
                                     </div>
                                     <p>{this.state.character.name}'s <b>Predicted Likelihood of Death</b> in season 8 is:</p>
                                     <div className="plodContainer">
@@ -195,10 +208,11 @@ export default class Character extends Component {
                             { this.state.plodBook < 100 && this.state.character.book && !this.state.character.book.dateOfDeath ?
                                 <div className="plodBookContainer plodContainerHidden plodContainerZIndexLower">
                                     <h3>Our Predictions</h3>
-                                    <span className="subtitle">books</span>
-                                    <p>{this.state.character.name}'s <b>Likelihood to Survive</b> between the years 300 and 320 AC is:</p>
+                                    <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>Books <i className="fas fa-external-link-alt"></i></a>
+                                    <p>The current year in the Books is probably {this.BOOK_YEAR} AC.
+                                        <br />{this.state.character.name}'s <b>Likelihood to Survive</b> between the years 305 and 325 AC is:</p>
                                     <div className="plodContainer">
-                                        <CharacterPlodDisplay plodByYear={this.state.plodByYearBook} />
+                                        <CharacterPlodDisplay plodByYear={this.state.plodByYearBook} startingYear={300}/>
                                     </div>
                                     <p>{this.state.character.name}'s <b>Predicted Likelihood of Death</b> in <i>'the Winds of Winter'</i> is:</p>
                                     <div className="plodContainer">
@@ -208,7 +222,7 @@ export default class Character extends Component {
                                 </div>
                                 : 
                                 <div className="plodBookContainer plodContainerHidden plodContainerZIndexLower">
-                                    <DeadCharacter name={this.state.character.name} deathText={this.state.character.dateOfDeath + 'AC'} mediumText="books"/>
+                                    <DeadCharacter name={this.state.character.name} deathText={this.state.character.book && this.state.character.book.death + 'AC'} mediumText="books"/>
                                 </div>
                             }
                         </div>
@@ -216,31 +230,47 @@ export default class Character extends Component {
                 </Row>
                 <hr />
                 <Row>
-                    <Col className="leftBar" md={3}>
-                        <h3>Comparison</h3>
-                        <h4>between the&nbsp;books and&nbsp;the TV&nbsp;show</h4>
-                    </Col>
-                    <Col md={9}>
+                    <Col md={12}>
+                        <div className="sectionHeader">
+                            <h3>Comparison</h3>
+                            <h4>between the&nbsp;books and&nbsp;the TV&nbsp;show</h4>
+                        </div>
+                        <hr />
                         <CharacterDetailsMedia data={this.state} character={this.state.character}/>
                     </Col>
                 </Row>
                 <hr />
                 <Row>
-                    <Col className="leftBar" md={3}>
-                        <h3>Interesting Stats</h3>
-                        <h4>about {this.state.character.name}</h4>
-                    </Col>
-                    <Col md={9}>
+                    <Col md={12}>
+                        <div className="sectionHeader">
+                            <h3>Interesting Stats</h3>
+                            <h4>about {this.state.character.name}</h4>
+                        </div>
+                        <hr />
                         <CharacterDetailsStats data={this.state} />
                     </Col>
                 </Row>
                 <hr />
                 <Row>
-                    <Col className="leftBar" md={3}>
-                        <h3>Machine Learning</h3>
-                        <h4>predicting life and death in Westeros</h4>
+                    <Col md={12}>
+                        <div className="sectionHeader">
+                            <h3 style={{marginBottom: "35px"}}>Follow {this.state.character.name} in the books</h3>
+                        </div>
+                        <hr />
+                        <div id="characterMap">
+                            <MapComp character={[this.props.params.id]} />
+                        </div>
                     </Col>
-                    <Col md={9}>
+                </Row>
+                <br />
+                <Row>
+                    <Col md={12}>
+                        <hr />
+                        <div className="sectionHeader">
+                            <h3>Machine Learning</h3>
+                            <h4>predicting life and death in Westeros</h4>
+                        </div>
+                        <hr />
                         <div className="card">
                             <h3>Character Death & Longevity</h3>
                             <p>Our in-house developed machine learning algorithm predicts
@@ -252,18 +282,6 @@ export default class Character extends Component {
                         </div>
                     </Col>
                 </Row>
-                <hr />
-                <Row>
-                    <Col md={12}>
-                        <h3 style={{marginBottom: "35px"}}>Follow {this.state.character.name}</h3>
-                    </Col>
-                    <Col>
-                        <div id="characterMap">
-                            <MapComp character={[this.props.params.id]} />
-                        </div>
-                    </Col>
-                </Row>
-
             </div>
           </Grid>
         );

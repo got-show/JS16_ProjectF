@@ -14,7 +14,7 @@ export default class CharacterThumbnail extends Component {
 
     render() {
       var img = (this.props.imageUrl != 'placeholder-male' && this.props.imageUrl != 'placeholder-female') 
-                ? process.env.__PROTOCOL__ + process.env.__API__ + this.props.imageUrl : 
+                ? this.props.imageUrl : 
                 (this.props.imageUrl == 'placeholder-male' ? characterPlaceholderMale : characterPlaceholderFemale);
 
       var detailLink = '/characters/'+encodeURIComponent(this.props.name);
@@ -26,7 +26,7 @@ export default class CharacterThumbnail extends Component {
                 <div className="character-thumbmail-img-container">
                   <img src={img} className="character-thumbnail" title={this.props.name} />
                 </div>
-                <p>{this.props.name}</p>
+                <div className="character-thumbnail-name"><p>{this.props.name}</p></div>
                 <div className="characters-list-plod">
                   <img src={tombstoneTransparent} />
                   <div className="plod-percentage-cropper" style={{'height': this.props.plodCropperSize+'px'}}><img src={tombstone} /></div>
