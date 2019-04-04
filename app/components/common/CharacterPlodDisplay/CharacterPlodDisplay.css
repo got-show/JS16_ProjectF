@@ -14,7 +14,7 @@
     vertical-align: top;
     width: calc((100% - 40px)/21 - 5px);
     position: relative;
-    height: 150px;
+    height: 130px;
     background: #333;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .plodYearBg:hover .plodYearFg {
-    background-color: #6A281C;
+    background-color: #0cc90c;
     transition-duration: 0.1s;
 }
 
@@ -72,7 +72,7 @@
     width: 100%;
     bottom: 0;
     left: 0;
-    background: #5A180C;
+    background: #0c9a13;
 }
 
 .plodYearValue {

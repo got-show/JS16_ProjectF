@@ -12,6 +12,9 @@
 .group-photo {
 	width: 100%;
 }
+.old-photo {
+	width: 30%;
+}
 .about-container {
 	margin-top: 50px;
 }

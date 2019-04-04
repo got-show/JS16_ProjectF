@@ -40,8 +40,9 @@ function filterCharacters(characters, filter) {
       } else if (!matchFound && element.hasOwnProperty(Constants.FILTER_FIELD_CULTURE)) {
         matchFound |= element[Constants.FILTER_FIELD_CULTURE].toLowerCase().indexOf(filter.value.toLowerCase()) >= 0;
       }
-        matchFound &= !filter.book || (element.books.length > 0);
-        matchFound &= !filter.show || (element.show == true);;
+
+      matchFound &= !filter.book || element.hasBook;
+      matchFound &= !filter.show || element.hasShow;
       return matchFound;
     });
   }
@@ -56,7 +57,7 @@ var CharactersStore = assign({}, EventEmitter.prototype, {
     if (!page) {
       page = 1
     }
-    const start = page * 36 - 20;
+    const start = page * 36 - 36;
     const end = start + 36;
     const filteredCharacters = filterCharacters(_characters, filter);
     const sortedCharacters = sortCharacters(filteredCharacters, sort);

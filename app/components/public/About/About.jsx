@@ -5,7 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import './About.css';
 import AboutText from '../../../../config/markdown/about.md';
 import group from './group.jpg';
-
+import group2019 from './group2019.jpg';
 export default class About extends Component {
     render() {
         return (
@@ -14,7 +14,7 @@ export default class About extends Component {
                 <Row> 
                     <h1 className="about-title">Our Team</h1>     
                     <Col sm={10} smOffset={1} md={5}>
-                        <img src={group} className="group-photo" />
+                        <img src={group2019} className="group-photo" />
                     </Col>
                     <Col sm={10} smOffset={1} md={5} mdOffset={0}>
                         <div className="about-description" dangerouslySetInnerHTML={{ __html: AboutText}} />
@@ -24,11 +24,37 @@ export default class About extends Component {
                         <Row>
                             <Col xs={10} xsOffset={1} sm={5}>
                                 <h3>Mentors</h3>
+                                <TeamMemberListing teamID="2019Mentor"/>
+                                <h3>Database &amp; API</h3>
+                                <TeamMemberListing teamID="2019A"/>
+                                <h3>Data Analysis</h3>
+                                <TeamMemberListing teamID="2019B"/>
+                                <TeamMemberListing teamID="2019C"/>
+                            </Col>
+                            <Col xs={10} xsOffset={1} sm={5}>
+                                <h3>Frontend</h3>
+                                <TeamMemberListing teamID="2019D"/>
+                            </Col> 
+                        </Row>
+
+                    </Col>
+                </Row>
+                <Row>
+                    <h1 className="about-title">The original 2016 Team</h1>
+                    <Col sm={10} smOffset={1} md={5}>
+                        <img src={group} className="group-photo" />
+                    </Col>
+                    <Col md={8} mdPush={2}>
+                    <h1 className="about-title">Contributors</h1>
+                        <Row>
+                            <Col xs={10} xsOffset={1} sm={5}>
+                                <h3>Mentors</h3>
                                 <TeamMemberListing teamID="Mentor"/>
                                 <h3>Database &amp; API</h3>
                                 <TeamMemberListing teamID="A"/>
                                 <h3>Data Analysis</h3>
-                                <TeamMemberListing teamID="BD"/>
+                                <TeamMemberListing teamID="B"/>
+                                <TeamMemberListing teamID="D"/>
                             </Col>
                             <Col xs={10} xsOffset={1} sm={5}>
                                 <h3>Frontend &amp; Design</h3>
@@ -54,7 +80,7 @@ export default class About extends Component {
                 <Row>
                     <Col md={8} mdPush={2}>
                         <h1 className="about-title">Attributions</h1>
-                        <p className="about-description">Most of our data was - and is periodically- scraped from <a href="http://awoiaf.westeros.org" target="_blank">A Wiki of Ice and Fire</a>. Contributing to this wiki will enhance this portal greatly, so make sure you drop a visit to our wiki-partners and request an account.</p>
+                        <p className="about-description">Most of our data was - and is periodically- scraped from <a href="http://awoiaf.westeros.org" target="_blank">A Wiki of Ice and Fire</a> and <a href="http://gameofthrones.fandom.com" target="_blank">Fandom Game of Thrones Wiki</a>. Contributing to these wikis will enhance this portal greatly, so make sure you drop a visit to our wiki-partners and request an account.</p>
                         <p className="about-description">We used the sources and licenses listed on <a href="/attributions">this page</a>.</p>
                     </Col>
                 </Row>
@@ -286,11 +312,90 @@ class TeamMemberListing extends Component {
                 name: "Andreas Battenberg",
                 link: "",
                 team: "T"
+            },
+            {
+                name: "Ashmin Bhattarai",
+                link: "",
+                team: "2019A"
+            },
+            {
+                name: "David Schemm",
+                link: "",
+                team: "2019A"
+            },
+            {
+                name: "Gerald Mahlknecht",
+                link: "",
+                team: "2019A"
+            },
+            {
+                name: "Daniel Homola",
+                link: "",
+                team: "2019A"
+            },
+            {
+                name: "Julian Nalenz",
+                link: "",
+                team: "2019B"
+            },
+            {
+                name: "Valentin Dimov",
+                link: "",
+                team: "2019B"
+            },
+            {
+                name: "Robert Dillitz",
+                link: "",
+                team: "2019B"
+            },
+            {
+                name: "Lukas Franke",
+                link : "",
+                team : "2019C"
+            },
+            {
+                name: "Robin Brase",
+                link : "",
+                team : "2019C"
+            },
+            {
+                name: "Rainier Klopper",
+                link : "",
+                team : "2019C"
+            },
+            {
+                name : "Taylor Lei",
+                link : "",
+                team : "2019D"
+            },
+            {
+                name: "Jan Schweizer",
+                link: "",
+                team: "2019D"
+            },
+            {
+                name: "Boning Li",
+                link: "",
+                team: "2019D"
+            },
+            {
+                name: "Florian Donhauser",
+                link: "",
+                team: "2019D"
+            },
+            {
+                name: "Guy Yachdav",
+                link: "https://www.linkedin.com/in/gyachdav",
+                team: "2019Mentor"
+            },
+            {
+                name: "Christian Dallago",
+                link: "http://dallago.us",
+                img:  "https://c2.staticflickr.com/2/1481/25418571675_2dbacb53a7_q.jpg",
+                team: "2019Mentor"
             }
         ].filter((member) => {
-            return member.team.split('').map((teamID) => {
-                return projectID.indexOf(teamID) != -1;
-            }).reduce((a, b) => {return a || b;});
+                return projectID==member.team;
         });
     }
 }

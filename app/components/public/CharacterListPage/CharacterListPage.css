@@ -1,5 +1,6 @@
 .inputbar.row {
-    margin: 80px 0;
+    margin: 0;
+    margin-top: 60px;
 }
 
 input.character-search {
@@ -28,6 +29,11 @@ input.character-search {
     font-size: small;
     width: 100%;
 }
+
+.sortCol {
+    margin-bottom: 15px;
+}
+
 .sortCol .dropdown {
     width: 100%;
 }

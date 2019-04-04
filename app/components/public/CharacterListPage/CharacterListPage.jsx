@@ -69,11 +69,11 @@ export default class CharacterListPage extends Component {
         sort = popularity.sort;
       }
       this.state = {
-        data: Store.getCharacters(page,sort, {'value': ''}),
+        data: Store.getCharacters(page,sort, {'value': '', "book": false, "show": false}),
         activePage: page,
-        filter: {'value': '',"book":false,"show":false},
+        filter: {'value': '', "book": false, "show": false},
         loaded: false,
-        filterText: 'Both',
+        filterText: 'Books & TV Show',
         sortText: sortText,
         sort: sort,
         text_changed: false,
@@ -168,15 +168,16 @@ export default class CharacterListPage extends Component {
       if(eventKey == 0) {
         tmpFilter.book=false;
         tmpFilter.show=false;
-        filterText='Both';
+
+        filterText='Books & TV Show';
       } else if(eventKey == 1) {
         tmpFilter.book=true;
         tmpFilter.show=false;
-        filterText='Book';
+        filterText='Books';
       } else if(eventKey == 2) {
         tmpFilter.book=false;
         tmpFilter.show=true;
-        filterText='Show';
+        filterText='TV Show';
       }
       // console.log('tmpFilter');
       // console.log(tmpFilter);
@@ -262,19 +263,18 @@ export default class CharacterListPage extends Component {
       return (
         <div>
           <Row className="inputbar">
-          
-
-            <Col md={6} mdPush={3}>
+            <Col md={6} mdOffset={1}>
               <Input value={this.props.location.query.search} className="character-search" ref="input" type="text" placeholder="Search for character" onChange={this.handleChange.bind(this)} />
             </Col>
-            
-            <Col md={2} className="sortCol" mdOffset={1} mdPull={6}>
-            <DropdownButton className="sortButton" onSelect={this.handleSelectFilter.bind(this)} title={this.state.filterText} id="dropdown-size-medium">
-              <MenuItem eventKey="1">Book</MenuItem>
-              <MenuItem eventKey="2">Show</MenuItem>
-              <MenuItem eventKey="0">Both</MenuItem>
-            </DropdownButton>
-          </Col>
+
+            <Col md={2} className="sortCol">
+              <DropdownButton className="sortButton" onSelect={this.handleSelectFilter.bind(this)} title={this.state.filterText} id="dropdown-size-medium">
+                <MenuItem eventKey="1">Books</MenuItem>
+                <MenuItem eventKey="2">TV Show</MenuItem>
+                <MenuItem eventKey="0">Books & TV Show</MenuItem>
+              </DropdownButton>
+            </Col>
+
             <Col md={2} className="sortCol">
               <DropdownButton className="sortButton" onSelect={this.handleSelectSort.bind(this)} title={this.state.sortText} id="dropdown-size-medium">
                 <MenuItem eventKey="1">{popularity.sortText}</MenuItem>
