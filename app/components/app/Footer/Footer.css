@@ -71,3 +71,8 @@ footer h4 {
 .footerlogo:hover {
 	filter: grayscale(0%);
 }
+
+#license{
+	display: inline-block;
+	text-align: left !important;
+}
