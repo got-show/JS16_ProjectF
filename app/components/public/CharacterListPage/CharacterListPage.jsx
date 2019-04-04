@@ -262,18 +262,19 @@ export default class CharacterListPage extends Component {
       return (
         <div>
           <Row className="inputbar">
-          <Col md={2} className="sortCol" mdOffset={1}>
+          
+
+            <Col md={6} mdPush={3}>
+              <Input value={this.props.location.query.search} className="character-search" ref="input" type="text" placeholder="Search for character" onChange={this.handleChange.bind(this)} />
+            </Col>
+            
+            <Col md={2} className="sortCol" mdOffset={1} mdPull={6}>
             <DropdownButton className="sortButton" onSelect={this.handleSelectFilter.bind(this)} title={this.state.filterText} id="dropdown-size-medium">
               <MenuItem eventKey="1">Book</MenuItem>
               <MenuItem eventKey="2">Show</MenuItem>
               <MenuItem eventKey="0">Both</MenuItem>
             </DropdownButton>
           </Col>
-
-            <Col md={6} >
-              <Input value={this.props.location.query.search} className="character-search" ref="input" type="text" placeholder="Search for character" onChange={this.handleChange.bind(this)} />
-            </Col>
-
             <Col md={2} className="sortCol">
               <DropdownButton className="sortButton" onSelect={this.handleSelectSort.bind(this)} title={this.state.sortText} id="dropdown-size-medium">
                 <MenuItem eventKey="1">{popularity.sortText}</MenuItem>
