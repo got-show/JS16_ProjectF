@@ -25,54 +25,7 @@ export default class CharacterDetailsStats extends Component {
                 total: 741,
                 dead: 129
             },
-            attributes: [
-                "Braavos",
-                "Crakehall",
-                "Darry",
-                "Dragonstone",
-                "Harrenhal",
-                "House Frey",
-                "House Lannister",
-                "House Martell",
-                "House Stark",
-                "House Targaryen",
-                "King's Landing",
-                "Lys",
-                "Myr",
-                "Northmen",
-                "Pentos",
-                "Riverrun",
-                "Tower",
-                "Valyria",
-                "Winterfell",
-                "male",
-                "numSpouses",
-                "numTitles"
-              ],
-              meanBetaExp: [
-                0.4885454491460676,
-                0.9349088677278595,
-                1.4557318003880368,
-                0.7780924825579874,
-                1.236994349882415,
-                0.5075020629546677,
-                1.439100284498204,
-                1.2962999150492085,
-                2.3638645671040406,
-                2.1054683855321086,
-                1.3225480960560165,
-                0.7991570202609043,
-                0.8480143611746367,
-                0.5309296766739399,
-                1.2171980429529305,
-                0.6824910889408173,
-                0.8906618926897701,
-                1.4874654391789197,
-                1.4837289478434277,
-                1.0806374640584027,
-                1.1683200417946134,
-                0.749394940852674
-            ]
+            attributes: {"House Arryn":0.56,"House Baratheon of Dragonstone":1.05,"House Baratheon of King's Landing":1.32,"House Bolton":0.946,"House Frey":0.864,"House Greyjoy":0.697,"House Lannister":0.551,"House Martell":1.4,"House Stark":0.618,"House Targaryen":0.577,"House Tarly":0.372,"House Tully":1.61,"House Tyrell":1.58,"hasLovers":0.937,"hasTitles":1.13,"isMajor":0.844,"isMarried":0.443,"male":2.02}
         };
     }
 
@@ -98,10 +51,10 @@ export default class CharacterDetailsStats extends Component {
 
         if (character && character.culture) {
             let culture = character.culture;
-            let index = this.stats.attributes.indexOf(culture);
+            let index = this.stats.attributes.hasOwnProperty(culture);
             
-            if (index > -1) {
-                let change = this.stats.meanBetaExp[index];
+            if (index) {
+                let change = this.stats.attributes[culture];
                 this.cards.push({
                     title: culture,
                     type: "Culture",
@@ -114,10 +67,10 @@ export default class CharacterDetailsStats extends Component {
 
         if (character && character.house) {
             let house = character.house;
-            let index = this.stats.attributes.indexOf(house);
+            let index = this.stats.attributes.hasOwnProperty(house);
             
-            if (index > -1) {
-                let change = this.stats.meanBetaExp[index];
+            if (index) {
+                let change = this.stats.attributes[house];
                 this.cards.push({
                     title: house,
                     type: "House",
@@ -130,10 +83,10 @@ export default class CharacterDetailsStats extends Component {
         
         if (character && character.origin) {
             let origin = character.origin;
-            let index = this.stats.attributes.indexOf(origin);
+            let index = this.stats.attributes.hasOwnProperty(origin);
             
-            if (index > -1) {
-                let change = this.stats.meanBetaExp[index];
+            if (index) {
+                let change = this.stats.attributes[origin];
                 this.cards.push({
                     title: origin,
                     type: "Place of birth",
@@ -144,46 +97,72 @@ export default class CharacterDetailsStats extends Component {
             }
         }
 
-        if(character && character.spouse && character.spouse.length > 0){
-            let spouses = character.spouse;
-            let index = this.stats.attributes.indexOf("numSpouses");
-            let value = this.stats.meanBetaExp[index];
-            if (!Array.isArray(spouses)){
-                spouses = [spouses];
+        if (character && character.spouse && character.spouse.length > 0){
+            let index = this.stats.attributes.hasOwnProperty("isMarried");
+            
+            if (index) {
+                let change = this.stats.attributes["isMarried"];
+                this.cards.push({
+                    title: this.charPronoun(true) + " is married",
+                    type: "Spouse",
+                    text: <span>Characters that are married have a proportionally <b>{change > 1 ? 'higher' : 'lower'}</b>  predicted likelihood of death.</span>,
+                    value: "Married",
+                    proportionalChange: (100 * change - 100).toFixed(2)
+                });
             }
-            let numSpouses = spouses.length;
-            let change = value;
-            for (let i = 1; i < numSpouses; i++){
-                change *= value;
-            }
-
-            this.cards.push({
-                title: this.charPronoun(true) + " has " +  numSpouses + (numSpouses === 1 ? " spouse" : " spouses"),
-                type: "Number of Spouses",
-                text: "Having " + numSpouses + " " + (numSpouses === 1 ? "spouse" : "spouses") + " proportionally " + (change > 1 ? 'increases' : 'decreases') + " the predicted likelihood of death.",
-                value: numSpouses,
-                proportionalChange: (100 * change - 100).toPrecision(2)
-            });
         }
 
-        if (character && character.title){
-            let titles = character.titles;
-            let index = this.stats.attributes.indexOf("numTitles");
-            let value = this.stats.meanBetaExp[index];
-            let numTitles = titles.length;
-            let change = value;
-            for (let i = 0; i < numTitles; i++){
-                change *= value;
-            }
+        if (character && character.titles){
+            let index = this.stats.attributes.hasOwnProperty("hasTitles");
 
-            this.cards.push({
-                title: this.charPronoun(true) + " has " + numTitles + (numTitles === 1 ? " title" : " titles"),
-                type: "Number of Titles",
-                text: "Having " + numTitles + " " + (numTitles === 1 ? "title" : "titles") + " proportionally " + (change > 1 ? 'increases' : 'decreases') + " the predicted likelihood of death.",
-                value: numTitles,
-                proportionalChange: (100 * change - 100).toPrecision(2)
-            });
+            if (index) {
+                let value = this.stats.attributes["hasTitles"];
+                let change = value;
+
+                this.cards.push({
+                    title: this.charPronoun(true) + " has titles",
+                    type: "Title",
+                    text: "Having titles proportionally " + (change > 1 ? 'increases' : 'decreases') + " the predicted likelihood of death.",
+                    value: "Title",
+                    proportionalChange: (100 * change - 100).toPrecision(2)
+                });
+            }
         }
+
+        if (character && character.gender === 'male'){
+            let index = this.stats.attributes.hasOwnProperty("male");
+
+            if (index) {
+                let value = this.stats.attributes["male"];
+                let change = value;
+
+                this.cards.push({
+                    title: this.charPronoun(true) + " is Male",
+                    type: "Male",
+                    text: "Being male proportionally " + (change > 1 ? 'increases' : 'decreases') + " the predicted likelihood of death.",
+                    value: "Male",
+                    proportionalChange: (100 * change - 100).toPrecision(2)
+                });
+            }
+        }
+
+        if (character && character.pagerank.rank > 550){
+            let index = this.stats.attributes.hasOwnProperty("isMajor");
+
+            if (index) {
+                let value = this.stats.attributes["isMajor"];
+                let change = value;
+
+                this.cards.push({
+                    title: "Major Character",
+                    type: "Major or Minor Character",
+                    text: "Being a major character proportionally " + (change > 1 ? 'increases' : 'decreases') + " the predicted likelihood of death.",
+                    value: "Major Character",
+                    proportionalChange: (100 * change - 100).toPrecision(2)
+                });
+            }
+        }
+        
         this.shuffle(this.cards);
         this.cards = this.cards.slice(0, 3);
     }
@@ -299,7 +278,7 @@ export default class CharacterDetailsStats extends Component {
                             <h4>{card.title}</h4>
                             <div className="description">{card.text}</div>
                             <div className="proportion">
-                                <p>proportionally around</p>
+                                <p className="center">proportionally around</p>
                                 <h3>
                                     {card.proportionalChange > 0 ? 
                                         <i className="fas fa-arrow-circle-up" style={{color:"#c9180c"}}></i>
