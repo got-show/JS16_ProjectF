@@ -1,3 +1,9 @@
+//import TableData from "json!./tableData.json";
+
+//import antagonistCharacters from 'json!../antagonistCharacters.json';
+
+//var TableData=require('./tableData.json');
+
 google.charts.setOnLoadCallback(drawNewCharactersIntroduced);
 
 function drawNewCharactersIntroduced() {
@@ -491,6 +497,9 @@ function drawDistributionNoblesPLODs() {
     [99, 0, 0],
     [100, 0, 0]
   ]);
+
+  // let data=TableData.plodDistributionPeasants;
+
   var options = {
     height: 400,
     lineWidth: 3,
