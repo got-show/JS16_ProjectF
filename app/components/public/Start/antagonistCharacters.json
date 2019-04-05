@@ -3,19 +3,19 @@
         "TyrionLannister": {
             "name": "Tyrion Lannister",
             "question": "Is Tyrion Lannister guilty of being a dwarf?",
-            "description" : "How does his allegiance to House Lannister affect his chances at surviving in the world of Westeros?",
+            "description" : "How does being a member of House Lannister affect his chances at surviving in the world of Westeros?",
             "quote": "I have a tender spot in my heart for cripples, bastards and broken things."
         },
         "CerseiLannister": {
             "name": "Cersei Lannister",
             "question": "Will Cersei Lannister die at the hands of the valonqar?",
-            "description" : "How does her allegiance to House Lannister affect her chances at surviving in the world of Westeros?",
+            "description" : "How does being a member of House Lannister affect her chances at surviving in the world of Westeros?",
             "quote": "When you play the game of thrones, you win or you die."
         },
         "AryaStark": {
             "name": "Arya Stark",
             "question": "What will Arya Stark say to the God of Death?",
-            "description" : "How does her allegiance to House Stark affect her chances at surviving in the world of Westeros?",
+            "description" : "How does being a member of House Stark affect her chances at surviving in the world of Westeros?",
             "quote": "A girl is Arya Stark of Winterfell. And I'm going home."
         },
         "BrienneOfTarth": {
@@ -33,26 +33,92 @@
         "JaimeLannister": {
             "name": "Jaime Lannister",
             "question": "Is Jaime Lannister going to pay for his sins?",
-            "description" : "How does his allegiance to House Lannister affect his chances at surviving in the world of Westeros?",
+            "description" : "How does being a member of House Lannister affect his chances at surviving in the world of Westeros?",
             "quote": "Then he... turned to his pyromancer. Burn them all, he said. Burn them in their homes, burn them in their beds."
         },
         "SansaStark": {
             "name": "Sansa Stark",
             "question": "Will Sansa Stark meet her fate?",
-            "description" : "How does her allegiance to House Stark affect her chances at surviving in the world of Westeros?",
+            "description" : "How does being a member of House Stark affect her chances at surviving in the world of Westeros?",
             "quote": "When the snows fall and the white winds blow, the lone wolf dies, but the pack survives."
         },
         "DaenerysTargaryen": {
             "name": "Daenerys Targaryen",
             "question": "Will Daenerys Targaryen sit on the Iron Throne?",
-            "description" : "How does her allegiance to House Targaryen affect her chances at surviving in the world of Westeros?",
+            "description" : "How does being a member of House Targaryen affect her chances at surviving in the world of Westeros?",
             "quote": "Dracarys."
         },
         "JonSnow": {
             "name": "Jon Snow",
             "question": "Is Jon Snow the prince who was promised?",
-            "description" : "How does his allegiance to House Stark affect his chances at surviving in the world of Westeros?",
+            "description" : "How does being a member of House Stark affect his chances at surviving in the world of Westeros?",
             "quote": "You are a Stark. You may not have my name, but you have my blood."
+        },
+        "BrandonStark": {
+            "name": "Brandon Stark",
+            "question": "Can the Three-Eyed Raven affect the course of war?",
+            "description": "How does being a member of House Stark affect his chances at surviving in the world of Westeros?",
+            "quote": "I remember what it felt like to be Brandon Stark, but I remember so much else now."
+        },
+        "Qyburn": {
+            "name": "Qyburn",
+            "question": "Will Qyburn pay for his experiments?",
+            "description": "How does his allegiance to House Lannister affect his chances at surviving in the world of Westeros?",
+            "quote": "The Citadel stripped me of it. They found some of my... experiments... too bold."
+        },
+        "Varys": {
+            "name": "Varys",
+            "question": "Will the Master of Whisperers escape death?",
+            "description": "Do noblewomen have a harder time surviving in Westeros?",
+            "quote": "Storms come and go, the big fish eat the little fish, and I keep on paddling."
+        },
+        "TheonGreyjoy": {
+            "name": "Theon Greyjoy",
+            "question": "Will Theon Greyjoy atone for his sins?",
+            "description": "How does being a member of House Greyjoy affect his chances at surviving in the world of Westeros?",
+            "quote": "It always seemed that there was an impossible choice I had to make. Stark or Greyjoy."
+        },
+        "EuronGreyjoy": {
+            "name": "Euron Greyjoy",
+            "question": "Will Euron Greyjoy sail to certain death?",
+            "description": "How does being a member of House Greyjoy affect his chances at surviving in the world of Westeros?",
+            "quote": "I don't mock the Drowned God - I am the Drowned God."
+        },
+        "Bronn":{
+            "name": "Bronn",
+            "question": "Will Bronn get his castle in the end?",
+            "description": "How does his allegiance to House Lannister affect his chances at surviving in the world of Westeros?",
+            "quote": "You waste time trying to get people to love you. You'll end up the most popular dead man in town."
+        },
+        "JorahMormont": {
+            "name": "Jorah Mormont",
+            "question": "Can Jorah Mormont prove his love for his Khaleesi?",
+            "description": "Do noblewomen have a harder time surviving in Westeros?",
+            "quote": "There is a beast in every man, and it stirs when you put a sword in his hand."
+        },
+        "GregorClegane":{
+            "name": "Gregor Clegane",
+            "question": "Is the mountain strong enough to survive?",
+            "description": "Do noblewomen have a harder time surviving in Westeros?",
+            "quote": "Elia of Dorne. I killed her screaming whelp."
+        },
+        "DavosSeaworth":{
+            "name": "Davos Seaworth",
+            "question": "Are Davos Seasworth's smugglers days over for good?",
+            "description": "Do noblewomen have a harder time surviving in Westeros?",
+            "quote": "If we don't put aside our enmities and band together, we will die."
+        },
+        "Melisandre":{
+            "name": "Melisandre",
+            "question": "Will Melisandre outlive even the Great War?",
+            "description": "Do noblewomen have a harder time surviving in Westeros?",
+            "quote": "The night is dark and full of terrors, old man, but the fire burns them all away."
+        },
+        "GreyWorm":{
+            "name": "Grey Worm",
+            "question": "Will Grey Worm serve his queen to the end of his days?",
+            "description": "How does his allegiance to House Targaryen affect his chances at surviving in the world of Westeros?",
+            "quote": "I was never the biggest, I was never the strongest, but I was bravest, always."
         }
     },
     "antagonists": [
