@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import antagonistCharacters from 'json!../../public/Start/antagonistCharacters.json';
+import antagonistCharacters from 'json!../../../public/Start/antagonistCharacters.json';
 import { Slide } from 'react-slideshow-image';
 
 
@@ -52,7 +52,7 @@ export default class Slider extends Component {
                                 <div>{
                                 elem.map(function(e,i){
                                     return (
-                                        <a target="_blank" className="fttCharacter" href={"/characters/" + e.name} key={i}>
+                                        <a className="fttCharacter" href={"/characters/" + e.name} key={i}>
                                              <img src={"/ForTheThrone/img/" + e.key + "Small.png"} />
                                             <div>{e.name}</div>
                                         </a>

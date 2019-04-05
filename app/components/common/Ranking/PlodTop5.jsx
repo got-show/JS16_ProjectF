@@ -37,7 +37,7 @@ export default class PlodTop5 extends Component {
       for (let i = characters.length - 1; i >= 0; i--) {
         let char = characters[i];
 
-        if (char.pagerank.rank > 100) {
+        if (char.pagerank.rank > 400) {
           ranking.push({name: char.name, plod: (100 * char.plodB).toFixed(1)});
         }
 
