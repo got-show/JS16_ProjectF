@@ -6,7 +6,8 @@ var Store = require('../stores/CharactersStore');
 var CharactersActions = {
     loadCharacters: function() {
         var characters = [];
-
+        var baseUrl = process.env.__PROTOCOL__ + process.env.__API__ + ((process.env.__PORT__ !== undefined) ? ':' + process.env.__PORT__ : '') + process.env.__PREFIX__;
+        
         Api.get('book/characters').then(function(responseBooks){
             for (let index in responseBooks) {
                 let character = {};
@@ -49,7 +50,7 @@ var CharactersActions = {
                     let plod = characters[i].hasShow ? characters[i].show.plodB : characters[i].book.plodB;
                     characters[i].plod = Math.round(plod * 100);
 
-                    let imageLink = characters[i].hasShow ? characters[i].show.image : characters[i].book.image;
+                    let imageLink = characters[i].hasShow ? (baseUrl + "show/images/" + characters[i].show.slug + ".jpeg") : (baseUrl + "book/images/" + characters[i].book.slug + ".jpeg");
                     characters[i].imageLink = imageLink;
 
                     let pageRank = characters[i].hasShow && characters[i].show.pagerank ? characters[i].show.pagerank.rank : 

@@ -91,7 +91,7 @@ export default class Character extends Component {
         }
 
         this.setState({
-            // temporary dummy data - TODO: remove
+            // Show data
             plodShow:       checkShow ? Math.round(character.show.plodB * 100) : 100,
             plodByYearShow: checkShow ? showLongevity : [],
             plodTextShow:   checkShow ? '%(percent)s%' : 'D E A D',
@@ -141,8 +141,10 @@ export default class Character extends Component {
     }
 
     render() {
-        var imgBook = (this.state.character.book && this.state.character.book.image) ? this.state.character.book.image : "/images/placeholder-male.png";
-        var imgShow = (this.state.character.show && this.state.character.show.image) ? this.state.character.show.image : false;
+        var baseUrl = process.env.__PROTOCOL__ + process.env.__API__ + ((process.env.__PORT__ !== undefined) ? ':' + process.env.__PORT__ : '') + process.env.__PREFIX__;
+        
+        var imgBook = (this.state.character.book && this.state.character.book.image) ? (baseUrl + "book/images/" + this.state.character.book.slug + ".jpeg") : "/images/placeholder-male.png";
+        var imgShow = (this.state.character.show && this.state.character.show.image) ? (baseUrl + "show/images/" + this.state.character.show.slug + ".jpeg") : false;
         var booksAliveShowDead = (!this.state.character.hasShow || this.state.character.show && this.state.character.show.alive == false)
             && this.state.character.book && this.state.character.book.alive == true ;
         return (
@@ -189,12 +191,17 @@ export default class Character extends Component {
                                         <img src={tombstone} />
                                     </div>
                                 </div> 
-                                : 
+                                : this.state.character.hasShow && !this.state.character.show.alive ?
                                 <div className="plodShowContainer">
                                     <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>TV show <i className="fas fa-external-link-alt"></i></a>
                                     <DeadCharacter name={this.state.character.name} 
                                                    deathText={this.state.character.show && this.state.character.show.death ? this.state.character.show.death + ' AC' : 'D E A D'} 
                                                    mediumText="TV show"/>
+                                </div>
+                                :
+                                <div className="plodShowContainer">
+                                    <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>TV show <i className="fas fa-external-link-alt"></i></a>
+                                    <div className="sorryNoData">Sorry, we don't have any data for this character.</div>
                                 </div>
                             }
 
@@ -203,7 +210,7 @@ export default class Character extends Component {
                                     <h3>Our Predictions</h3>
                                     <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>Books <i className="fas fa-external-link-alt"></i></a>
                                     <p>The current year in the Books is probably {this.BOOK_YEAR} AC.
-                                        <br />{this.state.character.name}'s <b>Likelihood to Survive</b> between the years 305 and 325 AC is:</p>
+                                        <br />{this.state.character.name}'s <b>Likelihood to Survive</b> between the years 300 and 320 AC is:</p>
                                     <div className="plodContainer">
                                         <CharacterPlodDisplay plodByYear={this.state.plodByYearBook} startingYear={300}/>
                                     </div>
@@ -213,13 +220,18 @@ export default class Character extends Component {
                                         <img src={tombstone} />
                                     </div>
                                 </div>
-                                : 
+                                : this.state.character.hasBook && !this.state.character.book.alive ?
                                 <div className="plodBookContainer plodContainerHidden plodContainerZIndexLower">
                                     <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>Books <i className="fas fa-external-link-alt"></i></a>
                                     <DeadCharacter 
                                         name={this.state.character.name} 
                                         deathText={this.state.character.show && this.state.character.book.death ? this.state.character.book.death + ' AC' : 'D E A D'} 
                                         mediumText="books"/>
+                                </div>
+                                :
+                                <div className="plodBookContainer plodContainerHidden plodContainerZIndexLower">
+                                    <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>Books <i className="fas fa-external-link-alt"></i></a>
+                                    <div className="sorryNoData">Sorry, we don't have any data for this character.</div>
                                 </div>
                             }
                         </div>

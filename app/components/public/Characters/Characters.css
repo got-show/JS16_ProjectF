@@ -350,3 +350,9 @@ hr {
 	background: transparent;
 	transition-duration: 0.4s;
 }
+
+.sorryNoData {
+	padding-top: 50px;
+	font-size: 1.5em;
+	text-align: center;
+}
