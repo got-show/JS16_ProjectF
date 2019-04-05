@@ -112,7 +112,7 @@ export default class CharacterDetailsStats extends Component {
             }
         }
 
-        if (character && character.titles){
+        /*if (character && character.titles){
             let index = this.stats.attributes.hasOwnProperty("hasTitles");
 
             if (index) {
@@ -127,7 +127,7 @@ export default class CharacterDetailsStats extends Component {
                     proportionalChange: (100 * change - 100).toPrecision(2)
                 });
             }
-        }
+        }*/
 
         if (character && character.gender === 'male'){
             let index = this.stats.attributes.hasOwnProperty("male");
