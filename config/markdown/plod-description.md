@@ -10,74 +10,36 @@ In this project, we wanted to find features that are common to all already dead 
 
 ### Data extraction
 
-The [wiki](http://awoiaf.westeros.org) of Ice and Fire is probably the best resource that summarizes information from all 5 books about each of ~2000 characters. For each character, we extracted from the wiki information about whether the character is dead or not. We also extracted other information  (i.e. features) that describe a character, which resulted in a total of over 30 different features!
+ [The Wiki of Ice and Fire](http://awoiaf.westeros.org) and [Game of Thrones Wiki](https://gameofthrones.fandom.com/wiki/Game_of_Thrones_Wiki) are probably the best resources that summarize information from all 5 books and 8 seasons about each of ~2000 characters. For each character, we extracted from the wiki information about whether the character is dead or not. We also extracted other information  (i.e. features) that describe a character.
 
-After this step, we had a data set describing each character - dead or alive - by exactly same features. Our next task was to find the feature set that can best distinguish dead from alive characters.
+After this step, we had a data set describing each character - dead or alive - by exactly the same features. Our next task was to find the feature set that can best distinguish dead from alive characters.
 
-### Feature selection
+### Bayesean Survival Analysis
+Our first model aims to use techniques related to Bayesean Inference to examine the relationship of different features to a character’s longevity, similarly to how scientific studies might examine the effects of treatments and complications on cancer patients, or the correlations between seismic events.
 
-Machine Learning can statistically compare features of dead and alive characters and select those features that are most relevant for distinguishing between them. We provided all features together with the list of all character names as input to the machine learning algorithm.
+The model’s assumptions go as follows: Every year of a character’s life, there is some base probability that this character will die. This base hazard is the same for all characters, and the presence or absence of certain properties is what causes some characters to be more likely to die than others. For example, being a man might raise your hazard by 60%, and being in House Lannister might lower it by 50. Accumulating this modified hazard allows us to build a survival function for any character. The survival function tells us, for a point in time, how likely it is that the character will not be dead by that point. So, for example, it might tell us that Jon Snow has a 45% probability to live until he’s 60, or that Jamie Lannister is deemed 60% likely to survive Season 8 of the show.
 
-For feature selection, we used the RELIEF function (Kira and Rendell, 1992) with its default parameters of the WEKA (Hall et al., 2009) workbench. The following 24 features were selected as most contributing (sorted from most to least contributing):
+We train this model using MCMC simulation with the pymc3 package.
 
-Feature | Description
-:-------------------------- | :-------------------------- | 
-A Feast for Crows | Character's appearance in the book |
-House | House to which a character belongs |
-Culture | Social group to which a character belongs
-A Dance with Dragons | Character's appearance in the book
-Is noble | Character's nobility based on Title
-Gender | Male or female
-Title | Social status or nobility
-Age | Time-reference: 305 AC
-A Storm of Swords | Character's appearance in the book
-Is married | Represents whether the character is married
-Is spouse alive | Represents whether character's spouse is alive
-A Clash of Kings | Character's appearance in the book
-Related to dead | Represents whether a character is related to another dead character
-A Game of Thrones | Character's appearance in the book
-Popularity score | The number of internal incoming and outgoing links to the characters page in the [http://awoiaf.westeros.org](http://awoiaf.westeros.org) wiki
-Is father alive | Represents whether character's father is alive
-Major/minor character | Characters with a normalized popularity score >0.34 are considered as major characters
-Is mother alive | Represents whether character's mother is alive
-Is heir alive | Represents whether character's heir is alive
-Number dead relations | Number of dead characters to whom a character is related
-Spouse | Name of character’s spouse
-Father | Name of character’s father
-Mother | Name of character’s mother
-Heir | Name of character’s heir
+We selected the following features for our analysis:
+* House
+* Lovers
+* Marriage
+* Titles
+* Major/Minor character
+* Male
 
-### Method description
+### Neural Network
+Another approach we tested was to train a neural network to predict the probability for a character to die in any given year. Similarly to the Bayesean model, this also allows us to construct a survival function, but the neural network can potentially look for more complex patterns than the Bayesean model will. The neural network can also potentially encapsulate more “surprising” deaths that the Bayesean model might consider to be random outliers.
 
-We used John Platt's sequential minimal optimization algorithm (Platt, 1999) for training a [Support Vector Machine](https://en.wikipedia.org/wiki/Support_vector_machine) (Cortes and Vapnik, 1995) with the [polynomial kernel](https://en.wikipedia.org/wiki/Polynomial_kernel), which is provided in WEKA. To train and test our model, we split our data set into 10 equally-sized subsets. We trained our model on 9 subsets and tested on the remaining one. We rotated our subsets such that each subset was used for testing exactly once. This procedure is called a 10-fold [cross-validation](https://en.wikipedia.org/wiki/Cross-validation_%28statistics%29).
+For this model, we used Python’s Keras framework.
 
-### Method performance
+### Citations
+This article contains content from the Javascript Technology 2016 Seminar: (2012 project insert here)
 
-We measured accuracy/precision and coverage/recall of our prediction method using ratios of TP (true positives, i.e. correctly predicted dead characters), FP (false positives, i.e. alive characters predicted to be dead), FN (false negatives, i.e. dead characters predicted to be alive), and TN (true negatives, i.e. correctly predicted alive characters).
+Bayesean Survival Analysis Model: https://docs.pymc.io/notebooks/survival_analysis.html (last visited 05.04.2019)
 
-![alt AltText](/images/Precision.png "Text")
-                                            
-![alt AltText](/images/Recall.png "Text")
-                                            
-We combined these two measures into a single F-measure value:
+PyMC3: https://docs.pymc.io/ (last visited 05.04.2019)
 
-![alt AltText](/images/Fmeasure.png "Text")
+Keras: https://keras.io/ (last visited 05.04.2019)
 
-The prediction results of our method were:
-
-Label | Precision | Recall | F-measure
-:------------: | :-------------: | :-------------: | :-------------: |
-Alive | 85% | 78% | 0.82
-Dead | 49% | 60% | 0.54
-
-### References
-
-Kira, K. and Rendell, L.A., 1992, July. A practical approach to feature selection. In _Proceedings of the ninth international workshop on Machine learning_ (pp. 249-256).
-
-Hall, M., Frank, E., Holmes, G., Pfahringer, B., Reutemann, P. and Witten, I.H., 2009. The WEKA data mining software: an update. _ACM SIGKDD explorations newsletter, 11_(1), pp.10-18.
-
-Platt, John C. "12 fast training of support vector machines using sequential minimal optimization." _Advances in kernel methods_ (1999): 185-208.
-
-Cortes, C. and Vapnik, V., 1995. Support-vector networks. _Machine learning, 20_(3), pp.273-297.
-
-John, G.H. and Langley, P., 1995, August. Estimating continuous distributions in Bayesian classifiers. In _Proceedings of the Eleventh conference on Uncertainty in artificial intelligence_ (pp. 338-345). Morgan Kaufmann Publishers Inc.
