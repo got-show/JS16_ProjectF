@@ -189,18 +189,48 @@ export default class CharacterDetailsStats extends Component {
     }
 
     charPronoun(capitalize = false) {
-        if (capitalize) {
-            return this.character.male ? 'He' : 'She';
+        let gender = 'undefined';
+        if (this.character.hasShow && this.character.show.gender) {
+            gender = this.character.show.gender;
+        } else if (this.character.hasBook && this.character.book.gender) {
+            gender = this.character.book.gender;
+        }
+         
+        if (gender !== 'undefined') {
+            if (capitalize) {
+                return gender === 'male' ? 'He' : 'She';
+            } else {
+                return gender === 'male' ? 'he' : 'she';
+            }
         } else {
-            return this.character.male ? 'he' : 'she';
+            if (capitalize) {
+                return 'They';
+            } else {
+                return 'they';
+            }
         }
     }
 
     charPronounPosessive(capitalize = false) {
-        if (capitalize) {
-            return this.character.male ? 'His' : 'Her';
+        let gender = 'undefined';
+        if (this.character.hasShow && this.character.show.gender) {
+            gender = this.character.show.gender;
+        } else if (this.character.hasBook && this.character.book.gender) {
+            gender = this.character.book.gender;
+        }
+         
+        if (gender !== 'undefined') {
+            if (capitalize) {
+                return gender === 'male' ? 'His' : 'Her';
+            } else {
+                return gender === 'male' ? 'his' : 'her';
+            }
         } else {
-            return this.character.male ? 'his' : 'her';
+            if (capitalize) {
+                return 'Their';
+            } else {
+                return 'their';
+            }
         }
     }
 

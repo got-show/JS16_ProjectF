@@ -189,6 +189,13 @@ title {
 	left: 0;
 	background-color: #7a7a7a;
 	z-index: 1;
+	transition-duration: 0.2s;
+}
+
+.togglePlodDisplayButtonBackground.active {
+	left: 50%;
+	background-color: #5A180C;
+	transition-duration: 0.2s;
 }
 
 #characterMap .map-wrapper {

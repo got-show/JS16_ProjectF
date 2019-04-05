@@ -4,6 +4,7 @@ var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var firstBy = require('thenby');
 
+var _showCharacters = [];
 var _characters = [];
 var _character = {};
 
@@ -13,6 +14,25 @@ function setCharacters(characters) {
 
 function setCharacter(data) {
   _character = data;
+}
+
+function compareShowPlod(a, b){
+  return a.plodB - b.plodB;
+}
+
+function setShowCharacters(data) {
+  // get chars with PLOD
+  let charsWithPlod = [];
+  for (let i in data) {
+    if (data[i].plodB && data[i].alive) {
+      charsWithPlod.push(data[i]);
+    }
+  }
+
+  // sorting phase
+  charsWithPlod.sort(compareShowPlod);
+
+  _showCharacters = charsWithPlod;
 }
 
 function sortCharacters(characters, sort) {
@@ -64,6 +84,10 @@ var CharactersStore = assign({}, EventEmitter.prototype, {
     return sortedCharacters.slice(start, end);
   },
 
+  getShowCharacters: function() {
+    return _showCharacters;
+  },
+
   getCharactersCount: function(filter, sort) {
     const filteredCharacters = filterCharacters(_characters, filter);
     const sortedCharacters = sortCharacters(filteredCharacters, sort);
@@ -93,6 +117,9 @@ CharactersStore.dispatchToken = AppDispatcher.register(function(payload) {
   switch (action.actionType) {
     case Constants.RECEIVE_CHARACTERS:
       setCharacters(action.data);
+      break;
+    case Constants.RECEIVE_CHARACTERS_SHOW:
+      setShowCharacters(action.data);
       break;
     case Constants.RECEIVE_CHARACTER:
       setCharacter(action.data);

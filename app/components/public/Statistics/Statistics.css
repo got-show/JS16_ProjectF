@@ -22,6 +22,7 @@
   background-color: #1f1f1f;
   margin: 0;
   padding: 20px;
+  text-align: center;
 }
 
 #Statistics .chart-row {
@@ -58,6 +59,10 @@
 
   #Statistics .first-chart-row .card {
     height: 520px;
+    margin-bottom: 0;
+  }
+
+  #Statistics .chart-row .card {
     margin-bottom: 0;
   }
 

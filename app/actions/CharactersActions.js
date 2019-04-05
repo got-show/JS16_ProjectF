@@ -55,9 +55,10 @@ var CharactersActions = {
                     let pageRank = characters[i].hasShow && characters[i].show.pagerank ? characters[i].show.pagerank.rank : 
                         characters[i].book.pagerank ? characters[i].book.pagerank.rank : 0;
                     characters[i].pageRank = pageRank;
-                }
 
-                console.log(characters); /*eslint no-console:0,no-undef:0*/
+                    let id = characters[i].hasShow ? characters[i].show._id : characters[i].book._id;
+                    characters[i]._id = id;
+                }
 
                 AppDispatcher.handleServerAction({
                     actionType: Constants.RECEIVE_CHARACTERS,
@@ -105,6 +106,20 @@ var CharactersActions = {
         }, function(fail) {
             // fail
             that.dispatchCharacter(character);
+        });
+    },
+
+    loadCharacterShowDataForStatictics: function(name, character) {
+        Api.get('show/characters').then(function(response) {
+            AppDispatcher.handleServerAction({
+                actionType: Constants.RECEIVE_CHARACTERS_SHOW,
+                data: response
+            });
+        }, function(fail) {
+            AppDispatcher.handleServerAction({
+                actionType: Constants.RECEIVE_CHARACTERS_SHOW,
+                data: []
+            });
         });
     },
 

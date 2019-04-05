@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import antagonistCharacters from 'json!../antagonistCharacters.json';
+import antagonistCharacters from 'json!../../public/Start/antagonistCharacters.json';
 import { Slide } from 'react-slideshow-image';
 
 

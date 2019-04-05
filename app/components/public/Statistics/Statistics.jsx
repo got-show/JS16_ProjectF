@@ -29,12 +29,12 @@ export default class Statistics extends Component {
         </Col>
         <Col md={4} className="simple-info">
             <div className="card">
-              <h5>Most likely survivor</h5>
-              <h2>SANSA STARK</h2>
+              <h5>Main character most likely to survive</h5>
+              <h2>Daenerys Targaryen</h2>
             </div>
             <div className="card">
-              <h5>Most likely to die</h5>
-              <h2>TOMMEN BARATHON</h2>
+              <h5>Main character most likely to die</h5>
+              <h2>Sansa Stark</h2>
             </div>
             <div className="card">
               <h5>Most popular character</h5>
@@ -77,26 +77,20 @@ export default class Statistics extends Component {
 
       </Row>
 
-      <Row className="chart-row">
+      {/*<Row className="chart-row">
         <Col md={6} >
           <div className="card">
             <h3>Average PLOD per episode</h3>
             <div className="center" id="avgPLOD_per_episode"></div>
           </div>
         </Col>
-        {/*<Col md={6} >
-          <div className="card">
-            <h3>New characters introduced in each book</h3>
-            <div className="center" id="new_characters_introduced"></div>
-          </div>
-        </Col>*/}
         <Col md={6} >
           <div className="card">
             <h3>New characters per episode</h3>
             <div className="center" id="characters_per_episode"></div>
           </div>
         </Col>
-      </Row>
+      </Row>*/}
     </Grid>);
   }
 }

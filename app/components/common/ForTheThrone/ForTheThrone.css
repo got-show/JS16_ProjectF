@@ -35,7 +35,7 @@ p {
 
 #fttAntagonists * {
     transition-duration: 0.4s;
-    transition-timing-function: easeOutCubic;
+    transition-delay: 0.3s;
 }
 
 #fttCharacters .indicators>div {
@@ -145,6 +145,7 @@ p {
     font-size: 16px;
     text-align: left;
     opacity: 0;
+    z-index: 1;
 }
 
 .fttCard {
@@ -169,6 +170,8 @@ p {
     margin-left: 50%;
     width: 500px;
     text-align: center;
+
+    opacity: 1;
 }
 
 #fttWhoDoYouChoose h2, h3 {
@@ -295,13 +298,21 @@ p {
         height: 560px;
     }
     .fttCharArea:hover~#fttAntagonists #fttHeader, .fttCharArea:hover~#fttAntagonists #fttWhoDoYouChoose, .fttCharArea:hover~#fttAntagonists .fttTombstoneQuestionMark, .fttCharArea:hover~#fttAntagonists #aiLink {
-        opacity: 0
+        opacity: 0;
     }
     .fttCharArea:hover~#fttAntagonists #aiLink {
-        opacity: 1
+        opacity: 1;
     }
     .fttCharArea.fttLeft:hover~#fttAntagonists #fttCharLeftText, .fttCharArea.fttRight:hover~#fttAntagonists #fttCharRightText {
-        opacity: 1
+        opacity: 1;
+    }
+
+    #aiLink:hover {
+        opacity: 1;
+    }
+
+    #aiLink:hover ~ .fttCard {
+        opacity: 0 !important;
     }
 }
 

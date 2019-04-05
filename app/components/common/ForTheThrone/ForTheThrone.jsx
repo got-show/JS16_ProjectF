@@ -48,6 +48,8 @@ export default class ForTheThrone extends Component {
         }
 
         if (plods[0] && plods[1]) {
+            plodLeft.plod = plodLeft.plodB * 100;
+            plodRight.plod = plodRight.plodB * 100;
             this.setState({
                 charLeftPlod: plodLeft,
                 charRightPlod: plodRight
@@ -85,11 +87,15 @@ export default class ForTheThrone extends Component {
                     <div className="fttCharContainer fttLeft">
                         <img src={this.state.charLeft.img} id="fttCharLeftImg" className="fttCharImg fttLeft" />
                         <div className="fttCharTombstone fttCharLeftTombstone fttTombstonePlod">
-                            {this.state.charLeftPlod.plod < 100 ? parseInt(this.state.charLeftPlod.plod) : 100} %
+                            {this.state.charLeftPlod.plod < 100 ? Math.round(this.state.charLeftPlod.plod) : 100} %
                         </div>
                         <div className="fttCharTombstone fttCharLeftTombstone fttTombstoneQuestionMark">?</div>
                         <div id="fttCharLeftText" className="fttCharText">
                             <h2>{this.state.charLeft.question}</h2>
+                            <p>
+                                Click on this character to see some statistics about how we calculated their <strong>Predicted Likelihood of Death</strong> of
+                                <strong> {this.state.charLeftPlod.plod < 100 ? Math.round(this.state.charLeftPlod.plod) : 100} %</strong>.
+                            </p>
                             <p>{this.state.charLeft.description}</p>
                             <i>"{this.state.charLeft.quote}"</i>
                         </div>
@@ -102,15 +108,13 @@ export default class ForTheThrone extends Component {
                         <div className="fttCharTombstone fttCharRightTombstone fttTombstoneQuestionMark">?</div>
                         <div id="fttCharRightText" className="fttCharText">
                             <h2>{this.state.charRight.question}</h2>
+                            <p>
+                                Click on this character to see some statistics about how we calculated their <strong>Predicted Likelihood of Death</strong> of
+                                <strong> {this.state.charRightPlod.plod < 100 ? Math.round(this.state.charRightPlod.plod) : 100} %</strong>.
+                            </p>
                             <p>{this.state.charRight.description}</p>
                             <i>"{this.state.charRight.quote}"</i>
                         </div>
-                    </div>
-
-                    <div id="fttWhoDoYouChoose" className="fttCard">
-                        <h4 className="center">Who do you choose</h4>
-                        <h2 className="center">#ForTheThrone?</h2>
-                        <p className="center">Click or hover over a character to discover their<br /><b>Predicted Likelihood of Death</b> in GoT: Season 8!</p>
                     </div>
 
                     <div id="aiLink" className="fttCard">
@@ -125,7 +129,12 @@ export default class ForTheThrone extends Component {
                             </a>
                         </div>
                     </div>
-
+                    
+                    <div id="fttWhoDoYouChoose" className="fttCard">
+                        <h4 className="center">Who do you choose</h4>
+                        <h2 className="center">#ForTheThrone?</h2>
+                        <p className="center">Click or hover over a character to discover their<br /><b>Predicted Likelihood of Death</b> in GoT: Season 8!</p>
+                    </div>
                 </div>
                 <div id="fttCountdown">
                     <div className="content">

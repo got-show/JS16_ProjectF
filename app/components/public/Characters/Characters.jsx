@@ -27,7 +27,7 @@ export default class Character extends Component {
         this.SHOW_YEAR = 305;
         this.BOOK_YEAR = 300;
         this.animating = false;
-        let character = Store.getCharacter();
+        let character = {};
 
         this.state = {
             character: character,
@@ -104,9 +104,6 @@ export default class Character extends Component {
             character: character,
             sentiment: SentimentStore.getCharacterSentiment() || { positive: 0, negative: 0}
         });
-        
-        // TODO: remove
-        console.log(this.state); /*eslint no-console:0,no-undef:0*/
     }
 
     togglePlodDisplay() {
@@ -133,15 +130,9 @@ export default class Character extends Component {
 
         let button = $(".togglePlodDisplayButtonBackground");
         if (button.hasClass("active")) {
-            button.removeClass("active").animate({
-                "left": "0",
-                "backgroundColor": "#7a7a7a"
-            }, 200);
+            button.removeClass("active");
         } else {
-            button.addClass("active").animate({
-                "left": "50%",
-                "backgroundColor": "#5A180C"
-            }, 200);
+            button.addClass("active");
         }
 
         window.setTimeout(function() {
@@ -152,7 +143,8 @@ export default class Character extends Component {
     render() {
         var imgBook = (this.state.character.book && this.state.character.book.image) ? this.state.character.book.image : "/images/placeholder-male.png";
         var imgShow = (this.state.character.show && this.state.character.show.image) ? this.state.character.show.image : false;
-
+        var booksAliveShowDead = (!this.state.character.hasShow || this.state.character.show && this.state.character.show.alive == false)
+            && this.state.character.book && this.state.character.book.alive == true ;
         return (
           <Grid id="character-page-container">
             <div className="character-container">
@@ -171,18 +163,18 @@ export default class Character extends Component {
                         <div className="character-photo">
                             <img src={imgBook}/>
                             {imgShow !== false ? 
-                                <img className="character-show-img" src={imgShow}/> : ''}
-                            <div className="disclaimer">© 2019 Home Box Office, Inc. / Sky All rights reserved.</div>
+                                <img className={"character-show-img " + (booksAliveShowDead ? 'hiddenImg' : '')}src={imgShow}/> : ''}
+                            {imgShow !== false ? <div className="disclaimer">© 2019 Home Box Office, Inc. / Sky All rights reserved.</div> : ''}
                         </div>
                     </Col>
                     <Col md={9}>
                         <div className="togglePlodDisplayButton" onClick={this.togglePlodDisplay.bind(this)}>
-                            <div className="togglePlodDisplayButtonBackground"></div>
+                            <div className={"togglePlodDisplayButtonBackground " + (booksAliveShowDead ? 'active' : '')}></div>
                             <div className="togglePlodDisplayButtonOption">Show</div>
                             <div className="togglePlodDisplayButtonOption">Book</div>
                         </div>
                         <div className="plodOuterContainer">
-                            { this.state.plodShow < 100 && this.state.character.show && this.state.character.show.alive == true ?
+                            { this.state.character.show && this.state.character.show.alive == true && this.state.plodByYearShow && this.state.plodShow ?
                                 <div className="plodShowContainer">
                                     <h3>Our Predictions</h3>
                                     <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>TV show <i className="fas fa-external-link-alt"></i></a>
@@ -199,14 +191,15 @@ export default class Character extends Component {
                                 </div> 
                                 : 
                                 <div className="plodShowContainer">
+                                    <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>TV show <i className="fas fa-external-link-alt"></i></a>
                                     <DeadCharacter name={this.state.character.name} 
                                                    deathText={this.state.character.show && this.state.character.show.death ? this.state.character.show.death + ' AC' : 'D E A D'} 
                                                    mediumText="TV show"/>
                                 </div>
                             }
 
-                            { this.state.plodBook < 100 && this.state.character.book && !this.state.character.book.dateOfDeath ?
-                                <div className="plodBookContainer plodContainerHidden plodContainerZIndexLower">
+                            { this.state.character.book && this.state.character.book.alive == true && this.state.plodByYearBook && this.state.plodBook ?
+                                <div className={"plodBookContainer " + (booksAliveShowDead ? '' : 'plodContainerHidden plodContainerZIndexLower')}>
                                     <h3>Our Predictions</h3>
                                     <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>Books <i className="fas fa-external-link-alt"></i></a>
                                     <p>The current year in the Books is probably {this.BOOK_YEAR} AC.
@@ -222,15 +215,20 @@ export default class Character extends Component {
                                 </div>
                                 : 
                                 <div className="plodBookContainer plodContainerHidden plodContainerZIndexLower">
-                                    <DeadCharacter name={this.state.character.name} deathText={this.state.character.book && this.state.character.book.death + 'AC'} mediumText="books"/>
+                                    <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>Books <i className="fas fa-external-link-alt"></i></a>
+                                    <DeadCharacter 
+                                        name={this.state.character.name} 
+                                        deathText={this.state.character.show && this.state.character.book.death ? this.state.character.book.death + ' AC' : 'D E A D'} 
+                                        mediumText="books"/>
                                 </div>
                             }
                         </div>
                     </Col>
                 </Row>
-                <hr />
+                {!this.state.character.hasShow && this.state.character.hasBook ? '' :
                 <Row>
                     <Col md={12}>
+                        <hr />
                         <div className="sectionHeader">
                             <h3>Comparison</h3>
                             <h4>between the&nbsp;books and&nbsp;the TV&nbsp;show</h4>
@@ -238,10 +236,10 @@ export default class Character extends Component {
                         <hr />
                         <CharacterDetailsMedia data={this.state} character={this.state.character}/>
                     </Col>
-                </Row>
-                <hr />
-                <Row>
+                </Row>}
+                {!this.state.character.hasShow ? '' : <Row>
                     <Col md={12}>
+                        <hr />
                         <div className="sectionHeader">
                             <h3>Interesting Stats</h3>
                             <h4>about {this.state.character.name}</h4>
@@ -249,7 +247,7 @@ export default class Character extends Component {
                         <hr />
                         <CharacterDetailsStats data={this.state} />
                     </Col>
-                </Row>
+                </Row>}
                 <hr />
                 <Row>
                     <Col md={12}>
