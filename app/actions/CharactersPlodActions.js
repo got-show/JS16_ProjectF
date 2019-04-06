@@ -6,8 +6,7 @@ var CharactersPlodActions = {
 
     loadCharactersPlodByCount: function(count) {
         var charactersPlod = [];
-        Api
-            .get('plod/byCount/' + count)
+        Api.get('plod/byCount/' + count)
             .then(function (response) {
               return response.data;
             }).then(function(charactersPlodResponse){
@@ -27,8 +26,7 @@ var CharactersPlodActions = {
             });
     },
     loadCharacterPlodByName: function(name){
-        Api
-            .get('characters/' + name + '?strict=true')
+        Api.get('characters/' + name + '?strict=true')
             .then(function (response) {
                 return response;
             }).then(function(response){

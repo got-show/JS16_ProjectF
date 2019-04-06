@@ -55,13 +55,15 @@ export default class Statistics extends Component {
       </Row>
 
       <Row className="chart-row">
-        <Col md={6} >
+        <Col md={12} >
           <div className="card">
             <h3>Distribution of PLOD for nobles and peasants</h3>
             <div className="center" id="distribution_nobles_plods"></div>
           </div>
         </Col>
-        <Col md={6} >
+      </Row>
+      <Row className="chart-row">
+        <Col md={12} >
           <div className="card">
             <h3>Number of male and female characters</h3>
             <div className="center" id="dead_and_alive"></div>
@@ -78,21 +80,6 @@ export default class Statistics extends Component {
         </Col>
 
       </Row>
-
-      {/*<Row className="chart-row">
-        <Col md={6} >
-          <div className="card">
-            <h3>Average PLOD per episode</h3>
-            <div className="center" id="avgPLOD_per_episode"></div>
-          </div>
-        </Col>
-        <Col md={6} >
-          <div className="card">
-            <h3>New characters per episode</h3>
-            <div className="center" id="characters_per_episode"></div>
-          </div>
-        </Col>
-      </Row>*/}
     </Grid>);
   }
 }

@@ -4,9 +4,11 @@ const fs = require('fs');
 const request = require('request-promise');
 const PlodC = express();
 
-PlodC.get('/PlodC', function (req, res) {
+PlodC.get('/statistic', function (req, res) {
     res.status(200).send(getda());
 })
+
+getda();
 
 async function getda() {
     var plod = [];
@@ -109,10 +111,10 @@ async function getda() {
 
     function plodDistribution() {
         console.log("plodDistribution started");
-        let temp = [];
+        let temp = [['PLOD', 'Male', 'Female']];
         let width = 10;
         for (let i = 0; i < (100 / width); i++) {
-            temp.push(["" + (i * width) + "<=x<" + ((i + 1) * width), 0, 0]);
+            temp.push(["" + (i * width) + "-" + ((i + 1) * width), 0, 0]);
         }
         let male = 0;
         let female = 0;
@@ -127,7 +129,7 @@ async function getda() {
                     continue;
                 }
                 //console.log(c.name + " " + c.plodB);
-                let index = Math.floor(c.plodB * 100 / width);
+                let index = Math.floor(c.plodB * 100 / width)+1;
                 if (index >= temp.length) {
                     index = temp.length - 1;
                 }
@@ -142,7 +144,9 @@ async function getda() {
                 }
             }
         }
-        for (let i = 0; i < (100 / width); i++) {
+        for (let i = 1; i <= (100 / width); i++) {
+            temp[i][1]*=100;
+            temp[i][2]*=100;
             temp[i][1] /= male;
             temp[i][2] /= female;
         }
@@ -161,22 +165,33 @@ async function getda() {
     function plodDistributionPeasants() {
         // x-->plod
         // y-->number of people with beginning<=plod<beginning+width
-        let schritte = 5;
+        let schritte = 10;
         let result = [['PLOD', 'Nobles', 'Peasants']];
+        let noble = 0;
+        let peasants = 0;
 
-        for (let i = 0; i <= Math.floor(100 / 5); i++) {
-            result.push([i * schritte, 0, 0]);
+        for (let i = 0; i < Math.floor(100 / schritte); i++) {
+            result.push(["" + (i * schritte) + "-" + ((i + 1) * schritte), 0, 0]);
         }
 
         for (let characterIndex in characters) {
             let character = characters[characterIndex];
             if (character.plodB != 0) {
                 if (isNoble(character)) {
+                    noble++;
                     result[Math.floor(character.plodB * 100 / schritte) + 1][1]++;
                 } else {
                     result[Math.floor(character.plodB * 100 / schritte) + 1][2]++;
+                    peasants++;
                 }
             }
+        }
+
+        for (let i = 1; i <= (100 / schritte); i++) {
+            result[i][1]*=100;
+            result[i][2]*=100;
+            result[i][1] /= noble;
+            result[i][2] /= peasants;
         }
         console.log("===============\nplodDistributionPeasants\n===============\n");
         console.log(result)
@@ -204,9 +219,9 @@ async function getda() {
             }
             if (char.gender) {
                 if (char.gender === 'male') {
-                    char.alive ? aliveMale++ : deadMale++;
+                    char.alive ? aliveMale-- : deadMale--;
                     if (char.titles) {
-                        char.titles.length === 0 ? peasantsMale++ : noblesMale++;
+                        char.titles.length === 0 ? peasantsMale-- : noblesMale--;
                     }
                 } else if (char.gender === 'female') {
                     char.alive ? aliveFemale++ : deadFemale++;

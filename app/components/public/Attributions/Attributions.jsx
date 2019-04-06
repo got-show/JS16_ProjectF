@@ -7,15 +7,16 @@ import Column from 'react-bootstrap/lib/Col';
 export default class Attributions extends Component {
     render() {
         return (
-                <Row>
-                    <Column md={8} mdPush={2}>
-                        <h1>Attributions</h1>
+            <Row>
+                <Column md={8} mdPush={2}>
+                    <h1>Attributions</h1>
 
-                        <p>
-                            All third party data, images and text retrieved from third party sources and presented on this website were obtained in accordance with the publisher's license policies.
+                    <p>
+                        All third party data, images and text retrieved from third party sources and presented on this website were obtained in accordance with the publisher's license policies.
                         </p>
 
-                        <table className="table table-responsive">
+                    <table className="table table-responsive">
+                        <tbody>
                             <tr>
                                 <th>Source</th>
                                 <th>Description</th>
@@ -66,10 +67,10 @@ export default class Attributions extends Component {
                                 <td><a href="https://twitter.com">https://twitter.com</a></td>
                                 <td><a href="https://twitter.com/tos?lang=en#content" target="_blank">Twitter Terms of Service</a></td>
                             </tr>
-
-                        </table>
-                    </Column>
-                </Row>
+                        </tbody>
+                    </table>
+                </Column>
+            </Row>
         );
     }
 }
