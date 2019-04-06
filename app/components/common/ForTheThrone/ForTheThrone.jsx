@@ -84,7 +84,9 @@ export default class ForTheThrone extends Component {
                     </div>
 
                     <div className="fttCharContainer fttLeft">
-                        <img src={Img[this.state.charLeft.img]} id="fttCharLeftImg" className="fttCharImg fttLeft" />
+                        <LinkContainer to={'/characters/' + this.state.charLeft.name} >
+                            <img src={Img[this.state.charLeft.img]} id="fttCharLeftImg" className="fttCharImg fttLeft" />
+                        </LinkContainer>
                         <div className="fttCharTombstone fttCharLeftTombstone fttTombstonePlod">
                             {this.state.charLeftPlod.plod < 100 ? Math.round(this.state.charLeftPlod.plod) : 100} %
                         </div>
@@ -100,7 +102,9 @@ export default class ForTheThrone extends Component {
                         </div>
                     </div>
                     <div className="fttCharContainer fttRight">
-                        <img src={Img[this.state.charRight.img]} id="fttCharRightImg" className="fttCharImg fttRight" />
+                        <LinkContainer to={'/characters/' + this.state.charRight.name}>
+                            <img src={Img[this.state.charRight.img]} id="fttCharRightImg" className="fttCharImg fttRight" />
+                        </LinkContainer>
                         <div className="fttCharTombstone fttCharRightTombstone fttTombstonePlod">
                             {this.state.charRightPlod.plod < 100 ? parseInt(this.state.charRightPlod.plod) : 100} %
                         </div>

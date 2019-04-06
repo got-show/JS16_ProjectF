@@ -469,6 +469,7 @@ p {
     #fttContainer {
         background-image: url('/ForTheThrone/img/textureSmall.jpg');
     }
+
     .header-copyright {
         top: 200px;
         position: absolute;
@@ -488,6 +489,12 @@ p {
     #fttCharacters .content .fttCharacter {
         width: 50%;
     }
+
+    #fttCharLeftText {
+        font-size: 0.9em;
+        left: 230px;
+        width: calc(100% - 240px);
+    }
 }
 
 @media (min-width:860px) {
@@ -500,4 +507,8 @@ p {
         color: white;
         z-index: 3;
     }
+}
+
+.header-copyright {
+    z-index: 100;
 }
