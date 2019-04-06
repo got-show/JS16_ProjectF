@@ -1,6 +1,6 @@
 import React from 'react';
 let {Component} = React;
-import tombstone from './rip_tombstone.png';
+import Img from './img';
 
 export default class DeadCharacter extends Component {
     render() {
@@ -11,7 +11,7 @@ export default class DeadCharacter extends Component {
                     <p className="center">{this.props.name} is dead in the {this.props.mediumText}</p>
                 </div>
                 <div className="deathDate">
-                    <img src={tombstone} />
+                    <img src={Img['RipTombstone']} />
                     <div>{this.props.deathText}</div>
                 </div>
             </div>
@@ -19,13 +19,13 @@ export default class DeadCharacter extends Component {
     }
 }
 
-DeadCharacter.propTypes = { 
+DeadCharacter.propTypes = {
     name: React.PropTypes.string,
     mediumText: React.PropTypes.string,
     deathText: React.PropTypes.string
 };
 
-DeadCharacter.defaultProps = { 
+DeadCharacter.defaultProps = {
     name: "This character",
     mediumText: "Game of Thrones",
     deathText: "D E A D"

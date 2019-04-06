@@ -14,10 +14,9 @@ import CharacterDetailsStats from '../../common/CharacterDetails/CharacterDetail
 import SentimentStore from '../../../stores/TwitterSentimentsStore';
 
 import CharacterPlodDisplay from '../../common/CharacterPlodDisplay/CharacterPlodDisplay';
-import tombstone from './rip_tombstone.png';
 import DeadCharacter from './DeadCharacter';
 
-import window from 'global';
+import * as Img from './img';
 
 export default class Character extends Component {
 
@@ -59,7 +58,7 @@ export default class Character extends Component {
 
     _onChange() {
         let character = Store.getCharacter();
-        
+
         this.setState({
             character: character
         });
@@ -104,7 +103,7 @@ export default class Character extends Component {
             character: character,
             sentiment: SentimentStore.getCharacterSentiment() || { positive: 0, negative: 0}
         });
-        
+
         // TODO: remove
         console.log(this.state); /*eslint no-console:0,no-undef:0*/
     }
@@ -150,7 +149,7 @@ export default class Character extends Component {
     }
 
     render() {
-        var imgBook = (this.state.character.book && this.state.character.book.image) ? this.state.character.book.image : "/images/placeholder-male.png";
+        var imgBook = (this.state.character.book && this.state.character.book.image) ? this.state.character.book.image : Img['PlaceholderMale'];
         var imgShow = (this.state.character.show && this.state.character.show.image) ? this.state.character.show.image : false;
 
         return (
@@ -170,7 +169,7 @@ export default class Character extends Component {
                     <Col md={3}>
                         <div className="character-photo">
                             <img src={imgBook}/>
-                            {imgShow !== false ? 
+                            {imgShow !== false ?
                                 <img className="character-show-img" src={imgShow}/> : ''}
                             <div className="disclaimer">© 2019 Home Box Office, Inc. / Sky All rights reserved.</div>
                         </div>
@@ -194,13 +193,13 @@ export default class Character extends Component {
                                     <p>{this.state.character.name}'s <b>Predicted Likelihood of Death</b> in season 8 is:</p>
                                     <div className="plodContainer">
                                         <ProgressBar now={this.state.plodShow} label={this.state.plodTextShow} />
-                                        <img src={tombstone} />
+                                        <img src={Img['RipTombstone']} />
                                     </div>
-                                </div> 
-                                : 
+                                </div>
+                                :
                                 <div className="plodShowContainer">
-                                    <DeadCharacter name={this.state.character.name} 
-                                                   deathText={this.state.character.show && this.state.character.show.death ? this.state.character.show.death + ' AC' : 'D E A D'} 
+                                    <DeadCharacter name={this.state.character.name}
+                                                   deathText={this.state.character.show && this.state.character.show.death ? this.state.character.show.death + ' AC' : 'D E A D'}
                                                    mediumText="TV show"/>
                                 </div>
                             }
@@ -217,10 +216,10 @@ export default class Character extends Component {
                                     <p>{this.state.character.name}'s <b>Predicted Likelihood of Death</b> in <i>'the Winds of Winter'</i> is:</p>
                                     <div className="plodContainer">
                                         <ProgressBar now={this.state.plodBook} label={this.state.plodTextBook} />
-                                        <img src={tombstone} />
+                                        <img src={Img['RipTombstone']} />
                                     </div>
                                 </div>
-                                : 
+                                :
                                 <div className="plodBookContainer plodContainerHidden plodContainerZIndexLower">
                                     <DeadCharacter name={this.state.character.name} deathText={this.state.character.book && this.state.character.book.death + 'AC'} mediumText="books"/>
                                 </div>
@@ -274,7 +273,7 @@ export default class Character extends Component {
                         <div className="card">
                             <h3>Character Death & Longevity</h3>
                             <p>Our in-house developed machine learning algorithm predicts
-                                two different values: <b>predicted likelihood of death</b> in season 8 of the TV show or the next book, and the <b>character longevity</b> prediction 
+                                two different values: <b>predicted likelihood of death</b> in season 8 of the TV show or the next book, and the <b>character longevity</b> prediction
                                 between the years 300 to 320 AC.</p>
                             <p>We do this based on various features that we extracted for each character from the first five books of the <i>A&nbsp;Song of&nbsp;Ice
                                 and&nbsp;Fire series</i> by George R.&nbsp;R. Martin and the first seven seasons of the TV show <i>Game of&nbsp;Thrones</i> by HBO.</p>
