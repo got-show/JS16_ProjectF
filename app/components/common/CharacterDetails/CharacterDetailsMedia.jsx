@@ -104,7 +104,7 @@ export default class CharacterDetailsMedia extends Component {
                 <span> -&nbsp;Syrio&nbsp;Forel</span>
             </p>
         );
-        if ((this.character.show && this.showDeath || !this.showDeath) && this.character.book && this.bookDeath) {
+        if (this.character.hasShow && this.showDeath && this.character.hasbook && this.bookDeath) {
             sbPlodTitle = this.charPronoun(true) + "'s met the God of Death";
             sbPlodTextFinal  =  <p>{this.character.name} is dead in both the TV show and the book.</p>;
             sbPlodQuote = (
