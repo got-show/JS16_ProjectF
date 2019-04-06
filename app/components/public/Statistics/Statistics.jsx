@@ -34,7 +34,7 @@ export default class Statistics extends Component {
             </div>
             <div className="card">
               <h5>Main character most likely to die</h5>
-              <h2>Sansa Stark</h2>
+              <h2>Bronn</h2>
             </div>
             <div className="card">
               <h5>Most popular character</h5>
