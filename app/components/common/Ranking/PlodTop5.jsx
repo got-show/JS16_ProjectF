@@ -29,6 +29,7 @@ export default class PlodTop5 extends Component {
     return (<div>
       <h2 className="text-center ranking-title">Who is most likely to die next</h2>
       <table>
+        <tbody>
         {
           this.getHardcodedPlodTop5().map((char) => {
               return <tr key={char.name}>
@@ -44,6 +45,7 @@ export default class PlodTop5 extends Component {
             </tr>;
           })
         }
+        </tbody>
       </table>
       <p className="see-more">
         <Link to={'/characters/?search=&page=1&sort=plod&order=-1'}>See more</Link>
