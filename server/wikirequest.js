@@ -10,7 +10,7 @@ wikirequest.get('/', function (req,res) {
 });
 
 wikirequest.get('/:query', function (req,res) {
-    const link = 'http://awoiaf.westeros.org/index.php/'+req.params.query;
+    const link = 'https://awoiaf.westeros.org/index.php/'+req.params.query;
     request(link, function(error, response, body) {
         if (error) {
             res.status(500).send(error);
