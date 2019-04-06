@@ -50,7 +50,8 @@ var CharactersActions = {
                     let plod = characters[i].hasShow ? characters[i].show.plodB : characters[i].book.plodB;
                     characters[i].plod = Math.round(plod * 100);
 
-                    let imageLink = characters[i].hasShow ? (baseUrl + "show/images/" + characters[i].show.slug + ".jpeg") : (baseUrl + "book/images/" + characters[i].book.slug + ".jpeg");
+                    let imageLink = characters[i].hasShow && characters[i].show.image ? (baseUrl + "show/images/" + characters[i].show.slug + ".jpg") : 
+                                    characters[i].hasBook && characters[i].book.image ? (baseUrl + "book/images/" + characters[i].book.slug + ".jpg") : false;
                     characters[i].imageLink = imageLink;
 
                     let pageRank = characters[i].hasShow && characters[i].show.pagerank ? characters[i].show.pagerank.rank : 
@@ -59,6 +60,9 @@ var CharactersActions = {
 
                     let id = characters[i].hasShow ? characters[i].show._id : characters[i].book._id;
                     characters[i]._id = id;
+
+                    let gender = characters[i].hasShow ? characters[i].show.gender : characters[i].book.gender;
+                    characters[i].gender = gender;
                 }
 
                 AppDispatcher.handleServerAction({

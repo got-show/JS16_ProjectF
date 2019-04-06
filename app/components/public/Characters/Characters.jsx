@@ -143,8 +143,9 @@ export default class Character extends Component {
     render() {
         var baseUrl = process.env.__PROTOCOL__ + process.env.__API__ + ((process.env.__PORT__ !== undefined) ? ':' + process.env.__PORT__ : '') + process.env.__PREFIX__;
         
-        var imgBook = (this.state.character.book && this.state.character.book.image) ? (baseUrl + "book/images/" + this.state.character.book.slug + ".jpeg") : "/images/placeholder-male.png";
-        var imgShow = (this.state.character.show && this.state.character.show.image) ? (baseUrl + "show/images/" + this.state.character.show.slug + ".jpeg") : false;
+        var imgBook = (this.state.character.book && this.state.character.book.image) ? (baseUrl + "book/images/" + this.state.character.book.slug + ".jpg") : 
+                      (this.state.character.book && this.state.character.book.gender === "female") ? "/images/placeholder-female.png" : "/images/placeholder-male.png";
+        var imgShow = (this.state.character.show && this.state.character.show.image) ? (baseUrl + "show/images/" + this.state.character.show.slug + ".jpg") : false;
         var booksAliveShowDead = (!this.state.character.hasShow || this.state.character.show && this.state.character.show.alive == false)
             && this.state.character.book && this.state.character.book.alive == true ;
         return (
