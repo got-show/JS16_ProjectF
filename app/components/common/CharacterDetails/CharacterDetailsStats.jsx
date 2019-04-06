@@ -10,20 +10,20 @@ export default class CharacterDetailsStats extends Component {
 
         this.stats = {
             nobles: {
-                total: 897,
-                dead: 145 // estimated
+                total: 741,
+                dead: 135 // estimated
             },
             peasants: {
-                total: 1052,
-                dead: 350 // estimated
+                total: 742,
+                dead: 182 // estimated
             },
             male: {
-                total: 1205,
-                dead: 366
+                total: 1194,
+                dead: 267
             },
             female: {
-                total: 741,
-                dead: 129
+                total: 289,
+                dead: 33
             },
             attributes: {"House Arryn":0.56,"House Baratheon of Dragonstone":1.05,"House Baratheon of King's Landing":1.32,"House Bolton":0.946,"House Frey":0.864,"House Greyjoy":0.697,"House Lannister":0.551,"House Martell":1.4,"House Stark":0.618,"House Targaryen":0.577,"House Tarly":0.372,"House Tully":1.61,"House Tyrell":1.58,"hasLovers":0.937,"hasTitles":1.13,"isMajor":0.844,"isMarried":0.443,"male":2.02}
         };
