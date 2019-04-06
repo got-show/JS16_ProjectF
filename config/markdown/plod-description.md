@@ -23,12 +23,12 @@ The model’s assumptions go as follows: Every year of a character’s life, the
 We train this model using MCMC simulation with the pymc3 package.
 
 We selected the following features for our analysis:
-* House
-* Lovers
-* Marriage
-* Titles
-* Major/Minor character
-* Male
+*  House
+*  Lovers
+*  Marriage
+*  Titles
+*  Major/Minor character
+*  Male
 
 ### Neural Network
 
@@ -40,8 +40,8 @@ Basically, one of the easiest neural network architectures uses the Feed Forward
 
 We now had to think about how to transform the complex information associated to a character into a vector. Some information is scalar, for example a character's page rank in the wiki or its number of relationships. Other information, for example the episodes the character appears in, has a set of pre-defined values. Thus, we can create a vector with as many dimensions as there are episodes and set a dimension to 1.0 if the character appears in the respective episode and to 0.0 otherwise. This way, different kinds of information can be transformed into vectors and these vectors are just appended to each other. In the end, we had 1561 input dimensions for the book data and 411 for the show data. For reference, these are the types of data we used:
 
-* book: gender, page rank, number of relatives, age, culture, house, region of house, allegiances, books the character was part of, locations, titles
-* show: gender, page rank, number of relatives, age, allegiances, episodes the character appeared in, titles
+*  book: gender, page rank, number of relatives, age, culture, house, region of house, allegiances, books the character was part of, locations, titles
+*  show: gender, page rank, number of relatives, age, allegiances, episodes the character appeared in, titles
 
 In general, becoming older is still the most important factor regarding a character's likelihood of death; after all, the older you are, the more danger you have been exposed to in the past! That's why the character's current age (as a one-hot vector like described before) is also part of the neural network input. Because the neural network output is just one dimension determining the "percentage likelihood of survival" as a number between 0 and 1, it is then possible to create about 90 different input vectors for a single character: one for each possible age. If the character was still alive by that age, the neural network shall predict 1.0 for that input vector, and 0.0 otherwise.
 
@@ -51,9 +51,8 @@ Additionally, this allows predicting transitions in the PLOS over time: modifyin
 
 This article contains content from the Javascript Technology 2016 Seminar
 
-Bayesean Survival Analysis Model: https://docs.pymc.io/notebooks/survival_analysis.html (last visited 05.04.2019)
+Bayesean Survival Analysis Model: [Link](https://docs.pymc.io/notebooks/survival_analysis.html) (last visited 05.04.2019)
 
-PyMC3: https://docs.pymc.io/ (last visited 05.04.2019)
+PyMC3: [Link](https://docs.pymc.io/) (last visited 05.04.2019)
 
-Keras: https://keras.io/ (last visited 05.04.2019)
-
+Keras: [Link](https://keras.io/) (last visited 05.04.2019)

@@ -117,7 +117,7 @@ var CharactersActions = {
         });
     },
 
-    loadCharacterShowDataForStatictics: function(name, character) {
+    loadCharacterShowDataForStatictics: function() {
         Api.get('show/characters').then(function(response) {
             AppDispatcher.handleServerAction({
                 actionType: Constants.RECEIVE_CHARACTERS_SHOW,
