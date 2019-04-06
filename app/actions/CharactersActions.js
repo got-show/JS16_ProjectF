@@ -50,6 +50,9 @@ var CharactersActions = {
                     let plod = characters[i].hasShow ? characters[i].show.plodB : characters[i].book.plodB;
                     characters[i].plod = Math.round(plod * 100);
 
+                    let death = characters[i].hasShow ? characters[i].show.death : characters[i].book.death;
+                    characters[i].death = death;
+
                     let imageLink = characters[i].hasShow && characters[i].show.image ? (baseUrl + "show/images/" + characters[i].show.slug + ".jpg") : 
                                     characters[i].hasBook && characters[i].book.image ? (baseUrl + "book/images/" + characters[i].book.slug + ".jpg") : false;
                     characters[i].imageLink = imageLink;
