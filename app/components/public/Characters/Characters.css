@@ -257,6 +257,10 @@ title {
 	min-height: 420px;
 }
 
+.plodShowContainer {
+	min-height: 420px;
+}
+
 .plodBookContainer.plodContainerHidden {
 	opacity: 0;
 	transition-duration: 0.4s;
