@@ -6,6 +6,7 @@ const compression = require('compression');
 // const d5 = require('./d5.js');
 // const d4 = require('./d4.js');
 const wikirequest = require('./wikirequest.js');
+const plodC=require('./plodC.js');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.get('/sitemap.xml', function(req,res) {
 
 // app.use('/d5', d5);
 // app.use('/d4', d4);
+app.use('/plodC',plodC);
 app.use('/wikirequest', wikirequest);
 
 app.use(express.static(path.join(__dirname, '../static')));
