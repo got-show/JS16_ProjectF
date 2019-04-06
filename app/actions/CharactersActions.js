@@ -6,7 +6,8 @@ var Store = require('../stores/CharactersStore');
 var CharactersActions = {
     loadCharacters: function() {
         var characters = [];
-
+        var baseUrl = process.env.__PROTOCOL__ + process.env.__API__ + ((process.env.__PORT__ !== undefined) ? ':' + process.env.__PORT__ : '') + process.env.__PREFIX__;
+        
         Api.get('book/characters').then(function(responseBooks){
             for (let index in responseBooks) {
                 let character = {};
@@ -49,15 +50,23 @@ var CharactersActions = {
                     let plod = characters[i].hasShow ? characters[i].show.plodB : characters[i].book.plodB;
                     characters[i].plod = Math.round(plod * 100);
 
-                    let imageLink = characters[i].hasShow ? characters[i].show.image : characters[i].book.image;
+                    let death = characters[i].hasShow ? characters[i].show.death : characters[i].book.death;
+                    characters[i].death = death;
+
+                    let imageLink = characters[i].hasShow && characters[i].show.image ? (baseUrl + "show/images/" + characters[i].show.slug + ".jpg") : 
+                                    characters[i].hasBook && characters[i].book.image ? (baseUrl + "book/images/" + characters[i].book.slug + ".jpg") : false;
                     characters[i].imageLink = imageLink;
 
                     let pageRank = characters[i].hasShow && characters[i].show.pagerank ? characters[i].show.pagerank.rank : 
                         characters[i].book.pagerank ? characters[i].book.pagerank.rank : 0;
                     characters[i].pageRank = pageRank;
-                }
 
-                console.log(characters); /*eslint no-console:0,no-undef:0*/
+                    let id = characters[i].hasShow ? characters[i].show._id : characters[i].book._id;
+                    characters[i]._id = id;
+
+                    let gender = characters[i].hasShow ? characters[i].show.gender : characters[i].book.gender;
+                    characters[i].gender = gender;
+                }
 
                 AppDispatcher.handleServerAction({
                     actionType: Constants.RECEIVE_CHARACTERS,
@@ -105,6 +114,20 @@ var CharactersActions = {
         }, function(fail) {
             // fail
             that.dispatchCharacter(character);
+        });
+    },
+
+    loadCharacterShowDataForStatictics: function() {
+        Api.get('show/characters').then(function(response) {
+            AppDispatcher.handleServerAction({
+                actionType: Constants.RECEIVE_CHARACTERS_SHOW,
+                data: response
+            });
+        }, function(fail) {
+            AppDispatcher.handleServerAction({
+                actionType: Constants.RECEIVE_CHARACTERS_SHOW,
+                data: []
+            });
         });
     },
 

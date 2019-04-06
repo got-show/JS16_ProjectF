@@ -73,6 +73,7 @@
     bottom: 0;
     left: 0;
     background: #0c9a13;
+    min-height: 1px;
 }
 
 .plodYearValue {

@@ -51,11 +51,12 @@ export default class CharacterDetailsMedia extends Component {
 
     charPronoun(capitalize = false) {
         let gender = 'undefined';
-        if (this.character.hasBook) {
-            gender = this.character.book.gender;
-        } else if (this.character.hasShow) {
+        if (this.character.hasShow && this.character.show.gender) {
             gender = this.character.show.gender;
+        } else if (this.character.hasBook && this.character.book.gender) {
+            gender = this.character.book.gender;
         }
+         
         if (gender !== 'undefined') {
             if (capitalize) {
                 return gender === 'male' ? 'He' : 'She';
@@ -73,11 +74,12 @@ export default class CharacterDetailsMedia extends Component {
 
     charPronounPosessive(capitalize = false) {
         let gender = 'undefined';
-        if (this.character.hasBook) {
-            gender = this.character.book.gender;
-        } else if (this.character.hasShow) {
+        if (this.character.hasShow && this.character.show.gender) {
             gender = this.character.show.gender;
+        } else if (this.character.hasBook && this.character.book.gender) {
+            gender = this.character.book.gender;
         }
+         
         if (gender !== 'undefined') {
             if (capitalize) {
                 return gender === 'male' ? 'His' : 'Her';
@@ -102,7 +104,7 @@ export default class CharacterDetailsMedia extends Component {
                 <span> -&nbsp;Syrio&nbsp;Forel</span>
             </p>
         );
-        if ((this.character.show && this.showDeath || !this.showDeath) && this.character.book && this.bookDeath) {
+        if (this.character.hasShow && this.showDeath && this.character.hasbook && this.bookDeath) {
             sbPlodTitle = this.charPronoun(true) + "'s met the God of Death";
             sbPlodTextFinal  =  <p>{this.character.name} is dead in both the TV show and the book.</p>;
             sbPlodQuote = (
@@ -181,8 +183,8 @@ export default class CharacterDetailsMedia extends Component {
     }
 
     determineSbAppearance(){
-        if ((this.character.book && !Array.isArray(this.character.book.books) && this.character.book.books.length === 0)
-            && (this.character.show && !Array.isArray(this.character.show.episodes) && this.character.show.episodes.length === 0)) {
+        if ((this.character.book && Array.isArray(this.character.book.books) && this.character.book.books.length === 0)
+            || (this.character.show && Array.isArray(this.character.show.episodes) && this.character.show.episodes.length === 0)) {
             return;
         }
 

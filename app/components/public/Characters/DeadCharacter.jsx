@@ -1,6 +1,6 @@
 import React from 'react';
 let {Component} = React;
-import Img from './img';
+import tombstone from './img/RipTombstone.png';
 
 export default class DeadCharacter extends Component {
     render() {
@@ -11,7 +11,7 @@ export default class DeadCharacter extends Component {
                     <p className="center">{this.props.name} is dead in the {this.props.mediumText}</p>
                 </div>
                 <div className="deathDate">
-                    <img src={Img['RipTombstone']} />
+                    <img src={tombstone} /> 
                     <div>{this.props.deathText}</div>
                 </div>
             </div>

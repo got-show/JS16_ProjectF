@@ -177,7 +177,7 @@ export default class MapComp extends Component {
       <div className = "input-group" >
       <input type = "text"
       className = "form-control"
-      placeholder = "Search for character..." > </input> <i className = "glyphicon glyphicon-search form-control-feedback" > </i> </div> </form> 
+      placeholder = "Search for character..." /><i className = "glyphicon glyphicon-search form-control-feedback" > </i> </div> </form> 
       <div id = "characters" > </div> </div> <div id = "timeline" > </div> </div>
     );
   }

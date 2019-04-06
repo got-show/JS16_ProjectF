@@ -50,7 +50,7 @@ export default class Start extends Component {
             </Col>
             <Col md={6}  >
               <div className="card">
-                <PlodTop5 className="ranking"></PlodTop5>
+                <PlodTop5 className="ranking" />
               </div>
             </Col>
           </Row>
@@ -64,7 +64,7 @@ export default class Start extends Component {
           <Row>
             <Col md={12} >
               {/* <div className="card"> */}
-              <h3>{this.state.charLeft.name}'s and {this.state.charRight.name}'s location-history on a map:</h3>
+              <div className="center">{this.state.charLeft.name}'s and {this.state.charRight.name}'s location history on a map:</div><br />
               <MapComp character={[this.state.charLeft.name, this.state.charRight.name]}/>
               {/* </div> */}
             </Col>

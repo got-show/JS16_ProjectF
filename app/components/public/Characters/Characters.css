@@ -189,6 +189,13 @@ title {
 	left: 0;
 	background-color: #7a7a7a;
 	z-index: 1;
+	transition-duration: 0.2s;
+}
+
+.togglePlodDisplayButtonBackground.active {
+	left: 50%;
+	background-color: #5A180C;
+	transition-duration: 0.2s;
 }
 
 #characterMap .map-wrapper {
@@ -216,11 +223,11 @@ title {
 }
 
 .plodOuterContainer .subtitle{
+	display: inline-block;
 	color: #bbb;
 	font-size: 1em;
 	font-family: 'Cinzel', Sans;
-	margin-top: -4px;
-	margin-bottom: 5px;
+	margin-bottom: 8px;
 	font-weight: normal;
 }
 
@@ -247,7 +254,7 @@ title {
 	width: 100%;
 	opacity: 1;
 	transition-duration: 0.4s;
-	min-height: 380px;
+	min-height: 420px;
 }
 
 .plodBookContainer.plodContainerHidden {
@@ -342,4 +349,10 @@ hr {
 	box-sizing: border-box;
 	background: transparent;
 	transition-duration: 0.4s;
+}
+
+.sorryNoData {
+	padding-top: 50px;
+	font-size: 1.5em;
+	text-align: center;
 }

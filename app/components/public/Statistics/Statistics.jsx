@@ -31,12 +31,12 @@ export default class Statistics extends Component {
         </Col>
         <Col md={4} className="simple-info">
             <div className="card">
-              <h5>Most likely survivor</h5>
-              <h2>SANSA STARK</h2>
+              <h5>Main character most likely to survive</h5>
+              <h2>Daenerys Targaryen</h2>
             </div>
             <div className="card">
-              <h5>Most likely to die</h5>
-              <h2>TOMMEN BARATHON</h2>
+              <h5>Main character most likely to die</h5>
+              <h2>Bronn</h2>
             </div>
             <div className="card">
               <h5>Most popular character</h5>

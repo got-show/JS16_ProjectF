@@ -12,17 +12,15 @@ export default class About extends Component {
             <div className="about-container">
 
                 <Row> 
-                    <h1 className="about-title">Our Team</h1>     
-                    <Col sm={10} smOffset={1} md={5}>
+                    <h1 className="about-title">2019 Team</h1>     
+                    <Col md={3} mdOffset={2}>
                         <img src={group2019} className="group-photo" />
                     </Col>
-                    <Col sm={10} smOffset={1} md={5} mdOffset={0}>
+                    <Col md={5}>
                         <div className="about-description" dangerouslySetInnerHTML={{ __html: AboutText}} />
-                    </Col>
-                    <Col md={8} mdPush={2}>
                         <h1 className="about-title">Contributors</h1>
                         <Row>
-                            <Col xs={10} xsOffset={1} sm={5}>
+                            <Col mdOffset={1} md={5}>
                                 <h3>Mentors</h3>
                                 <TeamMemberListing teamID="2019Mentor"/>
                                 <h3>Database &amp; API</h3>
@@ -31,23 +29,25 @@ export default class About extends Component {
                                 <TeamMemberListing teamID="2019B"/>
                                 <TeamMemberListing teamID="2019C"/>
                             </Col>
-                            <Col xs={10} xsOffset={1} sm={5}>
-                                <h3>Frontend</h3>
+                            <Col md={5}>
+                                <h3>Integration &&nbsp;Frontend</h3>
                                 <TeamMemberListing teamID="2019D"/>
                             </Col> 
                         </Row>
-
                     </Col>
                 </Row>
                 <Row>
                     <h1 className="about-title">The original 2016 Team</h1>
-                    <Col sm={10} smOffset={1} md={5}>
+                    <Col md={3} mdOffset={2}>
                         <img src={group} className="group-photo" />
                     </Col>
-                    <Col md={8} mdPush={2}>
-                    <h1 className="about-title">Contributors</h1>
-                        <Row>
-                            <Col xs={10} xsOffset={1} sm={5}>
+                    <Col md={5}>
+                        <div className="about-description" >This web app is the result of the seminars Javascript technology 
+                        2019 and 2016 at the Technical University of Munich. The original team developed the first version in
+                         to predict the likelihood of death for characters in season 6. </div>
+                        <h1 className="about-title">Contributors</h1>
+                       <Row>
+                            <Col mdOffset={1} md={5}>
                                 <h3>Mentors</h3>
                                 <TeamMemberListing teamID="Mentor"/>
                                 <h3>Database &amp; API</h3>
@@ -56,7 +56,7 @@ export default class About extends Component {
                                 <TeamMemberListing teamID="B"/>
                                 <TeamMemberListing teamID="D"/>
                             </Col>
-                            <Col xs={10} xsOffset={1} sm={5}>
+                            <Col md={5}>
                                 <h3>Frontend &amp; Design</h3>
                                 <TeamMemberListing teamID="F"/>
                                 <h3>Map</h3>
@@ -78,7 +78,7 @@ export default class About extends Component {
                 <br />
 
                 <Row>
-                    <Col md={8} mdPush={2}>
+                    <Col md={8} mdOffset={2}>
                         <h1 className="about-title">Attributions</h1>
                         <p className="about-description">Most of our data was - and is periodically- scraped from <a href="http://awoiaf.westeros.org" target="_blank">A Wiki of Ice and Fire</a> and <a href="http://gameofthrones.fandom.com" target="_blank">Fandom Game of Thrones Wiki</a>. Contributing to these wikis will enhance this portal greatly, so make sure you drop a visit to our wiki-partners and request an account.</p>
                         <p className="about-description">We used the sources and licenses listed on <a href="/attributions">this page</a>.</p>
