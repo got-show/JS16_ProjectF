@@ -26,7 +26,7 @@ export default class MapComp extends Component {
 
   handleCityClick(modal, city) {
     // var link = '/wikirequest/' + city.name;
-    var link = 'http://awoiaf.westeros.org/index.php/' + city.name;
+    var link = 'https://awoiaf.westeros.org/index.php/' + city.name;
 
     var bodyEl = modal.find('.modal-body'); // Body Container
     // Show Spinner
