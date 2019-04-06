@@ -1,5 +1,15 @@
-google.charts.setOnLoadCallback(drawNewCharactersIntroduced);
-
+import TableData from "json!./tableData.json";
+// I didn't find the matching data for "plodDistribution"
+//'maleFemale'-Men-data should be negative
+export default function init(){
+  google.charts.setOnLoadCallback(drawNewCharactersIntroduced);
+  google.charts.setOnLoadCallback(drawCharactersPerEpisode);
+  google.charts.setOnLoadCallback(drawDeadAndAlive);
+  google.charts.setOnLoadCallback(drawDistributionPLODs);
+  google.charts.setOnLoadCallback(drawDistributionNoblesPLODs);
+  google.charts.setOnLoadCallback(drawDistributionPLODsAgeDistribution);
+  google.charts.setOnLoadCallback(drawAvgPLODPerEpisode);
+};
 function drawNewCharactersIntroduced() {
   var data = new google.visualization.arrayToDataTable([
     ['Book No.', 'Men', 'Women'],
@@ -56,9 +66,6 @@ function drawNewCharactersIntroduced() {
   chart.draw(data, options);
 
 };
-
-google.charts.setOnLoadCallback(drawCharactersPerEpisode);
-
 function drawCharactersPerEpisode() {
   var data = new google.visualization.arrayToDataTable([
     ['Episode', 'All Characters', 'New Characters'],
@@ -161,17 +168,15 @@ function drawCharactersPerEpisode() {
   var chart = new google.visualization.LineChart(document.getElementById('characters_per_episode'));
   chart.draw(data, options);
 };
-
-google.charts.setOnLoadCallback(drawDeadAndAlive);
-
 function drawDeadAndAlive() {
-  var data = new google.visualization.arrayToDataTable([
-    ['Category', 'Men', 'Women'],
-    ['Dead', -366, 129],
-    ['Alive', -839, 612],
-    ['Peasants', -576, 473],
-    ['Nobles', -629, 268]
-  ]);
+  // var data = new google.visualization.arrayToDataTable([
+  //   ['Category', 'Men', 'Women'],
+  //   ['Dead', -366, 129],
+  //   ['Alive', -839, 612],
+  //   ['Peasants', -576, 473],
+  //   ['Nobles', -629, 268]
+  // ]);
+  let data = new google.visualization.arrayToDataTable(TableData.maleFemale);
   var chart = new google.visualization.BarChart(document.getElementById('dead_and_alive'));
 
   var options = {
@@ -221,10 +226,6 @@ function drawDeadAndAlive() {
   chart.draw(data, options);
 
 };
-
-
-google.charts.setOnLoadCallback(drawDistributionPLODs);
-
 function drawDistributionPLODs() {
   var data = new google.visualization.arrayToDataTable([
     ['Likelihood of Death', 'Men', {
@@ -384,113 +385,112 @@ function drawDistributionPLODs() {
   var chart = new google.visualization.LineChart(document.getElementById('distribution_plods'));
   chart.draw(data, options);
 };
-google.charts.setOnLoadCallback(drawDistributionNoblesPLODs);
-
 function drawDistributionNoblesPLODs() {
-  var data = new google.visualization.arrayToDataTable([
-    ['PLOD', 'Nobles', 'Peasants'],
-    [0, 100, 100],
-    [1, 95, 93],
-    [2, 86, 81],
-    [3, 82, 78],
-    [4, 80, 76],
-    [5, 77, 74],
-    [6, 76, 73],
-    [7, 75, 72],
-    [8, 73, 71],
-    [9, 72, 70],
-    [10, 71, 68],
-    [11, 70, 68],
-    [12, 69, 67],
-    [13, 68, 66],
-    [14, 68, 65],
-    [15, 67, 65],
-    [16, 65, 64],
-    [17, 63, 63],
-    [18, 63, 60],
-    [19, 60, 57],
-    [20, 59, 55],
-    [21, 57, 51],
-    [22, 56, 50],
-    [23, 55, 48],
-    [24, 53, 45],
-    [25, 49, 41],
-    [26, 48, 38],
-    [27, 46, 36],
-    [28, 44, 33],
-    [29, 41, 31],
-    [30, 39, 28],
-    [31, 38, 27],
-    [32, 37, 26],
-    [33, 35, 24],
-    [34, 35, 23],
-    [35, 34, 22],
-    [36, 33, 22],
-    [37, 32, 22],
-    [38, 32, 22],
-    [39, 31, 21],
-    [40, 31, 21],
-    [41, 30, 21],
-    [42, 29, 20],
-    [43, 29, 20],
-    [44, 28, 20],
-    [45, 28, 20],
-    [46, 27, 20],
-    [47, 27, 19],
-    [48, 26, 19],
-    [49, 26, 19],
-    [50, 26, 18],
-    [51, 24, 18],
-    [52, 24, 17],
-    [53, 23, 16],
-    [54, 22, 16],
-    [55, 20, 16],
-    [56, 20, 16],
-    [57, 19, 15],
-    [58, 18, 15],
-    [59, 18, 15],
-    [60, 18, 15],
-    [61, 17, 14],
-    [62, 16, 14],
-    [63, 16, 14],
-    [64, 15, 13],
-    [65, 15, 13],
-    [66, 15, 13],
-    [67, 14, 13],
-    [68, 14, 13],
-    [69, 14, 12],
-    [70, 13, 11],
-    [71, 13, 11],
-    [72, 12, 11],
-    [73, 12, 11],
-    [74, 11, 10],
-    [75, 11, 10],
-    [76, 10, 10],
-    [77, 10, 10],
-    [78, 10, 9],
-    [79, 9, 8],
-    [80, 8, 8],
-    [81, 8, 6],
-    [82, 7, 6],
-    [83, 7, 5],
-    [84, 6, 5],
-    [85, 6, 5],
-    [86, 6, 4],
-    [87, 5, 4],
-    [88, 5, 4],
-    [89, 5, 3],
-    [90, 5, 3],
-    [91, 4, 3],
-    [92, 4, 3],
-    [93, 3, 2],
-    [94, 3, 2],
-    [95, 2, 2],
-    [96, 1, 1],
-    [97, 1, 1],
-    [98, 1, 0],
-    [99, 0, 0],
-    [100, 0, 0]
-  ]);
+  let data=new google.visualization.arrayToDataTable(TableData.plodDistributionPeasants);
+  // var data = new google.visualization.arrayToDataTable([
+  //   ['PLOD', 'Nobles', 'Peasants'],
+  //   [0, 100, 100],
+  //   [1, 95, 93],
+  //   [2, 86, 81],
+  //   [3, 82, 78],
+  //   [4, 80, 76],
+  //   [5, 77, 74],
+  //   [6, 76, 73],
+  //   [7, 75, 72],
+  //   [8, 73, 71],
+  //   [9, 72, 70],
+  //   [10, 71, 68],
+  //   [11, 70, 68],
+  //   [12, 69, 67],
+  //   [13, 68, 66],
+  //   [14, 68, 65],
+  //   [15, 67, 65],
+  //   [16, 65, 64],
+  //   [17, 63, 63],
+  //   [18, 63, 60],
+  //   [19, 60, 57],
+  //   [20, 59, 55],
+  //   [21, 57, 51],
+  //   [22, 56, 50],
+  //   [23, 55, 48],
+  //   [24, 53, 45],
+  //   [25, 49, 41],
+  //   [26, 48, 38],
+  //   [27, 46, 36],
+  //   [28, 44, 33],
+  //   [29, 41, 31],
+  //   [30, 39, 28],
+  //   [31, 38, 27],
+  //   [32, 37, 26],
+  //   [33, 35, 24],
+  //   [34, 35, 23],
+  //   [35, 34, 22],
+  //   [36, 33, 22],
+  //   [37, 32, 22],
+  //   [38, 32, 22],
+  //   [39, 31, 21],
+  //   [40, 31, 21],
+  //   [41, 30, 21],
+  //   [42, 29, 20],
+  //   [43, 29, 20],
+  //   [44, 28, 20],
+  //   [45, 28, 20],
+  //   [46, 27, 20],
+  //   [47, 27, 19],
+  //   [48, 26, 19],
+  //   [49, 26, 19],
+  //   [50, 26, 18],
+  //   [51, 24, 18],
+  //   [52, 24, 17],
+  //   [53, 23, 16],
+  //   [54, 22, 16],
+  //   [55, 20, 16],
+  //   [56, 20, 16],
+  //   [57, 19, 15],
+  //   [58, 18, 15],
+  //   [59, 18, 15],
+  //   [60, 18, 15],
+  //   [61, 17, 14],
+  //   [62, 16, 14],
+  //   [63, 16, 14],
+  //   [64, 15, 13],
+  //   [65, 15, 13],
+  //   [66, 15, 13],
+  //   [67, 14, 13],
+  //   [68, 14, 13],
+  //   [69, 14, 12],
+  //   [70, 13, 11],
+  //   [71, 13, 11],
+  //   [72, 12, 11],
+  //   [73, 12, 11],
+  //   [74, 11, 10],
+  //   [75, 11, 10],
+  //   [76, 10, 10],
+  //   [77, 10, 10],
+  //   [78, 10, 9],
+  //   [79, 9, 8],
+  //   [80, 8, 8],
+  //   [81, 8, 6],
+  //   [82, 7, 6],
+  //   [83, 7, 5],
+  //   [84, 6, 5],
+  //   [85, 6, 5],
+  //   [86, 6, 4],
+  //   [87, 5, 4],
+  //   [88, 5, 4],
+  //   [89, 5, 3],
+  //   [90, 5, 3],
+  //   [91, 4, 3],
+  //   [92, 4, 3],
+  //   [93, 3, 2],
+  //   [94, 3, 2],
+  //   [95, 2, 2],
+  //   [96, 1, 1],
+  //   [97, 1, 1],
+  //   [98, 1, 0],
+  //   [99, 0, 0],
+  //   [100, 0, 0]
+  // ]);
   var options = {
     height: 400,
     lineWidth: 3,
@@ -539,22 +539,23 @@ function drawDistributionNoblesPLODs() {
   var chart = new google.visualization.LineChart(document.getElementById('distribution_nobles_plods'));
   chart.draw(data, options);
 };
-google.charts.setOnLoadCallback(drawDistributionPLODsAgeDistribution);
-
 function drawDistributionPLODsAgeDistribution() {
-  var data = new google.visualization.arrayToDataTable([
-    ['Age Distribution', 'Averaged Likelihood of Death'],
-    ['0-10', 34],
-    ['11-20', 30],
-    ['21-30', 41],
-    ['31-40', 45],
-    ['41-50', 35],
-    ['51-60', 42],
-    ['61-70', 35],
-    ['71-80', 27],
-    ['81-90', 25],
-    ['91-100', 19]
-  ]);
+
+  let data = new google.visualization.arrayToDataTable(TableData.plodAge);
+  //
+  // var data = new google.visualization.arrayToDataTable([
+  //   ['Age Distribution', 'Averaged Likelihood of Death'],
+  //   ['0-10', 34],
+  //   ['11-20', 30],
+  //   ['21-30', 41],
+  //   ['31-40', 45],
+  //   ['41-50', 35],
+  //   ['51-60', 42],
+  //   ['61-70', 35],
+  //   ['71-80', 27],
+  //   ['81-90', 25],
+  //   ['91-100', 19]
+  // ]);
   var options = {
     height: 400,
     colors: ['#2196f3'],
@@ -570,7 +571,7 @@ function drawDistributionPLODsAgeDistribution() {
         color: '#AAAAAA'
       },
       viewWindow: {
-        max: 50,
+        max: 100,
         min: 0
       },
       textStyle: {
@@ -599,8 +600,6 @@ function drawDistributionPLODsAgeDistribution() {
   var chart = new google.visualization.ColumnChart(document.getElementById('distribution_plods_age_distribution'));
   chart.draw(data, options);
 };
-google.charts.setOnLoadCallback(drawAvgPLODPerEpisode);
-
 function drawAvgPLODPerEpisode() {
   var data = new google.visualization.arrayToDataTable([
     ['EpisodeE', 'Average PLOD per episode'],

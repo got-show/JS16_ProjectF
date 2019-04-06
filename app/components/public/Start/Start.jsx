@@ -25,10 +25,10 @@ export default class Start extends Component {
 
     let tmp=charLeft;
     charLeft=antagonistCharacters.characters[charLeft];
-    charLeft.img= "ForTheThrone/img/" +tmp + ".png";
+    charLeft.img=tmp;
     tmp=charRight;
     charRight=antagonistCharacters.characters[charRight];
-    charRight.img="ForTheThrone/img/" +tmp + ".png";
+    charRight.img=tmp;
 
     this.state = {
       charLeft: charLeft,

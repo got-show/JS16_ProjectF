@@ -11,7 +11,7 @@ import Store from '../../../stores/CharactersPlodStore.js';
 import Countdown from '../Countdown/Countdown.jsx';
 import Slider from './Slider/Slider.jsx';
 
-
+import * as Img from './img';
 
 export default class ForTheThrone extends Component {
     constructor(props) {
@@ -61,7 +61,6 @@ export default class ForTheThrone extends Component {
 
     render() {
         return (
-
             <div id="fttContainer">
                 <p className={"header-copyright"}>© 2019 Home Box Office, Inc. / Sky All rights reserved.</p>
                 <LinkContainer to={'/characters/' + this.state.charLeft.name} >
@@ -75,7 +74,7 @@ export default class ForTheThrone extends Component {
                 </LinkContainer>
 
                 <div id="fttAntagonists">
-                    <img src="ForTheThrone/img/iron-throne.png" id="fttThrone" />
+                    <img src={Img["IronThrone"]} id="fttThrone" />
                     <div id="fttHeader" className="center">
                         <br />
                         <h3>When you play the game of thrones you win...</h3>
@@ -83,7 +82,7 @@ export default class ForTheThrone extends Component {
                     </div>
 
                     <div className="fttCharContainer fttLeft">
-                        <img src={this.state.charLeft.img} id="fttCharLeftImg" className="fttCharImg fttLeft" />
+                        <img src={Img[this.state.charLeft.img]} id="fttCharLeftImg" className="fttCharImg fttLeft" />
                         <div className="fttCharTombstone fttCharLeftTombstone fttTombstonePlod">
                             {this.state.charLeftPlod.plod < 100 ? parseInt(this.state.charLeftPlod.plod) : 100} %
                         </div>
@@ -95,7 +94,7 @@ export default class ForTheThrone extends Component {
                         </div>
                     </div>
                     <div className="fttCharContainer fttRight">
-                        <img src={this.state.charRight.img} id="fttCharRightImg" className="fttCharImg fttRight" />
+                        <img src={Img[this.state.charRight.img]} id="fttCharRightImg" className="fttCharImg fttRight" />
                         <div className="fttCharTombstone fttCharRightTombstone fttTombstonePlod">
                             {this.state.charRightPlod.plod < 100 ? parseInt(this.state.charRightPlod.plod) : 100} %
                         </div>
