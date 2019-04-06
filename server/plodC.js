@@ -8,7 +8,7 @@ PlodC.get('/statistic', function (req, res) {
     res.status(200).send(getda());
 })
 
-getda();
+// getda();  Uncomment to run automatically
 
 async function getda() {
     var plod = [];
@@ -20,24 +20,15 @@ async function getda() {
     await getData();
     return calculation();
 
-    //PLOD
-    //https://api.got.show/api/plod    
-
-    //Get all the characters currently stored.
-    //https://api.got.show/api/characters/
-
     async function getData() {
         console.log("getData started");
 
         await request("https://gotdata.northeurope.cloudapp.azure.com/api/book/characters")
             .then(function (res) {
                 console.log("ajax1 is success");
-                //console.log(res);
-                //fs.writeFile("./tableData.json",res,function(e){console.log(e);});
                 characters = JSON.parse(res);
                 console.log("characters has type " + typeof characters);
                 console.log(characters.length);
-                //console.log(characters);
             })
             .catch(function (e) {
                 console.log(e);
@@ -163,8 +154,6 @@ async function getda() {
     }
 
     function plodDistributionPeasants() {
-        // x-->plod
-        // y-->number of people with beginning<=plod<beginning+width
         let schritte = 10;
         let result = [['PLOD', 'Nobles', 'Peasants']];
         let noble = 0;
