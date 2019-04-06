@@ -14,15 +14,23 @@ export default class Countdown extends Component {
           days: 0,
           hours: 0,
           min: 0,
-          sec: 0
+          sec: 0,
+          end: false
         };
       }
     
       componentDidMount() {
         // update every second
         this.interval =  window.setInterval(() => {
-          const date = this.calculateCountdown(this.props.date);
-          date ? this.setState(date) : this.stop();
+          const date = this.calculateCountdown();
+          if (date) {
+            this.setState(date);
+          }  else {
+            this.setState({
+              end: true
+            });
+            this.stop();
+          }
         }, 1000);
       }
     
@@ -30,7 +38,34 @@ export default class Countdown extends Component {
         this.stop();
       }
     
-      calculateCountdown(endDate) {
+      determineNextEpisodeDate() {
+        const episodeDates = [
+          [3, 15], 
+          [3, 22], 
+          [3, 29], 
+          [4, 6], 
+          [4, 13], 
+          [4, 20]
+        ];
+        
+        for (let i in episodeDates) {
+          let date = new Date(Date.UTC(2019,episodeDates[i][0],episodeDates[i][1],1,0,0,0));
+          let diff = (Date.parse(new Date(date)) - Date.parse(new Date())) / 1000;
+
+          if (diff > 0) {
+            return date.toString();
+          }
+        }
+        
+        return false;
+      }
+
+      calculateCountdown() {
+        let endDate = this.determineNextEpisodeDate();
+        if (endDate === false) {
+          return false;
+        }
+
         let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000;
     
         // clear countdown when date is reached
@@ -81,54 +116,51 @@ export default class Countdown extends Component {
     
       render() {
         const countDown = this.state;
-    
-        return (
-          <div className="Countdown">
-            <div className="Countdown-col">
-              <div className="Countdown-col-number">
-                  <strong>{this.addLeadingZeros(countDown.days)[0]}</strong>
-                  <strong>{this.addLeadingZeros(countDown.days)[1]}</strong>
+        if (countDown.end === true) {
+          return <h3 className="center" style={{lineHeight: "80px"}}>The last episode has aired</h3>;
+        } else {
+          return (
+            <div><h4 className="center">The next episode airs in</h4>
+            <div className="Countdown">
+              <div className="Countdown-col">
+                <div className="Countdown-col-number">
+                    <strong>{this.addLeadingZeros(countDown.days)[0]}</strong>
+                    <strong>{this.addLeadingZeros(countDown.days)[1]}</strong>
+                </div>
+                <div className="Countdown-col-string">
+                  {countDown.days === 1 ? 'Day' : 'Days'}
+                </div>
               </div>
-              <div className="Countdown-col-string">
-                {countDown.days === 1 ? 'Day' : 'Days'}
+      
+              <div className="Countdown-col">
+                <div className="Countdown-col-number">
+                  <strong>{this.addLeadingZeros(countDown.hours)[0]}</strong>
+                  <strong>{this.addLeadingZeros(countDown.hours)[1]}</strong>
+                </div>
+                <div className="Countdown-col-string">
+                  {countDown.hours === 1 ? 'Hour' : 'Hours'}
+                </div>
+              </div>
+      
+      
+              <div className="Countdown-col">
+                <div className="Countdown-col-number">
+                  <strong>{this.addLeadingZeros(countDown.min)[0]}</strong>
+                  <strong>{this.addLeadingZeros(countDown.min)[1]}</strong>
+                </div>
+                <div className="Countdown-col-string">Minutes</div>
+              </div>
+      
+              <div className="Countdown-col">
+                <div className="Countdown-col-number">
+                  <strong>{this.addLeadingZeros(countDown.sec)[0]}</strong>
+                  <strong>{this.addLeadingZeros(countDown.sec)[1]}</strong>
+                </div>
+                <div className="Countdown-col-string">Seconds</div>
               </div>
             </div>
-    
-            <div className="Countdown-col">
-              <div className="Countdown-col-number">
-                <strong>{this.addLeadingZeros(countDown.hours)[0]}</strong>
-                <strong>{this.addLeadingZeros(countDown.hours)[1]}</strong>
-              </div>
-              <div className="Countdown-col-string">
-                {countDown.hours === 1 ? 'Hour' : 'Hours'}
-              </div>
             </div>
-    
-    
-            <div className="Countdown-col">
-              <div className="Countdown-col-number">
-                <strong>{this.addLeadingZeros(countDown.min)[0]}</strong>
-                <strong>{this.addLeadingZeros(countDown.min)[1]}</strong>
-              </div>
-              <div className="Countdown-col-string">Minutes</div>
-            </div>
-    
-            <div className="Countdown-col">
-              <div className="Countdown-col-number">
-                <strong>{this.addLeadingZeros(countDown.sec)[0]}</strong>
-                <strong>{this.addLeadingZeros(countDown.sec)[1]}</strong>
-              </div>
-              <div className="Countdown-col-string">Seconds</div>
-            </div>
-          </div>
-        );
+          );
+        }
     }
 }
-
-Countdown.propTypes = {
-    date: React.PropTypes.string.isRequired
-};
-
-Countdown.defaultProps = {
-    date: new Date()
-};

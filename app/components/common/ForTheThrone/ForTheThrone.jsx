@@ -141,8 +141,8 @@ export default class ForTheThrone extends Component {
                 </div>
                 <div id="fttCountdown">
                     <div className="content">
-                        <div id="fttCountdownLeft"><h4 className="center">The next episode airs in</h4>
-                            <Countdown date="April 15, 2019, 03:00:00"></Countdown>
+                        <div id="fttCountdownLeft">
+                            <Countdown></Countdown>
                         </div>
                         <div id="fttCountdownRight">
                             <h3>Discover your favorite character's <strong>chance of survival</strong> now!</h3>
