@@ -28,6 +28,7 @@ export default class Ranking extends Component {
     return (<div>
       <h2 className="text-center ranking-title">Top Survivors<br />&nbsp;</h2>
       <table>
+        <tbody>
         {
           this.getHardcodedSurvivors().map((char) => {
             return <tr key={char.name}>
@@ -43,6 +44,7 @@ export default class Ranking extends Component {
           </tr>;
           })
         }
+        </tbody>
       </table>
       <p className="see-more">
         <Link to={'/characters/?search=&page=1&sort=plod&order=1'}>See more</Link>
