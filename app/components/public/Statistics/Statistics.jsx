@@ -3,7 +3,8 @@ let {Component} = React;
 import {Grid, Row, Col} from 'react-bootstrap';
 import './Statistics.css';
 
-let js = require('raw!./src.js');/* eslint no-undef:0 */
+import Char from "./src.js";
+// let js = require('raw!./src.js');/* eslint no-undef:0 */
 
 // import HousesTop5 from '../../common/Ranking/HousesTop5';
 import PlodTop5 from '../../common/Ranking/PlodTop5';
@@ -12,7 +13,8 @@ import Survivors from '../../common/Ranking/Survivors';
 
 export default class Statistics extends Component {
   componentDidMount() {
-    eval(js);
+    Char();
+
   }
   render() {
     return (<Grid id="Statistics">

@@ -4,18 +4,14 @@ import {Link} from 'react-router';
 import Col from 'react-bootstrap/lib/Col';
 import "./CharacterThumbnail.css";
 
-import tombstoneTransparent from '../../public/Characters/rip_tombstone_transparent.png';
-import tombstone from '../../public/Characters/rip_tombstone.png';
-
-import characterPlaceholderMale from '../../public/Characters/placeholder-male.png';
-import characterPlaceholderFemale from '../../public/Characters/placeholder-female.png';
+import * as Img from '../../public/Characters/img';
 
 export default class CharacterThumbnail extends Component {
 
     render() {
-      var img = (this.props.imageUrl != 'placeholder-male' && this.props.imageUrl != 'placeholder-female') 
-                ? this.props.imageUrl : 
-                (this.props.imageUrl == 'placeholder-male' ? characterPlaceholderMale : characterPlaceholderFemale);
+      var img = (this.props.imageUrl != 'placeholder-male' && this.props.imageUrl != 'placeholder-female')
+                ? this.props.imageUrl :
+                (this.props.imageUrl == 'placeholder-male' ? Img['PlaceholderMale']: Img['PlaceholderFemale']);
 
       var detailLink = '/characters/'+encodeURIComponent(this.props.name);
 
@@ -28,8 +24,8 @@ export default class CharacterThumbnail extends Component {
                 </div>
                 <div className="character-thumbnail-name"><p>{this.props.name}</p></div>
                 <div className="characters-list-plod">
-                  <img src={tombstoneTransparent} />
-                  <div className="plod-percentage-cropper" style={{'height': this.props.plodCropperSize+'px'}}><img src={tombstone} /></div>
+                  <img src={Img['RipTombstoneTransparent']} />
+                  <div className="plod-percentage-cropper" style={{'height': this.props.plodCropperSize+'px'}}><img src={Img['RipTombstone']} /></div>
                   <div className="plod-percentage">{this.props.plod}</div>
                 </div>
               </div>
@@ -39,10 +35,10 @@ export default class CharacterThumbnail extends Component {
     }
 }
 
-CharacterThumbnail.propTypes = { 
-  imageUrl: React.PropTypes.string, 
-  name: React.PropTypes.string.isRequired, 
-  plod: React.PropTypes.string, 
+CharacterThumbnail.propTypes = {
+  imageUrl: React.PropTypes.string,
+  name: React.PropTypes.string.isRequired,
+  plod: React.PropTypes.string,
   plodCropperSize: React.PropTypes.number
 };
-CharacterThumbnail.defaultProps = { imageUrl: characterPlaceholderMale };
+CharacterThumbnail.defaultProps = { imageUrl: Img['PlaceholderMale']};
