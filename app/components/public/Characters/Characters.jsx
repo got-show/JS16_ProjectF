@@ -11,7 +11,6 @@ import Store from '../../../stores/CharactersStore';
 import Actions from '../../../actions/CharactersActions';
 import CharacterDetailsMedia from '../../common/CharacterDetails/CharacterDetailsMedia.jsx';
 import CharacterDetailsStats from '../../common/CharacterDetails/CharacterDetailsStats.jsx';
-import SentimentStore from '../../../stores/TwitterSentimentsStore';
 
 import CharacterPlodDisplay from '../../common/CharacterPlodDisplay/CharacterPlodDisplay';
 import DeadCharacter from './DeadCharacter';
@@ -26,7 +25,13 @@ export default class Character extends Component {
         this.SHOW_YEAR = 305;
         this.BOOK_YEAR = 300;
         this.animating = false;
-        let character = {};
+        let character = {
+            name: "",
+            hasShow: false,
+            hasBook: false,
+            show: {},
+            book: {}
+        };
 
         this.state = {
             character: character,
@@ -40,16 +45,16 @@ export default class Character extends Component {
             plodTextShow: '',
             plodTextBook: ''
         };
+
         this._onChange = this._onChange.bind(this);
     }
 
-    componentWillMount (){
+    componentWillMount() {
         Store.addChangeListener(this._onChange);
     }
 
     componentDidMount() {
         Actions.loadCharacter(decodeURIComponent(this.props.params.id));
-        //SentimentActions.loadCharacterSentiment(decodeURIComponent(this.props.params.id));
     }
 
     componentWillUnmount(){
@@ -58,7 +63,6 @@ export default class Character extends Component {
 
     _onChange() {
         let character = Store.getCharacter();
-
         this.setState({
             character: character
         });
@@ -66,6 +70,7 @@ export default class Character extends Component {
         // TV show PLOD data
         let checkShow = false;
         let showLongevity = [];
+
         if (character.hasShow) {
             checkShow = character.show.alive;
 
@@ -79,6 +84,7 @@ export default class Character extends Component {
         // book PLOD Data
         let checkBook = false;
         let bookLongevity = [];
+
         if (character.hasBook) {
             checkBook = character.book.alive;
 
@@ -98,10 +104,7 @@ export default class Character extends Component {
             // Book data
             plodBook:       checkBook ? Math.round(character.book.plodB * 100) : 100,
             plodByYearBook: checkBook ? bookLongevity : [],
-            plodTextBook:   checkBook ? '%(percent)s%' : 'D E A D',
-
-            character: character,
-            sentiment: SentimentStore.getCharacterSentiment() || { positive: 0, negative: 0}
+            plodTextBook:   checkBook ? '%(percent)s%' : 'D E A D'  
         });
     }
 
@@ -145,6 +148,7 @@ export default class Character extends Component {
         var imgBook = (this.state.character.book && this.state.character.book.image) ? (baseUrl + "book/images/" + this.state.character.book.slug + ".jpg") : 
                       (this.state.character.book && this.state.character.book.gender === "female") ? Img['PlaceholderFemale'] : Img['PlaceholderMale'];
         var imgShow = (this.state.character.show && this.state.character.show.image) ? (baseUrl + "show/images/" + this.state.character.show.slug + ".jpg") : false;
+        
         var booksAliveShowDead = (!this.state.character.hasShow || this.state.character.show && this.state.character.show.alive == false)
             && this.state.character.book && this.state.character.book.alive == true ;
 
@@ -192,7 +196,7 @@ export default class Character extends Component {
                                         <img src={Img['RipTombstone']} />
                                     </div>
                                 </div> 
-                                : this.state.character.hasShow && !this.state.character.show.alive ?
+                                : this.state.character.hasShow && this.state.character.show && !this.state.character.show.alive ?
                                 <div className="plodShowContainer">
                                     <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>TV show <i className="fas fa-external-link-alt"></i></a>
                                     <DeadCharacter name={this.state.character.name} 
@@ -221,12 +225,12 @@ export default class Character extends Component {
                                         <img src={Img['RipTombstone']} />
                                     </div>
                                 </div>
-                                : this.state.character.hasBook && !this.state.character.book.alive ?
+                                : this.state.character.hasBook && this.state.character.book && !this.state.character.book.alive ?
                                 <div className="plodBookContainer plodContainerHidden plodContainerZIndexLower">
                                     <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>Books <i className="fas fa-external-link-alt"></i></a>
                                     <DeadCharacter 
                                         name={this.state.character.name} 
-                                        deathText={this.state.character.show && this.state.character.book.death ? this.state.character.book.death + ' AC' : 'D E A D'} 
+                                        deathText={this.state.character.book && this.state.character.book.death ? this.state.character.book.death + ' AC' : 'D E A D'} 
                                         mediumText="books"/>
                                 </div>
                                 :
