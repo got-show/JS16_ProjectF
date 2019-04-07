@@ -121,8 +121,6 @@ PlodC.generate=async function()  {
                 } else if (c.gender === "female") {
                     female++;
                     temp[index][2]++;
-                } else {
-                    console.log("diversLOL " + c.gender);
                 }
             }
         }
