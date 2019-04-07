@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./server/server.js",
-    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack --config ./configWebpack/prod.js --bail --progress",
+    "build": "cross-env NODE_ENV=production node ./server/generateStatistics.js &&  cross-env NODE_ENV=production  node_modules/.bin/webpack --config ./configWebpack/prod.js --bail --progress",
     "serve": "cross-env NODE_ENV=production node ./server/server.js"
   },
   "repository": {

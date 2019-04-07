@@ -65,6 +65,7 @@ export default class Start extends Component {
             <Col md={12} >
               <div className="center">{this.state.charLeft.name}'s and {this.state.charRight.name}'s location history on a map:</div><br />
               <MapComp character={[this.state.charLeft.name, this.state.charRight.name]}/>
+              
             </Col>
           </Row>
         </Grid>

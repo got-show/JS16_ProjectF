@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'file?name=favicon.png!./favicon.png';
 import { Router, Route, IndexRoute } from 'react-router';
-import Config from 'json!../config/config.json';
+// import Config from 'json!../config/config.json';
 
 import 'jquery';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -66,12 +66,3 @@ ReactDOM.render(
     <Route path="*" component={Site404}/>
   </Router>
 , document.getElementById('root'));
-
-// Google Analytics -->
-window.dataLayer = window.dataLayer || [];
-function gtag() {
-  window.dataLayer.push(arguments);
-}
-gtag('js', new Date());
-gtag('config', Config.google_analytics.key);
-// Google Analytics <--
