@@ -32,6 +32,7 @@ title {
 .character-photo img {
 	position: absolute;
 	min-width: 100%;
+	max-width: 130%;
 	height: 100%;
 	margin-left: 50%;
 	transform: translateX(-50%);

@@ -96,6 +96,10 @@ export default class CharacterDetailsMedia extends Component {
     }
 
     determineSbPlodDiff() {
+        if (!this.character.hasBook || !this.character.hasShow) {
+            return;
+        }
+
         let sbGraphic = (<i className="fas fa-skull"></i>);
 
         let sbPlodTitle, sbPlodText, sbPlodTextFinal, sbPlodQuote = (
