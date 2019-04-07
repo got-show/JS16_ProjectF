@@ -5,11 +5,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'file?name=favicon.png!./favicon.png';
 import { Router, Route, IndexRoute } from 'react-router';
+import Config from 'json!../config/config.json';
 
 import 'jquery';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-
 
 import App from './components/app/App.jsx';
 import About from './components/public/About/About.jsx';
@@ -70,8 +70,8 @@ ReactDOM.render(
 // Google Analytics -->
 window.dataLayer = window.dataLayer || [];
 function gtag() {
-  dataLayer.push(arguments);
+  window.dataLayer.push(arguments);
 }
 gtag('js', new Date());
-gtag('config', 'UA-75290217-1');
+gtag('config', Config.google_analytics.key);
 // Google Analytics <--

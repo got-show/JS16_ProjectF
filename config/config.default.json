@@ -1,6 +1,6 @@
 {
   "google_analytics": {
-    "key": "xxx"
+    "key": "UA-75290217-1",
   },
   "api": {
     "https": true,
