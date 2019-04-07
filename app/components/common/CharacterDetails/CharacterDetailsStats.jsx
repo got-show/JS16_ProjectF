@@ -3,30 +3,13 @@ import 'jquery';
 let {Component} = React;
 
 import './CharacterDetailsStats.css';
+import statsData from 'json!./stats.json';
 
 export default class CharacterDetailsStats extends Component {
     constructor(props) {
         super(props);
 
-        this.stats = {
-            nobles: {
-                total: 741,
-                dead: 135 // estimated
-            },
-            peasants: {
-                total: 742,
-                dead: 182 // estimated
-            },
-            male: {
-                total: 1194,
-                dead: 267
-            },
-            female: {
-                total: 289,
-                dead: 33
-            },
-            attributes: {"House Arryn":0.56,"House Baratheon of Dragonstone":1.05,"House Baratheon of King's Landing":1.32,"House Bolton":0.946,"House Frey":0.864,"House Greyjoy":0.697,"House Lannister":0.551,"House Martell":1.4,"House Stark":0.618,"House Targaryen":0.577,"House Tarly":0.372,"House Tully":1.61,"House Tyrell":1.58,"hasLovers":0.937,"hasTitles":1.13,"isMajor":0.844,"isMarried":0.443,"male":2.02}
-        };
+        this.stats = statsData;
     }
 
     init() {
@@ -111,23 +94,6 @@ export default class CharacterDetailsStats extends Component {
                 });
             }
         }
-
-        /*if (character && character.titles){
-            let index = this.stats.attributes.hasOwnProperty("hasTitles");
-
-            if (index) {
-                let value = this.stats.attributes["hasTitles"];
-                let change = value;
-
-                this.cards.push({
-                    title: this.charPronoun(true) + " has titles",
-                    type: "Title",
-                    text: "Having titles proportionally " + (change > 1 ? 'increases' : 'decreases') + " the predicted likelihood of death.",
-                    value: "Title",
-                    proportionalChange: (100 * change - 100).toPrecision(2)
-                });
-            }
-        }*/
 
         if (character && character.gender === 'male'){
             let index = this.stats.attributes.hasOwnProperty("male");

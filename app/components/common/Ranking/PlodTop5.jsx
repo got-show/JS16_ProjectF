@@ -34,27 +34,6 @@ export default class PlodTop5 extends Component {
     });
   }
 
-  getHardcodedPlodTop5() {
-    return [
-      {
-        name: 'Euron Greyjoy',
-        plod: '99.9'
-      }, {
-        name: 'Sansa Stark',
-        plod: '99.7'
-      }, {
-        name: 'Bronn',
-        plod: '99.3'
-      }, {
-        name: 'Meera',
-        plod: '99.2'
-      }, {
-        name: 'Podrick Payne',
-        plod: '99.2'
-      }
-    ];
-  }
-
   getRanking() {
     if (this.state.characters.length > 0) {
       let characters = this.state.characters;
@@ -76,7 +55,7 @@ export default class PlodTop5 extends Component {
 
       return ranking;
     } else {
-      return this.getHardcodedPlodTop5();
+      return [];
     }
   }
 

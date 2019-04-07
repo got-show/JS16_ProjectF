@@ -53,32 +53,11 @@ export default class Ranking extends Component {
     });
   }
 
-  getHardcodedSurvivors() {
-    return [
-      {
-        name: 'Edmure Tully',
-        plod: '0.8'
-      }, {
-        name: 'Robin Arryn',
-        plod: '1.2'
-      }, {
-        name: 'Daenerys Targaryen',
-        plod: '3.6'
-      }, {
-        name: 'Gilly',
-        plod: '4.0'
-      }, {
-        name: 'Jon Snow',
-        plod: '5.2'
-      }
-    ];
-  }
-
   getRanking() {
     if (this.state.ranking.length > 0) {
       return this.state.ranking;
     } else {
-      return this.getHardcodedSurvivors();
+      return [];
     }
   }
 

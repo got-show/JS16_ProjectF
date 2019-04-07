@@ -11,7 +11,6 @@
     "plugin:react/recommended"
   ],
   "parserOptions": {
-    // "ecmaVersion": 2017,
     "sourceType": "module",
     "ecmaFeatures": {
       "impliedStrict": true,
