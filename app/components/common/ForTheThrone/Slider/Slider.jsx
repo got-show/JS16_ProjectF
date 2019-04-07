@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import antagonistCharacters from 'json!../../../public/Start/antagonistCharacters.json';
 import { Slide } from 'react-slideshow-image';
-
+import * as Img from "../img";
 
 const properties = {
     transitionDuration: 500,
@@ -41,7 +41,7 @@ export default class Slider extends Component {
         }
         return smallCharsElems;
     }
-    
+
     render() {
         return (
             <Slide {...properties}>
@@ -53,7 +53,7 @@ export default class Slider extends Component {
                                 elem.map(function(e,i){
                                     return (
                                         <a className="fttCharacter" href={"/characters/" + e.name} key={i}>
-                                             <img src={"/ForTheThrone/img/" + e.key + "Small.png"} />
+                                             <img src={Img[e.key + "Small"]} />
                                             <div>{e.name}</div>
                                         </a>
                                     );
@@ -66,7 +66,7 @@ export default class Slider extends Component {
             </Slide>
         );
 
-        
+
     }
 
 }
