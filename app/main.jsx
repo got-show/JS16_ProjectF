@@ -36,13 +36,15 @@ browserHistory.listen(location => {
     ga('send', 'pageview');
 });
 
+function scrollBack() {
+  history.scrollRestoration = 'manual';
+  if (!window.location.href.includes("/characters/?")) {
+    window.scrollTo(0, 0);
+  }
+}
+
 ReactDOM.render(
-  <Router onUpdate={() => {
-    history.scrollRestoration = 'manual';
-    if (!window.location.href.includes("/characters/?")) {
-      window.scrollTo(0, 0);
-    }
-  }} history={browserHistory}>
+  <Router onUpdate={scrollBack} history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Start}/>
       <Route path="/ranking" component={Ranking}/>
