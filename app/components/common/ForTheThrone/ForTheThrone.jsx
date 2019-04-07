@@ -63,7 +63,7 @@ export default class ForTheThrone extends Component {
 
     render() {
         return (
-            <div id="fttContainer">
+            <div id="fttContainer" style={{backgroundImage: `url(${Img['texture']})`}}>
                 <p className={"header-copyright"}>© 2019 Home Box Office, Inc. / Sky All rights reserved.</p>
                 <LinkContainer to={'/characters/' + this.state.charLeft.name} >
                     <div className="fttCharArea fttLeft" style={{ cursor: 'pointer' }} >
@@ -87,10 +87,10 @@ export default class ForTheThrone extends Component {
                         <LinkContainer to={'/characters/' + this.state.charLeft.name} >
                             <img src={Img[this.state.charLeft.img]} id="fttCharLeftImg" className="fttCharImg fttLeft" />
                         </LinkContainer>
-                        <div className="fttCharTombstone fttCharLeftTombstone fttTombstonePlod">
+                        <div className="fttCharTombstone fttCharLeftTombstone fttTombstonePlod" style={{backgroundImage: `url(${Img['tombstone']})`}}>
                             {this.state.charLeftPlod.plod < 100 ? Math.round(this.state.charLeftPlod.plod) : 100} %
                         </div>
-                        <div className="fttCharTombstone fttCharLeftTombstone fttTombstoneQuestionMark">?</div>
+                        <div className="fttCharTombstone fttCharLeftTombstone fttTombstoneQuestionMark" style={{backgroundImage: `url(${Img['tombstone']})`}}>?</div>
                         <div id="fttCharLeftText" className="fttCharText">
                             <h2>{this.state.charLeft.question}</h2>
                             <p>
@@ -105,10 +105,10 @@ export default class ForTheThrone extends Component {
                         <LinkContainer to={'/characters/' + this.state.charRight.name}>
                             <img src={Img[this.state.charRight.img]} id="fttCharRightImg" className="fttCharImg fttRight" />
                         </LinkContainer>
-                        <div className="fttCharTombstone fttCharRightTombstone fttTombstonePlod">
+                        <div className="fttCharTombstone fttCharRightTombstone fttTombstonePlod" style={{backgroundImage: `url(${Img['tombstone']})`}}>
                             {this.state.charRightPlod.plod < 100 ? parseInt(this.state.charRightPlod.plod) : 100} %
                         </div>
-                        <div className="fttCharTombstone fttCharRightTombstone fttTombstoneQuestionMark">?</div>
+                        <div className="fttCharTombstone fttCharRightTombstone fttTombstoneQuestionMark" style={{backgroundImage: `url(${Img['tombstone']})`}}>?</div>
                         <div id="fttCharRightText" className="fttCharText">
                             <h2>{this.state.charRight.question}</h2>
                             <p>

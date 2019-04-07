@@ -1,7 +1,6 @@
 #fttContainer {
     position: relative;
     width: 100%;
-    background-image: url('/ForTheThrone/img/texture.jpg');
     background-position: -500px 0;
 }
 
@@ -126,7 +125,6 @@ p {
     width: 100px;
     box-sizing: border-box;
     padding-top: 60px;
-    background-image: url('/ForTheThrone/img/tombstone.png');
     background-size: 100PX 120px;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
@@ -465,9 +463,6 @@ p {
         background: #333;
         padding: 15px;
         border-radius: 10px;
-    }
-    #fttContainer {
-        background-image: url('/ForTheThrone/img/textureSmall.jpg');
     }
 
     .header-copyright {
