@@ -4,17 +4,8 @@ const fs = require('fs');
 const request = require('request-promise');
 const PlodC = express();
 
-PlodC.get('/statistic', function (req, res) {
-    res.status(200).send(getda());
-})
-
-// getda();  Uncomment to run automatically
-
-async function getda() {
-    var plod = [];
+PlodC.generate=async function()  {
     var characters = [];
-    var charsWithPlod = [];
-    let output = {};
     const BOOK_YEAR = 300;
 
     await getData();
@@ -230,4 +221,12 @@ async function getda() {
         return returnArray;
     }
 }
+
+PlodC.get('/statistic', function (req, res) {
+    res.status(200).send(PlodC.generate());
+})
+
+// getda();  Uncomment to run automatically
+
+
 module.exports = PlodC;

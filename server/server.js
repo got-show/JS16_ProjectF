@@ -3,8 +3,7 @@
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
-const wikirequest = require('./wikirequest.js');
-const plodC=require('./plodC.js');
+const generateStatistics=require('./generateStatistics.js');
 
 const app = express();
 
@@ -14,7 +13,7 @@ app.get('/sitemap.xml', function(req,res) {
   res.sendFile(path.join(__dirname, '../sitemap.xml'))
 });
 
-app.use('/plod',plodC);
+app.use('/generateStatistics',generateStatistics);
 
 app.use(express.static(path.join(__dirname, '../static')));
 
@@ -49,6 +48,7 @@ if (isProd) {
   app.get('*', function (req, res) {
    res.sendFile(path.join(__dirname, '../', 'build', 'index.html'));
    });
+  generateStatistics.generate();
 }
 
 let log = isDev ? 'Development' : '';

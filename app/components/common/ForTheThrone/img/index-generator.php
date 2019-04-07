@@ -15,7 +15,6 @@ $resultFile=fopen("index.js",'w') or die("Unable to open file!");
 $fileList=[];
 foreach ($files as $value) {
   $tmpFileInfo=explode(".", $value);
-  //todo Format file name fllow js variable
   if($tmpFileInfo[1]=="png"||$tmpFileInfo[1]=="jpg"||$tmpFileInfo[1]=="png"||$tmpFileInfo[1]=="jpg"){
     $fileList[]=$tmpFileInfo[0];
     $fileListLength= count($fileList);
