@@ -35,7 +35,7 @@ export default class MapComp extends Component {
   }
 
   initMap() {
-    let url = process.env.__PROTOCOL__ + process.env.__API_OLD__ + "api";
+    let url = process.env.__PROTOCOL__ + process.env.__API_OLD__ + "/api";
     let config = {
       'apiLocation': url,
       'personImageBaseUrl': process.env.__PROTOCOL__ + process.env.__API__,
