@@ -66,3 +66,12 @@ ReactDOM.render(
     <Route path="*" component={Site404}/>
   </Router>
 , document.getElementById('root'));
+
+// Google Analytics -->
+window.dataLayer = window.dataLayer || [];
+function gtag() {
+  dataLayer.push(arguments);
+}
+gtag('js', new Date());
+gtag('config', 'UA-75290217-1');
+// Google Analytics <--
