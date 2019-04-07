@@ -1,6 +1,6 @@
-## How do we predict likelihood of death?
+### How do we predict likelihood of death?
 
-### We use Machine Learning
+## We use Machine Learning
 
 [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning) is a technique that allows computers to make predictions for us. Machine Learning is not magic! Instead, it learns from a sufficiently large number of examples from the past to automatically compile statistics on them and to predict whether an event is likely to happen in the future. 
 
@@ -8,13 +8,13 @@ The _Song of Ice and Fire_ series is known for killing many characters, includin
 
 In this project, we wanted to find features that are common to all already dead characters and use these features to predict the percentage likelihood of death (PLOD) for yet alive characters, aka to answer the question - who is likely to die next?
 
-### Data extraction
+## Data extraction
 
  [The Wiki of Ice and Fire](http://awoiaf.westeros.org) and [Game of Thrones Wiki](https://gameofthrones.fandom.com/wiki/Game_of_Thrones_Wiki) are probably the best resources that summarize information from all 5 books and 8 seasons about each of ~2000 characters. For each character, we extracted from the wiki information about whether the character is dead or not. We also extracted other information  (i.e. features) that describe a character.
 
 After this step, we had a data set describing each character - dead or alive - by exactly the same features. Our next task was to find the feature set that can best distinguish dead from alive characters.
 
-### Bayesean Survival Analysis
+## Bayesean Survival Analysis
 
 Our first model aims to use techniques related to Bayesean Inference to examine the relationship of different features to a character’s longevity, similarly to how scientific studies might examine the effects of treatments and complications on cancer patients, or the correlations between seismic events.
 
@@ -30,7 +30,7 @@ We selected the following features for our analysis:
 *  Major/Minor character
 *  Male
 
-### Neural Network
+## Neural Network
 
 Another approach we tested was to train a neural network to predict the probability for a character to die in any given year. Similarly to the Bayesean model, this also allows us to construct a survival function, but the neural network can potentially look for more complex patterns than the Bayesean model will. The neural network can also potentially encapsulate more "surprising” deaths that the Bayesean model might consider to be random outliers.
 
@@ -47,7 +47,9 @@ In general, becoming older is still the most important factor regarding a charac
 
 Additionally, this allows predicting transitions in the PLOS over time: modifying a character's input age is easy and directly relates to changes in PLOS. Finally, the percentage likelihood of death we display next to the character is just the PLOS at the year season 8 will take place in, subtracted from 1.0.
 
-### Citations
+To wrap this up, let's look some statistics about the predictions and the neural network in general. First, the book wiki contained 484 usable characters in total, of which 188 were used for training (i.e. are already dead) and for the remaining 296 alive ones, predictions were created. In the end, training on the book data reached a 88.75% accuracy, compared to a final validation accuracy of 89.92%. Similarly, 146 usable characters could be extracted from the show wiki, 82 for training and 64 for predictions. The final training accuracy here was 79.64%, the final validation accuracy 85.69%.
+
+## Citations
 
 This article contains content from the Javascript Technology 2016 Seminar
 

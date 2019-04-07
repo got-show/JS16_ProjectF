@@ -1,0 +1,18 @@
+#plodDescription p {
+    margin-bottom: 25px;
+    line-height: 1.5em;
+    font-size: 1.1em;
+}
+
+#plodDescription h2, #plodDescription h3 {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+#plodDescription h2 {
+    font-size: 1.3em;
+}
+
+#plodDescription h3 {
+    font-size: 2em;
+}

@@ -3,11 +3,12 @@ let {Component} = React;
 import { Row, Col } from 'react-bootstrap';
 
 import PlodDescriptionText from '../../../../config/markdown/plod-description.md';
+import './PlodDescription.css';
 
 export default class PlodDescription extends Component {
     render() {
         return (
-            <div>
+            <div id="plodDescription">
                 <br/>
                 <Row>
                     <Col xs={10} xsOffset={1} sm={10} smOffset={1} md={8} mdOffset={2}>
