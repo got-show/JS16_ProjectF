@@ -5,6 +5,9 @@
   "api": {
     "https": true,
     "host": "gotdata.northeurope.cloudapp.azure.com",
+    "hostOld": "api.got.show",
+    "hostTiles": "tiles.got.show",
+    "wiki": "awoiaf.westeros.org",
     "port": "443",
     "prefix": "/api/"
   },
