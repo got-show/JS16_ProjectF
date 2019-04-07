@@ -226,7 +226,4 @@ PlodC.get('/statistic', function (req, res) {
     res.status(200).send(PlodC.generate());
 })
 
-// getda();  Uncomment to run automatically
-
-
 module.exports = PlodC;
