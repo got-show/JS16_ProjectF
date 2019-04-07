@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 
 var PATH_CLIENT = path.join(__dirname, '../app');
-var PATH_DIST = path.join(__dirname, '../docs');
+var PATH_DIST = path.join(__dirname, '../build');
 
 var analytics, api, apiport, https, prefix;
 try {
