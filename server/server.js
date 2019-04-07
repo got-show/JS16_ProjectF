@@ -15,7 +15,6 @@ app.get('/sitemap.xml', function(req,res) {
 });
 
 app.use('/plod',plodC);
-app.use('/wikirequest', wikirequest);
 
 app.use(express.static(path.join(__dirname, '../static')));
 

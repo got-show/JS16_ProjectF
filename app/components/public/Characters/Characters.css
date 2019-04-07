@@ -55,7 +55,6 @@ title {
 }
 
 .character-name-background {
-	/*background-color: rgba(0, 0, 0, 0.3);*/
 	z-index: -1;
 	position: absolute;
 	top: 0;
