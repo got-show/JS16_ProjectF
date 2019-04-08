@@ -1,6 +1,6 @@
 import AryaStark from './AryaStark.png';
 import AryaStarkSmall from './AryaStarkSmall.png';
-import BrandonStarkSmall from './BrandonStarkSmall.png';
+import BranStarkSmall from './BranStarkSmall.png';
 import BrienneOfTarth from './BrienneOfTarth.png';
 import BrienneOfTarthSmall from './BrienneOfTarthSmall.png';
 import BronnSmall from './BronnSmall.png';
@@ -35,7 +35,7 @@ import VarysSmall from './VarysSmall.png';
 export {
   AryaStark,
   AryaStarkSmall,
-  BrandonStarkSmall,
+  BranStarkSmall,
   BrienneOfTarth,
   BrienneOfTarthSmall,
   BronnSmall,

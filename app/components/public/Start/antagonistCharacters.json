@@ -54,8 +54,8 @@
             "description" : "How does being a member of House Stark affect his chances at surviving in the world of Westeros?",
             "quote": "You are a Stark. You may not have my name, but you have my blood."
         },
-        "BrandonStark": {
-            "name": "Brandon Stark",
+        "BranStark": {
+            "name": "Bran Stark",
             "question": "Can the Three-Eyed Raven affect the course of war?",
             "description": "How does being a member of House Stark affect his chances at surviving in the world of Westeros?",
             "quote": "I remember what it felt like to be Brandon Stark, but I remember so much else now."
