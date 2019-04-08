@@ -6,7 +6,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./server/server.js",
     "build": "cross-env NODE_ENV=production node ./server/generateStatistics.js &&  cross-env NODE_ENV=production  node_modules/.bin/webpack --config ./configWebpack/prod.js --bail --progress",
-    "serve": "cross-env NODE_ENV=production node ./server/server.js"
+    "serve": "cross-env NODE_ENV=production node ./server/server.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/Rostlab/JS16_ProjectF/issues"
   },
-  "homepage": "https://github.com/Rostlab/JS16_ProjectF#readme",
+  "homepage": "https://got-show.github.io/got.show",
   "dependencies": {
     "autoprefixer": "^6.3.3",
     "babel-core": "^6.6.4",
@@ -45,6 +47,7 @@
     "fs": "0.0.1-security",
     "fs-promise": "^0.5.0",
     "ga-react-router": "^2.0.0",
+    "gh-pages": "^2.0.1",
     "gotdailysentiment": "latest",
     "gotmap": "latest",
     "gotsentimental": "latest",
