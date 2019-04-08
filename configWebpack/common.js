@@ -34,6 +34,8 @@ try {
 }
 
 var config = {
+  PATH_CLIENT:PATH_CLIENT,
+  PATH_DIST:PATH_DIST,
   entry: [
     PATH_CLIENT + "/main.jsx"
   ],
