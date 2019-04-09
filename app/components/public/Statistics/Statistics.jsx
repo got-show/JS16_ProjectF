@@ -14,8 +14,13 @@ import Survivors from '../../common/Ranking/Survivors';
 export default class Statistics extends Component {
   componentDidMount() {
     Char();
-
+    window.addEventListener("resize", Char.bind(this));
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", Char.bind(this));
+  }
+
   render() {
     return (<Grid id="Statistics">
       <Row className="chart-row first-chart-row">

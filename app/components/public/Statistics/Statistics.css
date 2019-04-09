@@ -53,6 +53,12 @@
   right: 40px;
 }
 
+.goog-tooltip {
+  color: black !important;
+  margin: 0 !important;
+  background: none !important;
+}
+
 @media (min-width: 992px) {
   #Statistics .simple-info .card>* {
     text-align: left;
@@ -68,6 +74,7 @@
 
   #Statistics .chart-row .card {
     margin-bottom: 0;
+    padding: 5px !important;
   }
 
   #Statistics .card{
