@@ -47,14 +47,22 @@ export default class ForTheThrone extends Component {
             plodRight = plods[0];
         }
 
-        if (plods[0] && plods[1]) {
-            plodLeft.plod = plodLeft.plodB * 100;
-            plodRight.plod = plodRight.plodB * 100;
-            this.setState({
-                charLeftPlod: plodLeft,
-                charRightPlod: plodRight
-            });
+        if (plodLeft !== undefined) {
+            plodLeft.plod = isNaN(plodLeft.plodB) ? 100 : plodLeft.plodB * 100;
+        } else {
+            plodLeft = {plod: 100};
         }
+
+        if (plodRight !== undefined) {
+            plodRight.plod = isNaN(plodRight.plodB) ? 100 : plodRight.plodB * 100;
+        } else {
+            plodRight = {plod: 100};
+        }
+
+        this.setState({
+            charLeftPlod: plodLeft,
+            charRightPlod: plodRight
+        });
     }
 
     componentWillUnmount() {
@@ -106,7 +114,7 @@ export default class ForTheThrone extends Component {
                             <img src={Img[this.state.charRight.img]} id="fttCharRightImg" className="fttCharImg fttRight" />
                         </LinkContainer>
                         <div className="fttCharTombstone fttCharRightTombstone fttTombstonePlod" style={{backgroundImage: `url(${Img['tombstone']})`}}>
-                            {this.state.charRightPlod.plod < 100 ? parseInt(this.state.charRightPlod.plod) : 100} %
+                            {this.state.charRightPlod.plod < 100 ? Math.round(this.state.charRightPlod.plod) : 100} %
                         </div>
                         <div className="fttCharTombstone fttCharRightTombstone fttTombstoneQuestionMark" style={{backgroundImage: `url(${Img['tombstone']})`}}>?</div>
                         <div id="fttCharRightText" className="fttCharText">
