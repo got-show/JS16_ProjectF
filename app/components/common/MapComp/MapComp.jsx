@@ -85,7 +85,6 @@ export default class MapComp extends Component {
     };
     
     var mymap = gotmap('#map', config); /*eslint no-undef:0*/
-    //console.log(mymap); /*eslint no-console:0,no-undef:0*/
 
 
     var range = this.props.begintimeline !== undefined ? this.parseRange() : [1, 50];
@@ -98,8 +97,6 @@ export default class MapComp extends Component {
     for (let i of this.props.character) {
       setTimeout(function() { /*eslint no-undef:0*/
         let character = mymap.searchCharacter(i.toLowerCase());
-        console.log(mymap, character); /*eslint no-console:0,no-undef:0*/
-
         if (character) {
           mymap.addCharacter(character[0]);
         }
