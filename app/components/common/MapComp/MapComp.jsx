@@ -35,16 +35,40 @@ export default class MapComp extends Component {
   }
 
   initMap() {
-    let url = process.env.__PROTOCOL__ + process.env.__API_OLD__ + "/api";
+    let url = process.env.__PROTOCOL__ + process.env.__API__ + "/api";
+    //consoleconsole.log(url); /*eslint no-console:0,no-undef:0*/
+    /*let config = {
+      'apiLocation': url,
+      'personImageBaseUrl': process.env.__PROTOCOL__ + process.env.__API__,
+      'characterDataSource': '/book/characters',
+      'cityDataSource': '/book/cities',
+      'realmDataSource': '/book/regions',
+      'pathDataSource': '/book/characterPaths',
+      'episodeDataSource': '/show/episodes',
+      'pinDataSource': '/book/characterLocations',
+      'characterBox': '#characters',
+      'timeline': '#timeline',
+      'filter': '#filter input',
+      'bgTiles': process.env.__PROTOCOL__ + process.env.__API_TILES__ + '/bg/{z}/y{y}x{x}.png',
+      'labelTiles': process.env.__PROTOCOL__ + process.env.__API_TILES__ + '/labels/{z}/y{y}x{x}.png',
+      'errorTile': process.env.__PROTOCOL__ + process.env.__API_TILES__ + '/blank.png',
+      'characterDetails': function(modal, character) {
+        browserHistory.push('/characters/' + character.name);
+        $("body").removeClass("modal-open");
+        $(".gotmap-modal").remove();
+        $(".modal-backdrop").remove();
+      },
+      'cityDetails': this.handleCityClick
+    };*/
     let config = {
       'apiLocation': url,
       'personImageBaseUrl': process.env.__PROTOCOL__ + process.env.__API__,
-      'characterDataSource': '/characters',
-      'cityDataSource': '/cities',
-      'realmDataSource': '/regions',
-      'pathDataSource': '/characters/paths',
-      'episodeDataSource': '/episodes',
-      'pinDataSource': '/characters/locations',
+      'characterDataSource': '/map/characters',
+      'cityDataSource': '/book/cities',
+      'realmDataSource': '/book/regions',
+      'pathDataSource': '/map/characterpaths',
+      'episodeDataSource': '/map/episodes',
+      'pinDataSource': '/map/characterlocations',
       'characterBox': '#characters',
       'timeline': '#timeline',
       'filter': '#filter input',
@@ -61,6 +85,7 @@ export default class MapComp extends Component {
     };
     
     var mymap = gotmap('#map', config); /*eslint no-undef:0*/
+    //console.log(mymap); /*eslint no-console:0,no-undef:0*/
 
 
     var range = this.props.begintimeline !== undefined ? this.parseRange() : [1, 50];
@@ -73,7 +98,11 @@ export default class MapComp extends Component {
     for (let i of this.props.character) {
       setTimeout(function() { /*eslint no-undef:0*/
         let character = mymap.searchCharacter(i.toLowerCase());
-        mymap.addCharacter(character[0]);
+        console.log(mymap, character); /*eslint no-console:0,no-undef:0*/
+
+        if (character) {
+          mymap.addCharacter(character[0]);
+        }
       }, 5000);
     }
   }

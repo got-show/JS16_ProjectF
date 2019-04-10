@@ -6,7 +6,7 @@ import $ from 'jquery';
 import './Characters.css';
 import { Row, Col, Grid, ProgressBar } from 'react-bootstrap';
 
-//import MapComp from '../../common/MapComp/MapComp.jsx';
+import MapComp from '../../common/MapComp/MapComp.jsx';
 import Store from '../../../stores/CharactersStore';
 import Actions from '../../../actions/CharactersActions';
 import CharacterDetailsMedia from '../../common/CharacterDetails/CharacterDetailsMedia.jsx';
@@ -265,7 +265,7 @@ export default class Character extends Component {
                         <CharacterDetailsStats data={this.state} />
                     </Col>
                 </Row>}
-                {/*<Row>
+                <Row>
                     <Col md={12}>
                         <hr />
                         <div className="sectionHeader">
@@ -276,7 +276,7 @@ export default class Character extends Component {
                             <MapComp character={[this.props.params.id]} />
                         </div>
                     </Col>
-                </Row>*/}
+                </Row>
                 <br />
                 <Row>
                     <Col md={12}>
