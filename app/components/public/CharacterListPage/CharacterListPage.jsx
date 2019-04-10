@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import window from 'global/window';
 import document from 'global/document';
@@ -37,7 +36,29 @@ const plodDesc = {
   sortText: "Death chance",
   sort: {field: "plod", type: -1}
 };
-
+const BookShow={
+  bookshow:{
+    text:'Books & TV Show',
+    filter: {
+      book:false,
+      show:false
+    }
+  },
+  book:{
+    text:'Books',
+    filter: {
+      book:false,
+      show:true
+    }
+  },
+  show:{
+    text:'TV Show',
+    filter: {
+      book:true,
+      show:false
+    }
+  }
+};
 export default class CharacterListPage extends Component {
     constructor (props) {
       super(props);
@@ -68,18 +89,33 @@ export default class CharacterListPage extends Component {
         sortText =  popularity.sortText;
         sort = popularity.sort;
       }
+
+      let filter={'value': '', "book": false, "show": false};
+      let bookShowfilterText=BookShow.bookshow.text;
+      if( this.props.location.query.value != undefined){
+        filter.value=this.props.location.query.value;
+      }
+      if( this.props.location.query.book == 'true'){
+        filter.value=this.props.location.query.value;
+        filter.book=true;
+        bookShowfilterText=BookShow.book.text;
+      }
+      if( this.props.location.query.show == 'true'){
+        filter.value=this.props.location.query.value;
+        filter.show=true;
+        bookShowfilterText=BookShow.show.text;
+      }
       this.state = {
         data: Store.getCharacters(page,sort, {'value': '', "book": false, "show": false}),
         activePage: page,
-        filter: {'value': '', "book": false, "show": false},
+        filter: filter,
         loaded: false,
-        filterText: 'Books & TV Show',
+        bookShowfilterText: bookShowfilterText,
         sortText: sortText,
         sort: sort,
         text_changed: false,
         infiniteScrolling: true
       };
-
       this._onChange = this._onChange.bind(this);
     }
 
@@ -104,16 +140,20 @@ export default class CharacterListPage extends Component {
         loaded: true
       });
     }
-    pushHistory(newPage,newSort) {
-      let search = '?search=' + this.refs.input.getValue();
-      let page = '&page=';
+    pushHistory(newPage,newSort,newFilter) {
+      let search = '?';
+      let page = 'page=';
       page  += (newPage == undefined) ? this.state.activePage : newPage;
       let sort = '&sort=';
       sort += (newSort == undefined) ? this.state.sort.field : newSort.field;
       let order = '&order=';
       order += (newSort == undefined) ? this.state.sort.type : newSort.type;
-
-      let query = search + page + sort + order;
+      let tmpFilter=(newFilter==undefined)?this.state.filter:newFilter;
+      let filter='';
+      for(let key in tmpFilter){
+        filter+='&'+key+'='+tmpFilter[key];
+      }
+      let query = search + page + sort + order + filter;
       browserHistory.push({
         pathname: '/characters/',
         search: query
@@ -147,13 +187,11 @@ export default class CharacterListPage extends Component {
       if (loadMoreBoundingRect.top < window.innerHeight - 50) {
         return true;
       }
-
       return false;
     }
 
     handleLoadMore() {
       let newPage = this.state.activePage + 1;
-
       this.setState({
         data: [...this.state.data, ...Store.getCharacters(newPage, this.state.sort, this.state.filter)],
         activePage: newPage
@@ -164,30 +202,27 @@ export default class CharacterListPage extends Component {
 
     handleSelectFilter(event, eventKey) { // Event triggered by sort change
       let tmpFilter=Object.assign({},this.state.filter);
-      let filterText;
+      let bookShowfilterText;
       if(eventKey == 0) {
         tmpFilter.book=false;
         tmpFilter.show=false;
-
-        filterText='Books & TV Show';
+        bookShowfilterText=BookShow.bookshow.text;
       } else if(eventKey == 1) {
         tmpFilter.book=true;
         tmpFilter.show=false;
-        filterText='Books';
+        bookShowfilterText=BookShow.book.text;
       } else if(eventKey == 2) {
         tmpFilter.book=false;
         tmpFilter.show=true;
-        filterText='TV Show';
+        bookShowfilterText=BookShow.show.text;
       }
-      // console.log('tmpFilter');
-      // console.log(tmpFilter);
       this.setState({
         data: Store.getCharacters(1,this.state.sort,tmpFilter),
         filter:tmpFilter,
-        filterText:filterText,
+        bookShowfilterText:bookShowfilterText,
         activePage: 1
       });
-
+      this.pushHistory(undefined,undefined,tmpFilter);
     }
 
     handleSelectSort(event, eventKey) { // Event triggered by sort change
@@ -264,11 +299,11 @@ export default class CharacterListPage extends Component {
         <div>
           <Row className="inputbar">
             <Col md={6} mdOffset={1}>
-              <Input value={this.props.location.query.search} className="character-search" ref="input" type="text" placeholder="Search for character" onChange={this.handleChange.bind(this)} />
+              <Input value={this.props.location.query.value} className="character-search" ref="input" type="text" placeholder="Search for character" onChange={this.handleChange.bind(this)} />
             </Col>
 
             <Col md={2} className="sortCol">
-              <DropdownButton className="sortButton" onSelect={this.handleSelectFilter.bind(this)} title={this.state.filterText} id="dropdown-size-medium">
+              <DropdownButton className="sortButton" onSelect={this.handleSelectFilter.bind(this)} title={this.state.bookShowfilterText} id="dropdown-size-medium">
                 <MenuItem eventKey="1">Books</MenuItem>
                 <MenuItem eventKey="2">TV Show</MenuItem>
                 <MenuItem eventKey="0">Books & TV Show</MenuItem>
@@ -316,7 +351,6 @@ export default class CharacterListPage extends Component {
               onSelect={this.handleSelectPage.bind(this)} />
           </div>
         </div>
-
       );
     }
 }

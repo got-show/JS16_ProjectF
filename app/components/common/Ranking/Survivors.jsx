@@ -73,7 +73,6 @@ export default class Ranking extends Component {
               <h4>
                 <Link to={'/characters/' + char.name}>
                   {char.name}
-                  
                 </Link>
               </h4>
             </td>
@@ -84,7 +83,7 @@ export default class Ranking extends Component {
         </tbody>
       </table>
       <p className="see-more">
-        <Link to={'/characters/?search=&page=1&sort=plod&order=1'}>See more</Link>
+        <Link to={'/characters/?search=&page=1&sort=plod&order=1&show=true'}>See more</Link>
       </p>
     </div>);
   }

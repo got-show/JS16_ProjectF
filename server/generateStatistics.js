@@ -1,21 +1,29 @@
 const express = require('express');
 const fs = require('fs');
-
 const request = require('request-promise');
 const PlodC = express();
+const Config =require('../config/config.json');
 
 PlodC.generate = async function() {
   var characters = [];
   const BOOK_YEAR = 300;
 
-  await getData();
-  return calculation();
+  await getData()
+    .then(function(){
+      calculation();
+    }).catch(function(e){
+      console.log(e);
+    });
+  return ;
 
   async function getData() {
     console.log("getData started");
-
-    await request("https://gotdata.northeurope.cloudapp.azure.com/api/book/characters").then(function(res) {
-      console.log("ajax1 is success");
+    let url=Config.api.https?'https://':'http';
+    url+=Config.api.host+':'+Config.api.port+Config.api.prefix;
+    url+="book/characters";
+    console.log(url);
+    await request(url).then(function(res) {
+      console.log("Got data");
       characters = JSON.parse(res);
       console.log("characters has type " + typeof characters);
       console.log(characters.length);
@@ -258,5 +266,5 @@ PlodC.get('/statistic', function(req, res) {
 
 if (process.env.NODE_ENV === 'production')
   {PlodC.generate();}
-  
+
 module.exports = PlodC;

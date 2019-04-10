@@ -6,7 +6,7 @@ import Store from '../../../stores/CharactersStore';
 import Actions from '../../../actions/CharactersActions';
 
 export default class PlodTop5 extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -69,9 +69,9 @@ export default class PlodTop5 extends Component {
               return <tr key={char.name}>
               <td>
                 <h4>
-                  <Link to={'/characters/' + char.name}>
+                  <Link to={'/characters/' + char.name }>
                     {char.name}
-                    
+
                   </Link>
                 </h4>
               </td>
@@ -82,7 +82,7 @@ export default class PlodTop5 extends Component {
         </tbody>
       </table>
       <p className="see-more">
-        <Link to={'/characters/?search=&page=1&sort=plod&order=-1'}>See more</Link>
+        <Link to={'/characters/?search=&page=1&sort=plod&order=-1&show=true'}>See more</Link>
       </p>
     </div>);
   }
