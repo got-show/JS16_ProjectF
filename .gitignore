@@ -41,5 +41,6 @@ config.json
 #crawled files by d4
 csv
 
-
+#build
+build
 package-lock.json

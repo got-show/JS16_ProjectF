@@ -31,7 +31,7 @@ export default class Header extends Component {
           </Row>
         </Grid>
       </div>
-      <Navbar inverse="inverse">
+      <Navbar inverse={true}>
         <Navbar.Header>
           <Navbar.Brand>
             <IndexLinkContainer to={{

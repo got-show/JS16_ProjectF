@@ -53,7 +53,10 @@ var config = {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: [
+          /node_modules/,
+          /gotmap/
+        ],
         loader:  'babel',
         query: {
           presets: ['es2015', 'react']
