@@ -14,7 +14,7 @@ PlodC.generate = async function() {
   async function getData() {
     console.log("getData started");
 
-    await request("https://gotdata.northeurope.cloudapp.azure.com/api/book/characters").then(function(res) {
+    await request("https://api.got.show/api/book/characters").then(function(res) {
       console.log("ajax1 is success");
       characters = JSON.parse(res);
       console.log("characters has type " + typeof characters);
