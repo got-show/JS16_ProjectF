@@ -54,11 +54,11 @@ function filterCharacters(characters, filter) {
     return characters.filter(function(element) {
       var matchFound = false;
       if (element.hasOwnProperty(Constants.FILTER_FIELD_NAME)) {
-        matchFound |= element[Constants.FILTER_FIELD_NAME].toLowerCase().indexOf(filter.value.toLowerCase()) >= 0;
+        matchFound |= element[Constants.FILTER_FIELD_NAME].toLowerCase().indexOf(filter.match.toLowerCase()) >= 0;
       } else if (!matchFound && element.hasOwnProperty(Constants.FILTER_FIELD_HOUSE)) {
-        matchFound |= element[Constants.FILTER_FIELD_HOUSE].toLowerCase().indexOf(filter.value.toLowerCase()) >= 0;
+        matchFound |= element[Constants.FILTER_FIELD_HOUSE].toLowerCase().indexOf(filter.match.toLowerCase()) >= 0;
       } else if (!matchFound && element.hasOwnProperty(Constants.FILTER_FIELD_CULTURE)) {
-        matchFound |= element[Constants.FILTER_FIELD_CULTURE].toLowerCase().indexOf(filter.value.toLowerCase()) >= 0;
+        matchFound |= element[Constants.FILTER_FIELD_CULTURE].toLowerCase().indexOf(filter.match.toLowerCase()) >= 0;
       }
 
       matchFound &= !filter.book || element.hasBook;
@@ -73,7 +73,7 @@ var CharactersStore = assign({}, EventEmitter.prototype, {
 
   getCharacters: function(page, sort, filter) {
     // sort = {field: Constants.SORT_FIELD_NAME, type: Constants.SORT_TYPE_ASC};
-    // filter = {value: "targa"};
+    // filter = {match: "targa"};
     if (!page) {
       page = 1
     }

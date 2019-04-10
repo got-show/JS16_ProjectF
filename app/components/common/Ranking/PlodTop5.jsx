@@ -42,11 +42,9 @@ export default class PlodTop5 extends Component {
       if (characters.length >= 5) {
         for (let i = characters.length - 1; i >= 0; i--) {
           let char = characters[i];
-
           if (char.pagerank.rank > 400) {
             ranking.push({name: char.name, plod: (100 * char.plodB).toFixed(1)});
           }
-
           if (ranking.length === 5) {
             break;
           }
@@ -71,7 +69,6 @@ export default class PlodTop5 extends Component {
                 <h4>
                   <Link to={'/characters/' + char.name }>
                     {char.name}
-
                   </Link>
                 </h4>
               </td>
@@ -82,7 +79,7 @@ export default class PlodTop5 extends Component {
         </tbody>
       </table>
       <p className="see-more">
-        <Link to={'/characters/?search=&page=1&sort=plod&order=-1&show=true'}>See more</Link>
+        <Link to={'/characters/?match=&page=1&sort=plod&order=-1&show=true'}>See more</Link>
       </p>
     </div>);
   }

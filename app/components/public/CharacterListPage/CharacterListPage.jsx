@@ -90,23 +90,21 @@ export default class CharacterListPage extends Component {
         sort = popularity.sort;
       }
 
-      let filter={'value': '', "book": false, "show": false};
+      let filter={'match': '', "book": false, "show": false};
       let bookShowfilterText=BookShow.bookshow.text;
-      if( this.props.location.query.value != undefined){
-        filter.value=this.props.location.query.value;
+      if( this.props.location.query.match != undefined){
+        filter.match=this.props.location.query.match;
       }
       if( this.props.location.query.book == 'true'){
-        filter.value=this.props.location.query.value;
         filter.book=true;
         bookShowfilterText=BookShow.book.text;
       }
       if( this.props.location.query.show == 'true'){
-        filter.value=this.props.location.query.value;
         filter.show=true;
         bookShowfilterText=BookShow.show.text;
       }
       this.state = {
-        data: Store.getCharacters(page,sort, {'value': '', "book": false, "show": false}),
+        data: Store.getCharacters(page,sort, {'match': '', "book": false, "show": false}),
         activePage: page,
         filter: filter,
         loaded: false,
@@ -141,8 +139,8 @@ export default class CharacterListPage extends Component {
       });
     }
     pushHistory(newPage,newSort,newFilter) {
-      let search = '?';
-      let page = 'page=';
+      let search = '?match=' + this.refs.input.getValue();
+      let page = '&page=';
       page  += (newPage == undefined) ? this.state.activePage : newPage;
       let sort = '&sort=';
       sort += (newSort == undefined) ? this.state.sort.field : newSort.field;
@@ -151,7 +149,9 @@ export default class CharacterListPage extends Component {
       let tmpFilter=(newFilter==undefined)?this.state.filter:newFilter;
       let filter='';
       for(let key in tmpFilter){
+        if(key!='match'){
         filter+='&'+key+'='+tmpFilter[key];
+        }
       }
       let query = search + page + sort + order + filter;
       browserHistory.push({
@@ -273,7 +273,7 @@ export default class CharacterListPage extends Component {
 
     handleChange() { // Event triggered by search input
       let tmpFilter =Object.assign({},this.state.filter);
-      tmpFilter.value=this.refs.input.getValue();
+      tmpFilter.match=this.refs.input.getValue();
       if (!this.state.text_changed) { // On page load loading
         this.setState({
           text_changed: true,
@@ -299,7 +299,7 @@ export default class CharacterListPage extends Component {
         <div>
           <Row className="inputbar">
             <Col md={6} mdOffset={1}>
-              <Input value={this.props.location.query.value} className="character-search" ref="input" type="text" placeholder="Search for character" onChange={this.handleChange.bind(this)} />
+              <Input value={this.props.location.query.match} className="character-search" ref="input" type="text" placeholder="Search for character" onChange={this.handleChange.bind(this)} />
             </Col>
 
             <Col md={2} className="sortCol">
