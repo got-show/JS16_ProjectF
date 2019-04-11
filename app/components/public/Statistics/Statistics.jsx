@@ -25,13 +25,13 @@ export default class Statistics extends Component {
     return (<Grid id="Statistics">
       <Row className="chart-row first-chart-row">
         <Col md={4} >
-          <div className="card">
-            <Survivors className="ranking"/>
+          <div className="card ranking">
+            <Survivors/>
           </div>
         </Col>
         <Col md={4} >
-          <div className="card">
-            <PlodTop5 className="ranking"></PlodTop5>
+          <div className="card ranking">
+            <PlodTop5/>
           </div>
         </Col>
         <Col md={4} className="simple-info">

@@ -15,7 +15,7 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px;
-  padding: 30px !important;
+  padding: 30px;
   box-sizing: border-box;
   background-color: #353535;
   border: 1px solid #999;
@@ -34,8 +34,6 @@
 }
 
 #Statistics .simple-info .card {
-  padding-top: 0;
-  padding-bottom: 0;
   height: calc(100%/3) !important;
 }
 
@@ -72,12 +70,22 @@
     margin-bottom: 0;
   }
 
-  #Statistics .chart-row .card {
-    margin-bottom: 0;
-    padding: 5px !important;
+  #Statistics .card {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+
+  #Statistics .chart-row:not(:first-child) .card {
+    padding: 8px;
   }
 
-  #Statistics .card{
-    margin-top: 20px;
+  #Statistics .chart-row:first-child .ranking {
+    padding-bottom: 60px;
+  }
+
+  #Statistics .chart-row:first-child .see-more {
+    font-size: 1.4em;
   }
 }
