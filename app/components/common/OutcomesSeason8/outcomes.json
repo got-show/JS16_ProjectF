@@ -1,0 +1,52 @@
+{
+    "characters": {
+        "JonSnow": {
+            "name": "Jon Snow",
+            "outcome": "Jon Snow has failed",
+            "comment": "We sure didn't expect that! Who can save the North now?",
+            "plod": 12,
+            "episode": 6,
+            "image": "tmp"
+        },
+        "DaenerysTargaryen": {
+            "name": "Daenerys Targaryen",
+            "outcome": "Daenerys Targaryen is ashes",
+            "comment": "What a shocker! Looks like she wasn't the prince or princess who was promised after all...",
+            "plod": 1,
+            "episode": 6,
+            "image": "tmp"
+        },
+        "Bronn": {
+            "name": "Bronn",
+            "outcome": "Bronn bites the dust",
+            "comment": "We expected this to happen, as he was the character with the highest PLOD.",
+            "plod": 4,
+            "episode": 6,
+            "image": "tmp"
+        },
+        "SansaStark": {
+            "name": "Sansa Stark",
+            "outcome": "Sansa Stark is dead",
+            "comment": "Our algorithm didn't think that Sansa would survive this season either.",
+            "plod": 76,
+            "episode": 5,
+            "image": "tmp"
+        },
+        "AryaStark": {
+            "name": "Arya Stark",
+            "outcome": "Arya Stark has met Death",
+            "comment": "Her fate could've gone either way, so seeing Arya's story end was very suspenseful.",
+            "plod": 48,
+            "episode": 3,
+            "image": "tmp"
+        },
+        "GregorClegane": {
+            "name": "Gregor Clegane",
+            "outcome": "Gregor Clegane didn't make it",
+            "comment": "Another one of our 'favourites' for the death list! Gregor Clegane didn't last long.",
+            "plod": 13,
+            "episode": 2,
+            "image": "tmp"
+        }
+    }
+}

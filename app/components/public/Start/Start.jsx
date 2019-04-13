@@ -9,6 +9,7 @@ import ForTheThrone from '../../common/ForTheThrone/ForTheThrone.jsx';
 import PlodTop5 from '../../common/Ranking/PlodTop5';
 import Survivors from '../../common/Ranking/Survivors';
 import MapComp from '../../common/MapComp/MapComp.jsx';
+import Outcomes from '../../common/OutcomesSeason8/Outcomes.jsx';
 
 export default class Start extends Component {
 
@@ -66,6 +67,11 @@ export default class Start extends Component {
               <div className="center">{this.state.charLeft.name}'s and {this.state.charRight.name}'s location history on a map:</div><br />
               <MapComp character={[this.state.charLeft.name, this.state.charRight.name]}/>
               
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12}>
+                <Outcomes />
             </Col>
           </Row>
         </Grid>

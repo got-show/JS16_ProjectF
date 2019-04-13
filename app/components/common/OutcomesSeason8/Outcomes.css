@@ -1,0 +1,108 @@
+#outcomes .card {
+	box-sizing: border-box;
+    position: relative;
+
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	border: none;
+    transition: 0.3s;
+    border-radius: 5px;
+
+	background-color: #353535;
+	padding: 0 !important;
+	padding-bottom: 30px !important;
+
+    display: inline-block;
+    width: calc(25% - 16px);
+    margin-right: 8px;
+    vertical-align: top;
+
+    height: 280px;
+	font-size: 12px;
+	text-align: left;
+}
+
+#outcomes .leftImage {
+	display: inline-block;
+	width: 40px;
+	margin-left: 10px;
+	padding-top: 10px;
+	vertical-align: top;
+}
+
+#outcomes .leftImage img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+#outcomes .rightTitle {
+	display: inline-block;
+	width: calc(100% - 50px);
+	padding: 0 10px;
+	padding-top: 10px;
+	vertical-align: top;
+	text-align: left;
+}
+
+#outcomes .rightTitle h4 {
+	font-size: 1em;
+	margin: 0;
+	height: 2.4em;
+}
+
+#outcomes .rightTitle .diedInEpisode {
+	font-size: 1sem;
+	margin: 0;
+	color: #999;
+}
+
+#outcomes .comment {
+	font-size: 1em;
+	padding: 10px;
+}
+
+#outcomes .card .link {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+    display: block;
+    text-align: right;
+    font-size: 1em;
+    font-family: 'Cinzel', cursive;
+}
+
+#outcomes .react-slideshow-wrapper {
+    margin: 0 15px;
+}
+
+#outcomes .react-slideshow-container > div:last-of-type,
+#outcomes .react-slideshow-container > div:first-of-type {
+	padding-left: 0;
+}
+
+#outcomes .react-slideshow-container {
+	margin-right: 0;
+	margin-left: 0;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#outcomes .card .top-img {
+    width: 100%;
+    height: 55%;
+	background-size: cover;
+    background-position: center center;
+    text-align: center;
+    user-select: none;
+}
+
+#outcomes .card .top-img > div {
+    position: relative;
+    transform: translateY(-50%);
+    top: 50%;
+}
+
+#outcomes .card .top-img .plod {
+	font-size: 4em;
+	font-family: 'Cinzel', cursive;
+}

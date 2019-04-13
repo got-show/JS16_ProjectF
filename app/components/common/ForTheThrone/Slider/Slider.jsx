@@ -28,9 +28,10 @@ export default class Slider extends Component {
         let keys = Object.keys(antagonistCharacters.characters);
         let size = 4;
         for (let i = 0; i < (keys.length/size); i++) {
-            let temp=[];
-            for(let j=0;j<size;j++){
-                if((i*size)+j<keys.length){
+            let temp = [];
+
+            for (let j = 0; j < size; j++){
+                if((i*size) + j < keys.length){
                     temp.push({
                         name: antagonistCharacters.characters[keys[(i*size)+j]].name,
                         key: keys[(i*size)+j]
