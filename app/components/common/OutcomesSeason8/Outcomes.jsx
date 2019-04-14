@@ -31,7 +31,19 @@ export default class OutcomesSeason8 extends Component {
 
     getOutcomes() {
         let returnArray = [];
-        let keys = Object.keys(outcomesJSON.characters);
+        
+        let allKeys = Object.keys(outcomesJSON.characters);
+        let keys = [];
+        for (let i in allKeys) {
+            if (outcomesJSON.characters[allKeys[i]].episode !== 0) {
+                keys.push(allKeys[i]);
+            }
+        }
+
+        keys.sort((a, b) => {
+            return outcomesJSON.characters[b].episode - outcomesJSON.characters[a].episode;
+        });
+
         let size = 4;
 
         for (let i = 0; i < (keys.length/size); i++) {

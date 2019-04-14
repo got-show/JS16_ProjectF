@@ -13,7 +13,7 @@
             "outcome": "Daenerys Targaryen is ashes",
             "comment": "What a shocker! Looks like she wasn't the prince or princess who was promised after all...",
             "plod": 1,
-            "episode": 6,
+            "episode": 0,
             "image": "tmp"
         },
         "Bronn": {
@@ -45,7 +45,23 @@
             "outcome": "Gregor Clegane didn't make it",
             "comment": "Another one of our 'favourites' for the death list! Gregor Clegane didn't last long.",
             "plod": 13,
-            "episode": 2,
+            "episode": 100,
+            "image": "tmp"
+        },
+        "BrienneOfTarth": {
+            "name": "Brienne of Tarth",
+            "outcome": "Gregor Clegane didn't make it",
+            "comment": "Another one of our 'favourites' for the death list! Gregor Clegane didn't last long.",
+            "plod": 13,
+            "episode": 0,
+            "image": "tmp"
+        },
+        "TheonGreyjoy": {
+            "name": "Theon Greyjoy",
+            "outcome": "Gregor Clegane didn't make it",
+            "comment": "Another one of our 'favourites' for the death list! Gregor Clegane didn't last long.",
+            "plod": 50,
+            "episode": 4,
             "image": "tmp"
         }
     }
