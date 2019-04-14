@@ -51,7 +51,7 @@
 }
 
 #outcomes .rightTitle .diedInEpisode {
-	font-size: 1sem;
+	font-size: 1em;
 	margin: 0;
 	color: #999;
 }
@@ -105,4 +105,12 @@
 #outcomes .card .top-img .plod {
 	font-size: 4em;
 	font-family: 'Cinzel', cursive;
+}
+
+#outcomes .indicators>div {
+    background: #333;
+}
+
+#outcomes .indicators .active {
+    background: #ccc;
 }
