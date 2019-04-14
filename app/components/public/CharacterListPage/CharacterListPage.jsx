@@ -155,7 +155,7 @@ export default class CharacterListPage extends Component {
       }
       let query = search + page + sort + order + filter;
       browserHistory.push({
-        pathname: '/characters/',
+        pathname: '/characters',
         search: query
       });
     }
@@ -193,7 +193,10 @@ export default class CharacterListPage extends Component {
     handleLoadMore() {
       let newPage = this.state.activePage + 1;
       this.setState({
-        data: [...this.state.data, ...Store.getCharacters(newPage, this.state.sort, this.state.filter)],
+        data: [
+          ...this.state.data,
+          ...Store.getCharacters(newPage, this.state.sort, this.state.filter)
+        ],
         activePage: newPage
       });
 

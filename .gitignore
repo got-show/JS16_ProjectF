@@ -42,5 +42,6 @@ config.json
 csv
 
 #build
-build
+build/*
+!build/.gitignore
 package-lock.json
