@@ -38,7 +38,6 @@ browserHistory.listen(location => {
 
 function scrollBack() {
   history.scrollRestoration = 'manual';
-  console.log(window.location.href);
   if (!window.location.href.includes("/characters/?")||window.location.href.includes("page=1")) {
     window.scrollTo(0, 0);
   }
