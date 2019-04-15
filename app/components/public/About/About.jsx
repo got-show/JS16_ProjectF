@@ -82,7 +82,7 @@ export default class About extends Component {
                         <h1 className="about-title">Attributions</h1>
                         <p className="about-description">Most of our data was - and is periodically- scraped from <a href="http://awoiaf.westeros.org" target="_blank">A Wiki of Ice and Fire</a> and <a href="http://gameofthrones.fandom.com" target="_blank">Fandom Game of Thrones Wiki</a>. Contributing to these wikis will enhance this portal greatly, so make sure you drop a visit to our wiki-partners and request an account.</p>
                         <p className="about-description">We used the sources and licenses listed on <a href="/attributions">this page</a>.</p>
-                        <p className="about-description">We would like to thank Microsoft for their support through providing the JavaScript seminar with the Microsoft Education Grant, which allowed us to test and develop the software presented on this webpage, as well as numerous other projects related to classes taught at the chair of Bioinformatics at TUM. We would also like to thank GiHub for providing a platform for us to share and test our code.</p>
+                        <p className="about-description">We would like to thank Microsoft for their support through providing the JavaScript seminar with the Microsoft Education Grant, which allowed us to test and develop the software presented on this webpage, as well as numerous other projects related to classes taught at the chair of Bioinformatics at TUM. We would also like to thank GitHub for providing a platform for us to share and test our code.</p>
                     </Col>
                 </Row>
 
@@ -316,6 +316,11 @@ class TeamMemberListing extends Component {
             },
             {
                 name: "Ashmin Bhattarai",
+                link: "",
+                team: "2019A"
+            },
+            {
+                name: "Fabian Emilius",
                 link: "",
                 team: "2019A"
             },

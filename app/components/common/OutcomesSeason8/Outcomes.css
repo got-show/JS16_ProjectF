@@ -106,3 +106,11 @@
 	font-size: 4em;
 	font-family: 'Cinzel', cursive;
 }
+
+#outcomes .indicators>div {
+    background: #333;
+}
+
+#outcomes .indicators .active {
+    background: #ccc;
+}
