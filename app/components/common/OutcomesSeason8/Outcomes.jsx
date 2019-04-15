@@ -10,6 +10,8 @@ import { Link } from 'react-router';
 import * as Img from './img';
 import * as ImgFTT from '../ForTheThrone/img';
 
+import $ from 'jquery';
+
 const properties = {
     transitionDuration: 500,
     infinite: true,
@@ -44,7 +46,7 @@ export default class OutcomesSeason8 extends Component {
             return outcomesJSON.characters[b].episode - outcomesJSON.characters[a].episode;
         });
 
-        let size = 4;
+        let size = 3;
 
         for (let i = 0; i < (keys.length/size); i++) {
             let temp = [];
@@ -68,11 +70,13 @@ export default class OutcomesSeason8 extends Component {
     }
 
     render() {
+        var baseUrl = process.env.__PROTOCOL__ + process.env.__API__ + ((process.env.__PORT__ !== undefined) ? ':' + process.env.__PORT__ : '') + process.env.__PREFIX__;
+
         return (
             <div id="outcomes">
                 <hr />
                 <h3 className="center">Deaths in season 8</h3>
-                <Link to="/dead-characters-table" style={{fontSize: "0.8em"}}>Full Table&nbsp; <i className="fas fa-external-link-alt"></i></Link>
+        {/*<Link to="/dead-characters-table" style={{fontSize: "0.8em"}}>Full Table&nbsp; <i className="fas fa-external-link-alt"></i></Link>*/}
                 <hr />
                 <Slide {...properties}>
                     {this.state.outcomes.map(function (pageElems, page) {
@@ -80,21 +84,21 @@ export default class OutcomesSeason8 extends Component {
                             <div className="each-slide" key={page}>
                                 {
                                     pageElems.map(function(value, index){
-
+                                        let smallImageLink = value.hasSmallImage ? ImgFTT[value.slug + "Small"] : baseUrl + "show/images/" + value.name.replace(/ /gi, '_') + ".jpg";
+                                        console.log(smallImageLink);
                                         return (
                                             <div key={index} className="card">
                                                 <div className="top-img" style={{backgroundImage: `url(${Img[value.image]})`}}>
                                                     <div>
-                                                        <div>Died with</div>
+                                                        <div>Died in episode {value.episode}</div>
                                                         <div className="plod">{value.plod}%</div>
-                                                        <div>Predicted Likelihood<br />of Death</div>
+                                                        <div>predicted likelihood<br />of death</div>
                                                     </div>
                                                 </div>
                                                 <div className="leftImage">
-                                                    <img src={ImgFTT[value.slug + "Small"]} />
+                                                    <img src={smallImageLink} />
                                                 </div>
                                                 <div className="rightTitle">
-                                                    <span className="diedInEpisode">Died in episode {value.episode}</span>
                                                     <h4>{value.outcome}</h4>
                                                 </div>
                                                 <div className="comment">{value.comment}</div>
@@ -107,6 +111,17 @@ export default class OutcomesSeason8 extends Component {
                         );
                     }.bind(this))}
                 </Slide>
+                <div className="spoilerWarning">
+                    <div className="spoilerWarningPrompt">
+                        <hr />
+                        <h3 className="center">Spoiler Alert!</h3>
+                        <div>The following section lists characters, who have died in season 8.<br/>Are you sure you want to reveal this section of the page?</div>
+                        <div className="showSpoilersButton" onClick={(e) => {
+                            $(e.currentTarget).closest('.spoilerWarning').fadeOut(200);
+                        }}>Show Spoilers</div>
+                        <hr />
+                    </div>
+                </div>
             </div>
         );
     }
