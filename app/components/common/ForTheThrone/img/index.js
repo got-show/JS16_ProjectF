@@ -16,7 +16,7 @@ import IronThrone from './IronThrone.png';
 import JaimeLannister from './JaimeLannister.png';
 import JaimeLannisterSmall from './JaimeLannisterSmall.png';
 import JonSnow from './JonSnow.png';
-import JonSnowSmall from './JonSnowSmall.jpg';
+import JonSnowSmall from './JonSnowSmall.png';
 import JorahMormontSmall from './JorahMormontSmall.png';
 import MelisandreSmall from './MelisandreSmall.png';
 import QyburnSmall from './QyburnSmall.png';

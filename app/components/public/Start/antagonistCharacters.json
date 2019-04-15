@@ -18,23 +18,23 @@
             "description" : "How does being a member of House Stark affect her chances at surviving in the world of Westeros?",
             "quote": "A girl is Arya Stark of Winterfell. And I'm going home."
         },
-        "BrienneOfTarth": {
-            "name": "Brienne of Tarth",
-            "question": "Will Brienne of Tarth meet her fate?",
-            "description" : "Do noblewomen have a harder time surviving in Westeros?",
-            "quote": "All my life men like you have sneered at me. And all my life I've been knocking men like you into the dust."
+        "JaimeLannister": {
+            "name": "Jaime Lannister",
+            "question": "Is Jaime Lannister going to pay for his sins?",
+            "description" : "How does being a member of House Lannister affect his chances at surviving in the world of Westeros?",
+            "quote": "Then he... turned to his pyromancer. Burn them all, he said. Burn them in their homes, burn them in their beds."
+        },
+        "JonSnow": {
+            "name": "Jon Snow",
+            "question": "Is Jon Snow the prince who was promised?",
+            "description" : "How does being a member of House Stark affect his chances at surviving in the world of Westeros?",
+            "quote": "You are a Stark. You may not have my name, but you have my blood."
         },
         "SandorClegane": {
             "name": "Sandor Clegane",
             "question": "Has Sandor Clegane had his last chicken?",
             "description" : "How does being a man affect his chances at surviving in the world of Westeros?",
             "quote": "Killing is the sweetest thing there is"
-        },
-        "JaimeLannister": {
-            "name": "Jaime Lannister",
-            "question": "Is Jaime Lannister going to pay for his sins?",
-            "description" : "How does being a member of House Lannister affect his chances at surviving in the world of Westeros?",
-            "quote": "Then he... turned to his pyromancer. Burn them all, he said. Burn them in their homes, burn them in their beds."
         },
         "SansaStark": {
             "name": "Sansa Stark",
@@ -47,12 +47,6 @@
             "question": "Will Daenerys Targaryen sit on the Iron Throne?",
             "description" : "How does being a member of House Targaryen affect her chances at surviving in the world of Westeros?",
             "quote": "Dracarys."
-        },
-        "JonSnow": {
-            "name": "Jon Snow",
-            "question": "Is Jon Snow the prince who was promised?",
-            "description" : "How does being a member of House Stark affect his chances at surviving in the world of Westeros?",
-            "quote": "You are a Stark. You may not have my name, but you have my blood."
         },
         "BranStark": {
             "name": "Bran Stark",
@@ -119,6 +113,12 @@
             "question": "Will Grey Worm serve his queen to the end of his days?",
             "description": "How does his allegiance to House Targaryen affect his chances at surviving in the world of Westeros?",
             "quote": "I was never the biggest, I was never the strongest, but I was bravest, always."
+        },
+        "BrienneOfTarth": {
+            "name": "Brienne of Tarth",
+            "question": "Will Brienne of Tarth meet her fate?",
+            "description" : "Do noblewomen have a harder time surviving in Westeros?",
+            "quote": "All my life men like you have sneered at me. And all my life I've been knocking men like you into the dust."
         }
     },
     "antagonists": [
