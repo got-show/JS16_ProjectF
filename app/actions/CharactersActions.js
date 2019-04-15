@@ -53,6 +53,9 @@ var CharactersActions = {
                     let death = characters[i].hasShow ? characters[i].show.death : characters[i].book.death;
                     characters[i].death = death;
 
+                    let alive = characters[i].hasShow ? characters[i].show.alive : characters[i].book.alive;
+                    characters[i].alive = alive;
+
                     let imageLink = characters[i].hasShow && characters[i].show.image ? (baseUrl + "show/images/" + characters[i].show.slug + ".jpg") : 
                                     characters[i].hasBook && characters[i].book.image ? (baseUrl + "book/images/" + characters[i].book.slug + ".jpg") : false;
                     characters[i].imageLink = imageLink;

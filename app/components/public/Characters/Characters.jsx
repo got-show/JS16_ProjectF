@@ -181,7 +181,7 @@ export default class Character extends Component {
                             <div className="togglePlodDisplayButtonOption">Book</div>
                         </div>
                         <div className="plodOuterContainer">
-                            { this.state.character.show && this.state.character.show.alive == true && this.state.plodByYearShow && this.state.plodShow ?
+                            { this.state.character.show && !this.state.character.show.death && (this.state.character.show.alive || this.state.plodShow) && this.state.plodByYearShow.length > 0 ?
                                 <div className="plodShowContainer">
                                     <h3>Our Predictions</h3>
                                     <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>TV show <i className="fas fa-external-link-alt"></i></a>
@@ -210,7 +210,7 @@ export default class Character extends Component {
                                 </div>
                             }
 
-                            { this.state.character.book && this.state.character.book.alive == true && this.state.plodByYearBook && this.state.plodBook ?
+                            { this.state.character.book && !this.state.character.book.death && (this.state.character.book.alive || this.state.plodBook) && this.state.plodByYearBook.length > 0 ?
                                 <div className={"plodBookContainer " + (booksAliveShowDead ? '' : 'plodContainerHidden plodContainerZIndexLower')}>
                                     <h3>Our Predictions</h3>
                                     <a className="subtitle" target="_blank" href={"https://awoiaf.westeros.org/index.php/" + this.state.character.name}>Books <i className="fas fa-external-link-alt"></i></a>
