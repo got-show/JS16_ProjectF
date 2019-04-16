@@ -45,9 +45,9 @@ function drawDeadAndAlive() {
       textStyle: {
         fontSize: 17,
         color: '#AAAAAA'
-      },
-
-    }
+      }
+    },
+    tooltip: { isHtml: true },
   };
 
 
