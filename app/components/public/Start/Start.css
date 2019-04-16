@@ -54,7 +54,7 @@
 	padding: 30px !important;
 	box-sizing: border-box;
 	background-color: #353535;
-	border: 1px solid #999;
+	/* border: 1px solid #999; */
 	margin-bottom: 20px;
 	height: 460px;
 }

@@ -42,6 +42,18 @@ export default class Start extends Component {
       <div id="home">
         <ForTheThrone charLeft={this.state.charLeft} charRight={this.state.charRight} />
         <Grid className="content">
+          <Row>
+            <Col md={12}>
+                <Outcomes />
+            </Col>
+          </Row>  
+          <Row>
+            <Col>
+              <hr />
+                <h3 className="center">Rankings</h3>
+              <hr />
+            </Col>
+          </Row>
           <Row >
             <Col md={6}>
               <div className="card">
@@ -66,11 +78,6 @@ export default class Start extends Component {
               <div className="center">{this.state.charLeft.name}'s and {this.state.charRight.name}'s location history on a map:</div><br />
               <MapComp character={[this.state.charLeft.name, this.state.charRight.name]}/>
 
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12}>
-                <Outcomes />
             </Col>
           </Row>
         </Grid>
