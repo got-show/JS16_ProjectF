@@ -7,14 +7,19 @@ var path = require('path');
 var PATH_CLIENT = path.join(__dirname, '../app');
 var PATH_DIST = path.join(__dirname, '../build');
 
-var analytics, api, apiport, https, prefix;
+var analytics, api, apiport, https, prefix, wiki, apiOld, apiTiles;
 try {
   var json = require('../config/config.json');
   analytics = json.google_analytics.key;
   api = json.api.host;
+  wiki = json.api.wiki;
+  apiOld = json.api.hostOld;
+  apiTiles = json.api.hostTiles;
   apiport = json.api.port;
   https = json.api.https ? "https://" : "http://";
   prefix = json.api.prefix;
+
+  process.env.PREFIXDIR;
 } catch (err) {
   console.log(err);
   analytics = process.env.ANALYTICS;
@@ -22,9 +27,15 @@ try {
   apiport = process.env.APIPORT;
   https = process.env.PROTOCOL;
   prefix = process.env.PREFIXDIR;
+
+  wiki = process.env.WIKI;
+  apiOld = process.env.API_OLD;
+  apiTiles = process.env.API_TILES;
 }
 
 var config = {
+  PATH_CLIENT:PATH_CLIENT,
+  PATH_DIST:PATH_DIST,
   entry: [
     PATH_CLIENT + "/main.jsx"
   ],
@@ -42,7 +53,10 @@ var config = {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: [
+          /node_modules/,
+          /gotmap/
+        ],
         loader:  'babel',
         query: {
           presets: ['es2015', 'react']
@@ -103,7 +117,11 @@ var config = {
         '__API__': JSON.stringify(api),
         '__PORT__': JSON.stringify(apiport),
         '__PROTOCOL__': JSON.stringify(https),
-        '__PREFIX__': JSON.stringify(prefix)
+        '__PREFIX__': JSON.stringify(prefix),
+
+        '__WIKI__': JSON.stringify(wiki),
+        '__API_OLD__': JSON.stringify(apiOld),
+        '__API_TILES__': JSON.stringify(apiTiles),
       },
 
     })

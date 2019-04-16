@@ -1,20 +1,28 @@
 {
+  "env": {
+    "browser": true,
+    "node": 10
+  },
   "plugins": [
     "react"
   ],
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-          "impliedStrict": true,
-          "jsx": true
-      },
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "jsx": true
+    }
   },
   "rules": {
-      "semi": 2,
-      "no-mixed-spaces-and-tabs": 0,
-      "react/no-danger": 0
+    "no-console": 0,
+    "semi": 2,
+    "no-mixed-spaces-and-tabs": 0,
+    "react/no-danger": 0,
+    "overqualified-elements": 0
   },
   "globals": {
     "process": true

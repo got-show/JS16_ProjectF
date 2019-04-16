@@ -6,13 +6,14 @@ A song of Ice and Data provides statistical information about the World of Ice a
 
 HOW IT STARTED
 
-Being huge machine learning nerds at [TU Munich’s](https://www.tum.de/) [chair of Bioinformatics](https://rostlab.org/) and GoT fans, we wanted to use our data-crunching skills to get new insights into our beloved series (world?). We also had to prepare material for a [JavaScript seminar](https://rostlab.org/owiki/index.php/Javascript_technology_2016) that we run each semester. Long story short, we decided to let our students build this web service, improving their knowledge of JavaScript in the process!
+Being huge machine learning nerds at [TU Munich’s](https://www.tum.de/) [chair of Bioinformatics](https://rostlab.org/) and GoT fans, we wanted to use our data-crunching skills to get new insights into our beloved series. We also had to prepare material for a [JavaScript seminar](https://rostlab.org/owiki/index.php/Javascript_technology_2019) that we run each semester. Long story short, we decided to let our students build this web service, improving their knowledge of JavaScript in the process! The initial version was developed by the seminar in 2016 and the current version by the seminar in 2019.
 
 DIVIDING TEAMS
 
-We wanted to have in-depth description of characters, trace their travels on the map, see what other fans felt about them, and compute how much danger characters are in. So, we divided our students into several teams: 2 teams used machine learning approaches to calculate Likelihood of Death for each character, 2 teams used sentiment analysis of tweets to deduce how fans feel about GoT characters and 1 team plotted charachters' footsteps on the GoT map using data mining.
+The current version was developed by four teams. One team gathered the data from our Wiki-sources, two teams 2 used machine learning approaches to make predictions and one team was in charge of the website and integration.
+In the initial version from 2016, the students were also divided into several teams: 2 teams used machine learning approaches to calculate Likelihood of Death for each character, 2 teams used sentiment analysis of tweets to deduce how fans feel about GoT characters and 1 team plotted charachters' footsteps on the GoT map using data mining.
 
-We also had 2 teams who were in charge of continuous integration of individual projects and 2 teams who assembled everything into this awesome got.show app.
+Furthermore, 2 teams were in charge of continuous integration of individual projects and 2 teams assembled everything into the initial got.show app.
 
 OPEN SOURCE & OPEN DATA PROJECT
 

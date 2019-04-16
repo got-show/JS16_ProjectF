@@ -1,8 +1,8 @@
-.home {
+#home {
 	text-align: center;
 }
 
-.home-plod {
+#home-plod {
     transform: translateY(-50%);
 }
 
@@ -16,10 +16,10 @@
 
 
 /* Map */
-.home .map-wrapper {
+#home .map-wrapper {
     position: relative;
 }
-.home .map-wrapper #sidebar {
+#home .map-wrapper #sidebar {
      display: none;
  }
  .stats-home {
@@ -34,4 +34,44 @@
 	bottom: 0;
 	right: 50px;
 	font-size: 8px;
+}
+
+#home .content{
+	max-width: 1000px;
+	/* margin-top: 20px; */
+}
+
+#home .card{
+	/* border: 1px solid #999; */
+	margin-top: 20px;
+}
+
+#home .card {
+	position: relative;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.3s;
+	border-radius: 5px;
+	padding: 30px !important;
+	box-sizing: border-box;
+	background-color: #353535;
+	border: 1px solid #999;
+	margin-bottom: 20px;
+	height: 460px;
+}
+
+#home .card h3 {
+	background-color: #1f1f1f;
+	margin: 0;
+	padding: 10px 20px;
+	text-align: center;
+}
+
+#home .card table {
+	border: none;
+}
+
+#home .card .see-more{
+	position: absolute;
+	bottom: 20px;
+	right: 40px;
 }

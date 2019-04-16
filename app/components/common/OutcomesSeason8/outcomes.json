@@ -1,0 +1,12 @@
+{
+    "characters": {
+        "NedUmber": {
+            "name": "Ned Umber",
+            "outcome": "Ned Umber became a wight",
+            "comment": "This didn't come as a great surprise to us, considering his high predicted likelihood of death.",
+            "plod": 77,
+            "episode": 1,
+            "image": "tmp"
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "nobles":{
+       "total":741,
+       "dead":135
+    },
+    "peasants":{
+       "total":742,
+       "dead":182
+    },
+    "male":{
+       "total":1194,
+       "dead":267
+    },
+    "female":{
+       "total":289,
+       "dead":33
+    },
+    "attributes":{
+       "House Arryn":0.56,
+       "House Baratheon of Dragonstone":1.05,
+       "House Baratheon of King's Landing":1.32,
+       "House Bolton":0.946,
+       "House Frey":0.864,
+       "House Greyjoy":0.697,
+       "House Lannister":0.551,
+       "House Martell":1.4,
+       "House Stark":0.618,
+       "House Targaryen":0.577,
+       "House Tarly":0.372,
+       "House Tully":1.61,
+       "House Tyrell":1.58,
+       "hasLovers":0.937,
+       "hasTitles":1.13,
+       "isMajor":0.844,
+       "isMarried":0.443,
+       "male":2.02
+    }
+ }

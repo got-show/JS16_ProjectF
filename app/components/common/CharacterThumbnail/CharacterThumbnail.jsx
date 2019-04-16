@@ -2,28 +2,43 @@ import React from 'react';
 let {Component} = React;
 import {Link} from 'react-router';
 import Col from 'react-bootstrap/lib/Col';
-import {Thumbnail} from 'react-bootstrap';
 import "./CharacterThumbnail.css";
+
+import * as Img from '../../public/Characters/img';
 
 export default class CharacterThumbnail extends Component {
 
     render() {
-		var img = (this.props.imageUrl ===
-		"https://placeholdit.imgix.net/~text?txtsize=28&txt=Fallback-Image&w=300&h=350") ? this.props.imageUrl :process.env.__PROTOCOL__ + process.env.__API__ + this.props.imageUrl ;
+      var img = (this.props.imageUrl != 'placeholder-male' && this.props.imageUrl != 'placeholder-female')
+                ? this.props.imageUrl :
+                (this.props.imageUrl == 'placeholder-male' ? Img['PlaceholderMale']: Img['PlaceholderFemale']);
 
-		var detailLink = '/characters/'+encodeURIComponent(this.props.name);
+      var detailLink = '/characters/'+encodeURIComponent(this.props.name);
 
-        return (
-            <Col md={3} xs={6}>
-              <Link className="to-transition" to={detailLink}>
-                <Thumbnail src={img} className="character-thumbnail" >
-                    <p>{this.props.name}</p>
-                </Thumbnail>
-              </Link>
-            </Col>
+      return (
+          <Col lg={2} md={3} sm={4} xs={6}>
+            <Link className="to-transition" to={detailLink}>
+              <div className="character-thumbnail">
+                <div className="character-thumbmail-img-container">
+                  <img src={img} className="character-thumbnail" title={this.props.name} />
+                </div>
+                <div className="character-thumbnail-name"><p>{this.props.name}</p></div>
+                <div className="characters-list-plod">
+                  <img src={Img['RipTombstoneTransparent']} />
+                  <div className="plod-percentage-cropper" style={{'height': this.props.plodCropperSize+'px'}}><img src={Img['RipTombstone']} /></div>
+                  <div className="plod-percentage">{this.props.plod}</div>
+                </div>
+              </div>
+            </Link>
+          </Col>
         );
     }
 }
 
-CharacterThumbnail.propTypes = { imageUrl: React.PropTypes.string, name: React.PropTypes.string.isRequired };
-CharacterThumbnail.defaultProps = { imageUrl: 'https://placeholdit.imgix.net/~text?txtsize=28&txt=Fallback-Image&w=300&h=350' };
+CharacterThumbnail.propTypes = {
+  imageUrl: React.PropTypes.string,
+  name: React.PropTypes.string.isRequired,
+  plod: React.PropTypes.string,
+  plodCropperSize: React.PropTypes.number
+};
+CharacterThumbnail.defaultProps = { imageUrl: Img['PlaceholderMale']};

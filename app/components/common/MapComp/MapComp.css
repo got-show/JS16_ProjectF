@@ -178,3 +178,18 @@ gets colored when hovered*/
 .gotmap-character .character .characterinfo {
     padding: 0!important;
 }
+
+.gotmap .colormarker img {
+    top: -11px !important;
+    left: -23px !important;
+    width: 17px !important;
+    height: 17px !important;
+}
+
+.gotmap.zoom5 .colormarker img {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 16px !important;
+    top: -22px !important;
+    left: -45px !important;
+}

@@ -1,22 +1,81 @@
 .character-thumbnail  {
-	height: 200px;
+	height: 240px;
 }
-.character-thumbnail img {
-	height: 150px;
-	max-width: 90%;
-	margin: 0 auto;
-}
-.thumbnail {
+
+.character-thumbnail {
 	background-color: #333;
     border-radius: 2px;
     border: 0;
-    color: #999;
     transition: all .1s ease-out;
+    margin-bottom: 30px;
+    padding-top: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.character-thumbnail .character-thumbnail-name {
+    display: block;
+    color: #bbb;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin: 0;
+    text-align: center;
+
+    position: relative;
+    margin-top: 40px;
+    transform: translateY(-50%);
+}
+
+.character-thumbnail .character-thumbnail-name p {
+    text-align: center;
+    line-height: 1.3em;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.character-thumbmail-img-container {
+    position: relative;
+    display: block;
+    height: 154px;
+    width: 102px;
+    margin-left: 50%;
+    left: -49px;
+    overflow: hidden;
+    text-align: center;
+    border: 2px solid transparent;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.character-thumbmail-img-container img {
+    height: 150px;
+    min-width: 98px;
+    max-width: 150px;
+    margin: 0 auto;
+    padding: 0;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .to-transition:hover {
 	transition: all .1s ease-out;
 	transform: scale(1.05);
+}
+
+.to-transition:hover .character-thumbnail {
+    background-color: #3f3f3f;
+}
+
+.to-transition:hover .character-thumbmail-img-container {
+    border: 2px solid white;
+}
+
+
+.to-transition:hover {
+    text-decoration: none;
 }
 
 .thumbnail .caption {
@@ -28,4 +87,62 @@
     bottom: 10%;
     left: 0;
     right: 0;
+}
+
+.characters-list-plod {
+    position: absolute;
+    margin-left: 50%;
+
+    /* TODO: decide on variant */
+    /* variant A*/
+    /* 
+    right: 30px; 
+    top: 106px;
+    */
+
+    /* variant B*/
+    left: -25px;
+    top: 120px;
+
+    height: 50px;
+    width: 50px;
+}
+
+.characters-list-plod > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+}
+
+.characters-list-plod .plod-percentage {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 47px;
+
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Cinzel Decorative', cursive;
+    color: black;
+    font-size: 11px;
+}
+
+.plod-percentage-cropper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+
+    width: 50px;
+}
+
+.plod-percentage-cropper img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    
+    height: 50px;
+    width: 50px;
 }

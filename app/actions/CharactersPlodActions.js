@@ -6,8 +6,7 @@ var CharactersPlodActions = {
 
     loadCharactersPlodByCount: function(count) {
         var charactersPlod = [];
-        Api
-            .get('plod/byCount/' + count)
+        Api.get('plod/byCount/' + count)
             .then(function (response) {
               return response.data;
             }).then(function(charactersPlodResponse){
@@ -27,8 +26,7 @@ var CharactersPlodActions = {
             });
     },
     loadCharacterPlodByName: function(name){
-        Api
-            .get('characters/' + name + '?strict=true')
+        Api.get('characters/' + name + '?strict=true')
             .then(function (response) {
                 return response;
             }).then(function(response){
@@ -48,25 +46,13 @@ var CharactersPlodActions = {
     loadCharactersPlodByName: function(names){
         var charactersPlod = [];
         for(var name of names){
-            Api
-                .get('characters/' + name + '?strict=true')
-                .then(function (response) {
-                    return response.data;
-                }).then(function(character){
-                    Api
-                      .get('plod/bySlug/' + character.slug)
-                      .then(function (response) {
-                        var characterPlod = response.data.find(function (ele) {
-                          return ele.algorithm === "gotplod" && ele.characterSlug === character.slug;
-                        });
-                        var characterWithPlod = Object.assign(character,characterPlod);
-                        charactersPlod.push(characterWithPlod);
-                        AppDispatcher.handleServerAction({
-                            actionType: Constants.RECEIVE_CHARACTERS_PLOD_BY_NAME,
-                            data: charactersPlod
-                        });
-                      });
+            Api.get('show/characters/' + name).then(function(character){
+                charactersPlod.push(character);
+                AppDispatcher.handleServerAction({
+                    actionType: Constants.RECEIVE_CHARACTERS_PLOD_BY_NAME,
+                    data: charactersPlod
                 });
+            });
         }
     }
 };

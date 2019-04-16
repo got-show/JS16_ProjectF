@@ -32,9 +32,6 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-# Build folder
-build
-
 #webstorm idea file
 .idea/
 
@@ -43,3 +40,7 @@ config.json
 
 #crawled files by d4
 csv
+
+#build
+build
+package-lock.json
