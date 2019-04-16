@@ -15,6 +15,12 @@ html, body, #root, .page-wrap {
 	height: 250px;
 }
 
+@media (max-width: 600px) {
+	.wrap:after {
+		height: 50px;
+	}
+}
+
 footer {
 	background-color: #313131;
 	min-height: 250px;

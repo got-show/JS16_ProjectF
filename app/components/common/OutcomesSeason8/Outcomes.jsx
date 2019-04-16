@@ -12,14 +12,6 @@ import * as ImgFTT from '../ForTheThrone/img';
 
 import $ from 'jquery';
 
-const properties = {
-    transitionDuration: 500,
-    infinite: true,
-    indicators: true,
-    arrows: true,
-    autoplay:false
-  };
-
 export default class OutcomesSeason8 extends Component {
 
     constructor(props) {
@@ -71,12 +63,24 @@ export default class OutcomesSeason8 extends Component {
 
     render() {
         var baseUrl = process.env.__PROTOCOL__ + process.env.__API__ + ((process.env.__PORT__ !== undefined) ? ':' + process.env.__PORT__ : '') + process.env.__PREFIX__;
+        var properties = {
+            transitionDuration: 500,
+            infinite: true,
+            indicators: true,
+            arrows: true,
+            autoplay:false
+        };
 
+        if (this.state.outcomes.length <= 1) {
+            properties.arrows = false;
+            properties.indicators = false;
+        }
+        
         return (
             <div id="outcomes">
                 <hr />
                 <h3 className="center">Deaths in season 8</h3>
-        {/*<Link to="/dead-characters-table" style={{fontSize: "0.8em"}}>Full Table&nbsp; <i className="fas fa-external-link-alt"></i></Link>*/}
+                {/*<Link to="/dead-characters-table" style={{fontSize: "0.8em"}}>Full Table&nbsp; <i className="fas fa-external-link-alt"></i></Link>*/}
                 <hr />
                 <Slide {...properties}>
                     {this.state.outcomes.map(function (pageElems, page) {
@@ -85,7 +89,6 @@ export default class OutcomesSeason8 extends Component {
                                 {
                                     pageElems.map(function(value, index){
                                         let smallImageLink = value.hasSmallImage ? ImgFTT[value.slug + "Small"] : baseUrl + "show/images/" + value.name.replace(/ /gi, '_') + ".jpg";
-                                        console.log(smallImageLink);
                                         return (
                                             <div key={index} className="card">
                                                 <div className="top-img" style={{backgroundImage: `url(${Img[value.image]})`}}>
