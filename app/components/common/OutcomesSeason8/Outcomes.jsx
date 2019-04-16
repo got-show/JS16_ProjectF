@@ -121,7 +121,7 @@ export default class OutcomesSeason8 extends Component {
                     <div className="spoilerWarning">
                         <div className="spoilerWarningPrompt card">
                             <h3 className="center">Spoiler Alert!</h3>
-                            <div>The following section lists characters, who have died in season 8.<br/>Are you sure you want to reveal this section of the page?</div>
+                            <div>The following section lists characters who have died in season 8.<br/>Are you sure you want to reveal this section of the page?</div>
                             <div className="showSpoilersButton" onClick={(e) => {
                                 $(e.currentTarget).closest('.spoilerWarning').fadeOut(200);
                             }}>Show Spoilers</div>
